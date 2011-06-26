@@ -36,7 +36,7 @@ public class InvitationState implements Serializable {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -45,7 +45,7 @@ public class InvitationState implements Serializable {
      * @return the label
      */
     public String getLabel() {
-        return label;
+        return this.label;
     }
 
     /**

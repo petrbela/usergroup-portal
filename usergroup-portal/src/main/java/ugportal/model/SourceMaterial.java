@@ -54,7 +54,7 @@ public class SourceMaterial implements Serializable {
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
@@ -63,7 +63,7 @@ public class SourceMaterial implements Serializable {
      * @return the file
      */
     public Blob getFile() {
-        return file;
+        return this.file;
     }
 
     /**
@@ -72,7 +72,7 @@ public class SourceMaterial implements Serializable {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -81,7 +81,7 @@ public class SourceMaterial implements Serializable {
      * @return the label
      */
     public String getLabel() {
-        return label;
+        return this.label;
     }
 
     /**
@@ -90,7 +90,7 @@ public class SourceMaterial implements Serializable {
      * @return the link
      */
     public Link getLink() {
-        return link;
+        return this.link;
     }
 
     /**

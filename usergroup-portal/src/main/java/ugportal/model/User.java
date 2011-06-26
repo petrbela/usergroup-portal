@@ -68,19 +68,12 @@ public class User implements Serializable {
     private String visibleName;
 
     /**
-     * Creates new instance.
-     */
-    public User() {
-        super();
-    }
-
-    /**
      * Returns the email.
      * 
      * @return the email
      */
     public Email getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
@@ -89,7 +82,7 @@ public class User implements Serializable {
      * @return the firstname
      */
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     /**
@@ -98,7 +91,7 @@ public class User implements Serializable {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -107,7 +100,7 @@ public class User implements Serializable {
      * @return the password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     /**
@@ -116,7 +109,7 @@ public class User implements Serializable {
      * @return the photo
      */
     public Blob getPhoto() {
-        return photo;
+        return this.photo;
     }
 
     /**
@@ -125,7 +118,7 @@ public class User implements Serializable {
      * @return the rank
      */
     public Rank getRank() {
-        return rank;
+        return this.rank;
     }
 
     /**
@@ -134,7 +127,7 @@ public class User implements Serializable {
      * @return the role
      */
     public Role getRole() {
-        return role;
+        return this.role;
     }
 
     /**
@@ -143,7 +136,7 @@ public class User implements Serializable {
      * @return the surname
      */
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     /**
@@ -152,7 +145,7 @@ public class User implements Serializable {
      * @return the visibleName
      */
     public String getVisibleName() {
-        return visibleName;
+        return this.visibleName;
     }
 
     /**

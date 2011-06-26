@@ -32,12 +32,40 @@ public class Invitation implements Serializable {
     private User registeredUser;
 
     /**
+     * Returns the id.
+     * 
+     * @return the id
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
      * Returns the invitedByUser.
      * 
      * @return the invitedByUser
      */
     public User getInvitedByUser() {
-        return invitedByUser;
+        return this.invitedByUser;
+    }
+
+    /**
+     * Returns the registeredUser.
+     * 
+     * @return the registeredUser
+     */
+    public User getRegisteredUser() {
+        return this.registeredUser;
+    }
+
+    /**
+     * Sets the id.
+     * 
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -51,15 +79,6 @@ public class Invitation implements Serializable {
     }
 
     /**
-     * Returns the registeredUser.
-     * 
-     * @return the registeredUser
-     */
-    public User getRegisteredUser() {
-        return registeredUser;
-    }
-
-    /**
      * Sets the registeredUser.
      * 
      * @param registeredUser
@@ -67,25 +86,6 @@ public class Invitation implements Serializable {
      */
     public void setRegisteredUser(User registeredUser) {
         this.registeredUser = registeredUser;
-    }
-
-    /**
-     * Returns the id.
-     * 
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the id.
-     * 
-     * @param id
-     *            the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
 }

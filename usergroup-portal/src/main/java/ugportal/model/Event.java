@@ -71,7 +71,7 @@ public class Event implements Serializable {
      * @return the address
      */
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
     /**
@@ -80,7 +80,7 @@ public class Event implements Serializable {
      * @return the author
      */
     public User getAuthor() {
-        return author;
+        return this.author;
     }
 
     /**
@@ -89,7 +89,7 @@ public class Event implements Serializable {
      * @return the date
      */
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     /**
@@ -98,7 +98,7 @@ public class Event implements Serializable {
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
@@ -107,7 +107,7 @@ public class Event implements Serializable {
      * @return the eventType
      */
     public EventType getEventType() {
-        return eventType;
+        return this.eventType;
     }
 
     /**
@@ -116,7 +116,7 @@ public class Event implements Serializable {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -125,7 +125,7 @@ public class Event implements Serializable {
      * @return the link
      */
     public Link getLink() {
-        return link;
+        return this.link;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Event implements Serializable {
      * @return the participants
      */
     public List<User> getParticipants() {
-        return participants;
+        return this.participants;
     }
 
     /**
@@ -143,7 +143,7 @@ public class Event implements Serializable {
      * @return the sourceMaterials
      */
     public List<SourceMaterial> getSourceMaterials() {
-        return sourceMaterials;
+        return this.sourceMaterials;
     }
 
     /**
