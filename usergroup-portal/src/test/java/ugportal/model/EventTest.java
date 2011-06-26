@@ -3,10 +3,15 @@
  */
 package ugportal.model;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.google.appengine.api.datastore.Link;
 
 /**
  * @author Ondrej Kvasnovsky
@@ -14,10 +19,16 @@ import org.junit.Test;
 public class EventTest {
 
     /**
+     * test event
+     */
+    private Event testEvent;
+
+    /**
      * @throws java.lang.Exception
      */
     @Before
     public void setUp() throws Exception {
+        this.testEvent = new Event();
     }
 
     /**
@@ -25,7 +36,9 @@ public class EventTest {
      */
     @Test
     public final void testGetAddress() {
-        fail("Not yet implemented"); // TODO
+        String address = "New York";
+        this.testEvent.setAddress(address);
+        Assert.assertEquals(address, this.testEvent.getAddress());
     }
 
     /**
@@ -33,7 +46,9 @@ public class EventTest {
      */
     @Test
     public final void testGetAuthor() {
-        fail("Not yet implemented"); // TODO
+        User author = new User();
+        this.testEvent.setAuthor(author);
+        Assert.assertEquals(author, this.testEvent.getAuthor());
     }
 
     /**
@@ -41,7 +56,9 @@ public class EventTest {
      */
     @Test
     public final void testGetDate() {
-        fail("Not yet implemented"); // TODO
+        Date date = new Date();
+        this.testEvent.setDate(date);
+        Assert.assertEquals(date, this.testEvent.getDate());
     }
 
     /**
@@ -49,7 +66,9 @@ public class EventTest {
      */
     @Test
     public final void testGetDescription() {
-        fail("Not yet implemented"); // TODO
+        String description = "description...";
+        this.testEvent.setDescription(description);
+        Assert.assertEquals(description, this.testEvent.getDescription());
     }
 
     /**
@@ -57,7 +76,9 @@ public class EventTest {
      */
     @Test
     public final void testGetEventType() {
-        fail("Not yet implemented"); // TODO
+        EventType eventType = new EventType();
+        this.testEvent.setEventType(eventType);
+        Assert.assertEquals(eventType, this.testEvent.getEventType());
     }
 
     /**
@@ -65,7 +86,9 @@ public class EventTest {
      */
     @Test
     public final void testGetId() {
-        fail("Not yet implemented"); // TODO
+        String id = "EVN010";
+        this.testEvent.setId(id);
+        Assert.assertEquals(id, this.testEvent.getId());
     }
 
     /**
@@ -73,7 +96,9 @@ public class EventTest {
      */
     @Test
     public final void testGetLink() {
-        fail("Not yet implemented"); // TODO
+        Link link = new Link("www.google.com");
+        this.testEvent.setLink(link);
+        Assert.assertEquals(link, this.testEvent.getLink());
     }
 
     /**
@@ -81,7 +106,9 @@ public class EventTest {
      */
     @Test
     public final void testGetParticipants() {
-        fail("Not yet implemented"); // TODO
+        List<User> participants = new ArrayList<User>();
+        this.testEvent.setParticipants(participants);
+        Assert.assertEquals(participants, this.testEvent.getParticipants());
     }
 
     /**
@@ -89,23 +116,31 @@ public class EventTest {
      */
     @Test
     public final void testGetSourceMaterials() {
-        fail("Not yet implemented"); // TODO
+        List<SourceMaterial> sourceMaterial = new ArrayList<SourceMaterial>();
+        this.testEvent.setSourceMaterials(sourceMaterial);
+        Assert.assertEquals(sourceMaterial, this.testEvent.getSourceMaterials());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setAddress(java.lang.String)}.
+     * Test method for {@link ugportal.model.Event#setAddress(java.lang.String)}
+     * .
      */
     @Test
     public final void testSetAddress() {
-        fail("Not yet implemented"); // TODO
+        String address = "New York";
+        this.testEvent.setAddress(address);
+        Assert.assertEquals(address, this.testEvent.getAddress());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setAuthor(ugportal.model.User)}.
+     * Test method for
+     * {@link ugportal.model.Event#setAuthor(ugportal.model.User)}.
      */
     @Test
     public final void testSetAuthor() {
-        fail("Not yet implemented"); // TODO
+        User author = new User();
+        this.testEvent.setAuthor(author);
+        Assert.assertEquals(author, this.testEvent.getAuthor());
     }
 
     /**
@@ -113,23 +148,31 @@ public class EventTest {
      */
     @Test
     public final void testSetDate() {
-        fail("Not yet implemented"); // TODO
+        Date date = new Date();
+        this.testEvent.setDate(date);
+        Assert.assertEquals(date, this.testEvent.getDate());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setDescription(java.lang.String)}.
+     * Test method for
+     * {@link ugportal.model.Event#setDescription(java.lang.String)}.
      */
     @Test
     public final void testSetDescription() {
-        fail("Not yet implemented"); // TODO
+        String description = "description...";
+        this.testEvent.setDescription(description);
+        Assert.assertEquals(description, this.testEvent.getDescription());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setEventType(ugportal.model.EventType)}.
+     * Test method for
+     * {@link ugportal.model.Event#setEventType(ugportal.model.EventType)}.
      */
     @Test
     public final void testSetEventType() {
-        fail("Not yet implemented"); // TODO
+        EventType eventType = new EventType();
+        this.testEvent.setEventType(eventType);
+        Assert.assertEquals(eventType, this.testEvent.getEventType());
     }
 
     /**
@@ -137,31 +180,43 @@ public class EventTest {
      */
     @Test
     public final void testSetId() {
-        fail("Not yet implemented"); // TODO
+        String id = "EVN010";
+        this.testEvent.setId(id);
+        Assert.assertEquals(id, this.testEvent.getId());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setLink(com.google.appengine.api.datastore.Link)}.
+     * Test method for
+     * {@link ugportal.model.Event#setLink(com.google.appengine.api.datastore.Link)}
+     * .
      */
     @Test
     public final void testSetLink() {
-        fail("Not yet implemented"); // TODO
+        Link link = new Link("www.google.com");
+        this.testEvent.setLink(link);
+        Assert.assertEquals(link, this.testEvent.getLink());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setParticipants(java.util.List)}.
+     * Test method for
+     * {@link ugportal.model.Event#setParticipants(java.util.List)}.
      */
     @Test
     public final void testSetParticipants() {
-        fail("Not yet implemented"); // TODO
+        List<User> participants = new ArrayList<User>();
+        this.testEvent.setParticipants(participants);
+        Assert.assertEquals(participants, this.testEvent.getParticipants());
     }
 
     /**
-     * Test method for {@link ugportal.model.Event#setSourceMaterials(java.util.List)}.
+     * Test method for
+     * {@link ugportal.model.Event#setSourceMaterials(java.util.List)}.
      */
     @Test
     public final void testSetSourceMaterials() {
-        fail("Not yet implemented"); // TODO
+        List<SourceMaterial> sourceMaterial = new ArrayList<SourceMaterial>();
+        this.testEvent.setSourceMaterials(sourceMaterial);
+        Assert.assertEquals(sourceMaterial, this.testEvent.getSourceMaterials());
     }
 
 }

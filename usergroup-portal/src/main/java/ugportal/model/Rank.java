@@ -28,13 +28,6 @@ public class Rank implements Serializable {
     private String label;
 
     /**
-     * Creates new instance.
-     */
-    public Rank() {
-        super();
-    }
-
-    /**
      * Returns the id.
      * 
      * @return the id
