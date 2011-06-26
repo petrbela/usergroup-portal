@@ -48,6 +48,16 @@ public class User implements Serializable {
     private Blob photo;
 
     /**
+     * rank
+     */
+    private Rank rank;
+
+    /**
+     * role
+     */
+    private Role role;
+
+    /**
      * surname
      */
     private String surname;
@@ -58,19 +68,12 @@ public class User implements Serializable {
     private String visibleName;
 
     /**
-     * Creates new instance.
-     */
-    public User() {
-        super();
-    }
-
-    /**
      * Returns the email.
      * 
      * @return the email
      */
     public Email getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
@@ -79,7 +82,7 @@ public class User implements Serializable {
      * @return the firstname
      */
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     /**
@@ -88,7 +91,7 @@ public class User implements Serializable {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -97,7 +100,7 @@ public class User implements Serializable {
      * @return the password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     /**
@@ -106,7 +109,25 @@ public class User implements Serializable {
      * @return the photo
      */
     public Blob getPhoto() {
-        return photo;
+        return this.photo;
+    }
+
+    /**
+     * Returns the rank.
+     * 
+     * @return the rank
+     */
+    public Rank getRank() {
+        return this.rank;
+    }
+
+    /**
+     * Returns the role.
+     * 
+     * @return the role
+     */
+    public Role getRole() {
+        return this.role;
     }
 
     /**
@@ -115,7 +136,7 @@ public class User implements Serializable {
      * @return the surname
      */
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     /**
@@ -124,7 +145,7 @@ public class User implements Serializable {
      * @return the visibleName
      */
     public String getVisibleName() {
-        return visibleName;
+        return this.visibleName;
     }
 
     /**
@@ -175,6 +196,26 @@ public class User implements Serializable {
      */
     public void setPhoto(Blob photo) {
         this.photo = photo;
+    }
+
+    /**
+     * Sets the rank.
+     * 
+     * @param rank
+     *            the rank to set
+     */
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    /**
+     * Sets the role.
+     * 
+     * @param role
+     *            the role to set
+     */
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     /**

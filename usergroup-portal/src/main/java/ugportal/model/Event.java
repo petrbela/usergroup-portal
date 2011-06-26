@@ -5,6 +5,7 @@ package ugportal.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Id;
 
@@ -26,6 +27,11 @@ public class Event implements Serializable {
     private String address;
 
     /**
+     * author who made an event
+     */
+    private User author;
+
+    /**
      * date when an even happens
      */
     private Date date;
@@ -34,6 +40,11 @@ public class Event implements Serializable {
      * description of event, providing more info about an event
      */
     private String description;
+
+    /**
+     * event type
+     */
+    private EventType eventType;
 
     /**
      * event id
@@ -45,6 +56,14 @@ public class Event implements Serializable {
      * link to more details or registration page
      */
     private Link link;
+    /**
+     * participants of an event
+     */
+    private List<User> participants;
+    /**
+     * source materials
+     */
+    private List<SourceMaterial> sourceMaterials;
 
     /**
      * Returns the address.
@@ -52,7 +71,16 @@ public class Event implements Serializable {
      * @return the address
      */
     public String getAddress() {
-        return address;
+        return this.address;
+    }
+
+    /**
+     * Returns the author.
+     * 
+     * @return the author
+     */
+    public User getAuthor() {
+        return this.author;
     }
 
     /**
@@ -61,7 +89,7 @@ public class Event implements Serializable {
      * @return the date
      */
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     /**
@@ -70,7 +98,16 @@ public class Event implements Serializable {
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return this.description;
+    }
+
+    /**
+     * Returns the eventType.
+     * 
+     * @return the eventType
+     */
+    public EventType getEventType() {
+        return this.eventType;
     }
 
     /**
@@ -79,7 +116,7 @@ public class Event implements Serializable {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -88,7 +125,25 @@ public class Event implements Serializable {
      * @return the link
      */
     public Link getLink() {
-        return link;
+        return this.link;
+    }
+
+    /**
+     * Returns the participants.
+     * 
+     * @return the participants
+     */
+    public List<User> getParticipants() {
+        return this.participants;
+    }
+
+    /**
+     * Returns the sourceMaterials.
+     * 
+     * @return the sourceMaterials
+     */
+    public List<SourceMaterial> getSourceMaterials() {
+        return this.sourceMaterials;
     }
 
     /**
@@ -99,6 +154,16 @@ public class Event implements Serializable {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * Sets the author.
+     * 
+     * @param author
+     *            the author to set
+     */
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     /**
@@ -122,6 +187,16 @@ public class Event implements Serializable {
     }
 
     /**
+     * Sets the eventType.
+     * 
+     * @param eventType
+     *            the eventType to set
+     */
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
+    }
+
+    /**
      * Sets the id.
      * 
      * @param id
@@ -139,6 +214,26 @@ public class Event implements Serializable {
      */
     public void setLink(Link link) {
         this.link = link;
+    }
+
+    /**
+     * Sets the participants.
+     * 
+     * @param participants
+     *            the participants to set
+     */
+    public void setParticipants(List<User> participants) {
+        this.participants = participants;
+    }
+
+    /**
+     * Sets the sourceMaterials.
+     * 
+     * @param sourceMaterials
+     *            the sourceMaterials to set
+     */
+    public void setSourceMaterials(List<SourceMaterial> sourceMaterials) {
+        this.sourceMaterials = sourceMaterials;
     }
 
 }
