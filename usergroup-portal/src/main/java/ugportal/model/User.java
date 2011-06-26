@@ -48,6 +48,16 @@ public class User implements Serializable {
     private Blob photo;
 
     /**
+     * rank
+     */
+    private Rank rank;
+
+    /**
+     * role
+     */
+    private Role role;
+
+    /**
      * surname
      */
     private String surname;
@@ -107,6 +117,24 @@ public class User implements Serializable {
      */
     public Blob getPhoto() {
         return photo;
+    }
+
+    /**
+     * Returns the rank.
+     * 
+     * @return the rank
+     */
+    public Rank getRank() {
+        return rank;
+    }
+
+    /**
+     * Returns the role.
+     * 
+     * @return the role
+     */
+    public Role getRole() {
+        return role;
     }
 
     /**
@@ -175,6 +203,26 @@ public class User implements Serializable {
      */
     public void setPhoto(Blob photo) {
         this.photo = photo;
+    }
+
+    /**
+     * Sets the rank.
+     * 
+     * @param rank
+     *            the rank to set
+     */
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    /**
+     * Sets the role.
+     * 
+     * @param role
+     *            the role to set
+     */
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     /**
