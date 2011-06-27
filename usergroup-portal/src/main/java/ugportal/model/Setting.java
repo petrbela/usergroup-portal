@@ -11,6 +11,7 @@ public class Setting implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     /**
+     * link to Twitter to download tweets
      */
     private Link linkTwitter;
     /**
