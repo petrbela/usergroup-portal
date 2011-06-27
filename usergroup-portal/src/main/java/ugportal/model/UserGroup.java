@@ -6,7 +6,9 @@ import java.util.List;
 import com.google.appengine.api.datastore.Text;
 
 /**
- * @author Tomas
+ * @{link UserGroup} the usergroup class represents the user group and
+ * 
+ * @author Tomas Vantuch
  * 
  */
 public class UserGroup implements Serializable {
@@ -44,6 +46,14 @@ public class UserGroup implements Serializable {
      * collection of invitations
      */
     private List<Invitation> invitations;
+    /**
+     * collection of users
+     */
+    private List<User> users;
+    /**
+     * collection of events
+     */
+    private List<Event> events;
 
     /**
      * Returns the name
@@ -176,6 +186,44 @@ public class UserGroup implements Serializable {
      */
     public void setInvitations(List<Invitation> invitations) {
         this.invitations = invitations;
+    }
+
+    /**
+     * Returns the users
+     * 
+     * @return the users
+     */
+    public List<User> getUsers() {
+        return users;
+    }
+
+    /**
+     * Sets the users
+     * 
+     * @param users
+     *            to set the users
+     */
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    /**
+     * Returns the events
+     * 
+     * @return the events
+     */
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    /**
+     * Sets the events
+     * 
+     * @param events
+     *            to set the events
+     */
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
 }

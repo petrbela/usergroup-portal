@@ -3,20 +3,28 @@
  */
 package ugportal.model;
 
-import static org.junit.Assert.fail;
+import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import com.google.appengine.api.datastore.Link;
 
 /**
  * @author Tomas Vantuch
  */
 public class TweetTest {
+
+    private Tweet testTweet;
+
     /**
      * Test method for {@link ugportal.model.Tweet#getId()}.
      */
     @Test
     public final void testGetId() {
-        fail("Not yet implemented"); // TODO
+        String id = "srghryfg35b4684d6f";
+        this.testTweet.setId(id);
+        Assert.assertEquals(id, this.testTweet.getId());
     }
 
     /**
@@ -24,7 +32,9 @@ public class TweetTest {
      */
     @Test
     public final void testSetId() {
-        fail("Not yet implemented"); // TODO
+        String id = "srghryfg35b4684d6f";
+        this.testTweet.setId(id);
+        Assert.assertEquals(id, this.testTweet.getId());
     }
 
     /**
@@ -32,7 +42,9 @@ public class TweetTest {
      */
     @Test
     public final void testGetDescription() {
-        fail("Not yet implemented"); // TODO
+        String description = "descr....";
+        this.testTweet.setDescription(description);
+        Assert.assertEquals(description, this.testTweet.getDescription());
     }
 
     /**
@@ -41,7 +53,9 @@ public class TweetTest {
      */
     @Test
     public final void testSetDescription() {
-        fail("Not yet implemented"); // TODO
+        String description = "descr....";
+        this.testTweet.setDescription(description);
+        Assert.assertEquals(description, this.testTweet.getDescription());
     }
 
     /**
@@ -49,7 +63,9 @@ public class TweetTest {
      */
     @Test
     public final void testGetTitle() {
-        fail("Not yet implemented"); // TODO
+        String title = "title";
+        this.testTweet.setTitle(title);
+        Assert.assertEquals(title, this.testTweet.getTitle());
     }
 
     /**
@@ -57,7 +73,9 @@ public class TweetTest {
      */
     @Test
     public final void testSetTitle() {
-        fail("Not yet implemented"); // TODO
+        String title = "title";
+        this.testTweet.setTitle(title);
+        Assert.assertEquals(title, this.testTweet.getTitle());
     }
 
     /**
@@ -65,7 +83,9 @@ public class TweetTest {
      */
     @Test
     public final void testGetDateTime() {
-        fail("Not yet implemented"); // TODO
+        Date dateTime = new Date();
+        this.testTweet.setDateTime(dateTime);
+        Assert.assertEquals(dateTime, this.testTweet.getDateTime());
     }
 
     /**
@@ -73,7 +93,9 @@ public class TweetTest {
      */
     @Test
     public final void testSetDateTime() {
-        fail("Not yet implemented"); // TODO
+        Date dateTime = new Date();
+        this.testTweet.setDateTime(dateTime);
+        Assert.assertEquals(dateTime, this.testTweet.getDateTime());
     }
 
     /**
@@ -81,7 +103,9 @@ public class TweetTest {
      */
     @Test
     public final void testGetLink() {
-        fail("Not yet implemented"); // TODO
+        Link link = new Link("www.azet.sk");
+        this.testTweet.setLink(link);
+        Assert.assertEquals(link, this.testTweet.getLink());
     }
 
     /**
@@ -91,7 +115,9 @@ public class TweetTest {
      */
     @Test
     public final void testSetLink() {
-        fail("Not yet implemented"); // TODO
+        Link link = new Link("www.azet.sk");
+        this.testTweet.setLink(link);
+        Assert.assertEquals(link, this.testTweet.getLink());
     }
 
 }

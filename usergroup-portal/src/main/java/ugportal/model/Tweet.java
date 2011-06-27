@@ -5,12 +5,17 @@ import java.util.Date;
 
 import com.google.appengine.api.datastore.Link;
 
+/**
+ * {@link Tweet} to represents a tweet added by user to portal.
+ * 
+ * @author Tomas
+ */
 public class Tweet implements Serializable {
 
     /**
      * serialVersionUID
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 8832221858812220881L;
     /**
      * id of the tweet
      */

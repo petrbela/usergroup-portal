@@ -3,20 +3,26 @@
  */
 package ugportal.model;
 
-import static org.junit.Assert.fail;
-
+import org.junit.Assert;
 import org.junit.Test;
+
+import com.google.appengine.api.datastore.Link;
 
 /**
  * @author Tomas Vantuch
  */
 public class SettingTest {
+
+    private Setting testSetting;
+
     /**
      * Test method for {@link ugportal.model.Setting#getLinkTwitter()}.
      */
     @Test
     public final void testGetLinkTwitter() {
-        fail("Not yet implemented."); // TODO
+        Link link = new Link("http://www.seznam.cz");
+        this.testSetting.setLinkTwitter(link);
+        Assert.assertEquals(link, this.testSetting.getLinkTwitter());
     }
 
     /**
@@ -26,7 +32,9 @@ public class SettingTest {
      */
     @Test
     public final void testSetLinkTwitter() {
-        fail("Not yet implemented."); // TODO
+        Link link = new Link("http://www.seznam.cz");
+        this.testSetting.setLinkTwitter(link);
+        Assert.assertEquals(link, this.testSetting.getLinkTwitter());
     }
 
     /**
@@ -34,7 +42,9 @@ public class SettingTest {
      */
     @Test
     public final void testGetLinkBlogPost() {
-        fail("Not yet implemented."); // TODO
+        Link link = new Link("http://www.seznam.cz");
+        this.testSetting.setLinkBlogPost(link);
+        Assert.assertEquals(link, this.testSetting.getLinkBlogPost());
     }
 
     /**
@@ -44,6 +54,8 @@ public class SettingTest {
      */
     @Test
     public final void testSetLinkBlogPost() {
-        fail("Not yet implemented."); // TODO
+        Link link = new Link("http://www.seznam.cz");
+        this.testSetting.setLinkBlogPost(link);
+        Assert.assertEquals(link, this.testSetting.getLinkBlogPost());
     }
 }

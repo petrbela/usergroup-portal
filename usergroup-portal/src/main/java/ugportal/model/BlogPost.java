@@ -16,7 +16,7 @@ public class BlogPost implements Serializable {
     /**
      * serialVersionUID
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7813474677908976294L;
     /**
      * id of the BlogPost
      */

@@ -3,20 +3,28 @@
  */
 package ugportal.model;
 
-import static org.junit.Assert.fail;
+import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import com.google.appengine.api.datastore.Link;
 
 /**
  * @author Tomas Vantuch
  */
 public class BlogPostTest {
+
+    private BlogPost blogPost;
+
     /**
      * Test method for {@link ugportal.model.BlogPost#getId()}.
      */
     @Test
     public final void testGetId() {
-        fail("Not yet implemented"); // TODO
+        String id = "srghryfg35b4684d6f";
+        this.blogPost.setId(id);
+        Assert.assertEquals(id, this.blogPost.getId());
     }
 
     /**
@@ -24,7 +32,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testSetId() {
-        fail("Not yet implemented"); // TODO
+        String id = "srghryfg35b4684d6f";
+        this.blogPost.setId(id);
+        Assert.assertEquals(id, this.blogPost.getId());
     }
 
     /**
@@ -32,7 +42,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testGetDescription() {
-        fail("Not yet implemented"); // TODO
+        String description = "descr....";
+        this.blogPost.setDescription(description);
+        Assert.assertEquals(description, this.blogPost.getDescription());
     }
 
     /**
@@ -41,7 +53,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testSetDescription() {
-        fail("Not yet implemented"); // TODO
+        String description = "descr....";
+        this.blogPost.setDescription(description);
+        Assert.assertEquals(description, this.blogPost.getDescription());
     }
 
     /**
@@ -49,7 +63,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testGetTitle() {
-        fail("Not yet implemented"); // TODO
+        String title = "title";
+        this.blogPost.setTitle(title);
+        Assert.assertEquals(title, this.blogPost.getTitle());
     }
 
     /**
@@ -58,7 +74,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testSetTitle() {
-        fail("Not yet implemented"); // TODO
+        String title = "title";
+        this.blogPost.setTitle(title);
+        Assert.assertEquals(title, this.blogPost.getTitle());
     }
 
     /**
@@ -66,7 +84,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testGetDateTime() {
-        fail("Not yet implemented"); // TODO
+        Date dateTime = new Date();
+        this.blogPost.setDateTime(dateTime);
+        Assert.assertEquals(dateTime, this.blogPost.getDateTime());
     }
 
     /**
@@ -75,7 +95,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testSetDateTime() {
-        fail("Not yet implemented"); // TODO
+        Date dateTime = new Date();
+        this.blogPost.setDateTime(dateTime);
+        Assert.assertEquals(dateTime, this.blogPost.getDateTime());
     }
 
     /**
@@ -83,7 +105,9 @@ public class BlogPostTest {
      */
     @Test
     public final void testGetLink() {
-        fail("Not yet implemented"); // TODO
+        Link link = new Link("www.azet.sk");
+        this.blogPost.setLink(link);
+        Assert.assertEquals(link, this.blogPost.getLink());
     }
 
     /**
@@ -93,6 +117,8 @@ public class BlogPostTest {
      */
     @Test
     public final void testSetLink() {
-        fail("Not yet implemented"); // TODO
+        Link link = new Link("www.azet.sk");
+        this.blogPost.setLink(link);
+        Assert.assertEquals(link, this.blogPost.getLink());
     }
 }

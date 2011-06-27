@@ -4,12 +4,17 @@ import java.io.Serializable;
 
 import com.google.appengine.api.datastore.Link;
 
+/**
+ * {@link Setting} stores setting (links to blog source and twitter)
+ * 
+ * @author Tomas Vantuch
+ */
 public class Setting implements Serializable {
 
     /**
      * serialVersionUID
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 4521107222049601989L;
     /**
      * link to Twitter to download tweets
      */
