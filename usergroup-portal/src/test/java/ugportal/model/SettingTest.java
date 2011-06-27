@@ -4,6 +4,7 @@
 package ugportal.model;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.appengine.api.datastore.Link;
@@ -14,6 +15,14 @@ import com.google.appengine.api.datastore.Link;
 public class SettingTest {
 
     private Setting testSetting;
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        this.testSetting = new Setting();
+    }
 
     /**
      * Test method for {@link ugportal.model.Setting#getLinkTwitter()}.

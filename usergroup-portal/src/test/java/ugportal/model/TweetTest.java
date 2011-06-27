@@ -6,6 +6,7 @@ package ugportal.model;
 import java.util.Date;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.appengine.api.datastore.Link;
@@ -16,6 +17,14 @@ import com.google.appengine.api.datastore.Link;
 public class TweetTest {
 
     private Tweet testTweet;
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        this.testTweet = new Tweet();
+    }
 
     /**
      * Test method for {@link ugportal.model.Tweet#getId()}.

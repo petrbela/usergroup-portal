@@ -6,6 +6,7 @@ package ugportal.model;
 import java.util.Date;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.appengine.api.datastore.Link;
@@ -15,7 +16,15 @@ import com.google.appengine.api.datastore.Link;
  */
 public class BlogPostTest {
 
-    private BlogPost blogPost;
+    private BlogPost testBlogPost;
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        this.testBlogPost = new BlogPost();
+    }
 
     /**
      * Test method for {@link ugportal.model.BlogPost#getId()}.
@@ -23,8 +32,8 @@ public class BlogPostTest {
     @Test
     public final void testGetId() {
         String id = "srghryfg35b4684d6f";
-        this.blogPost.setId(id);
-        Assert.assertEquals(id, this.blogPost.getId());
+        this.testBlogPost.setId(id);
+        Assert.assertEquals(id, this.testBlogPost.getId());
     }
 
     /**
@@ -33,8 +42,8 @@ public class BlogPostTest {
     @Test
     public final void testSetId() {
         String id = "srghryfg35b4684d6f";
-        this.blogPost.setId(id);
-        Assert.assertEquals(id, this.blogPost.getId());
+        this.testBlogPost.setId(id);
+        Assert.assertEquals(id, this.testBlogPost.getId());
     }
 
     /**
@@ -43,8 +52,8 @@ public class BlogPostTest {
     @Test
     public final void testGetDescription() {
         String description = "descr....";
-        this.blogPost.setDescription(description);
-        Assert.assertEquals(description, this.blogPost.getDescription());
+        this.testBlogPost.setDescription(description);
+        Assert.assertEquals(description, this.testBlogPost.getDescription());
     }
 
     /**
@@ -54,8 +63,8 @@ public class BlogPostTest {
     @Test
     public final void testSetDescription() {
         String description = "descr....";
-        this.blogPost.setDescription(description);
-        Assert.assertEquals(description, this.blogPost.getDescription());
+        this.testBlogPost.setDescription(description);
+        Assert.assertEquals(description, this.testBlogPost.getDescription());
     }
 
     /**
@@ -64,8 +73,8 @@ public class BlogPostTest {
     @Test
     public final void testGetTitle() {
         String title = "title";
-        this.blogPost.setTitle(title);
-        Assert.assertEquals(title, this.blogPost.getTitle());
+        this.testBlogPost.setTitle(title);
+        Assert.assertEquals(title, this.testBlogPost.getTitle());
     }
 
     /**
@@ -75,8 +84,8 @@ public class BlogPostTest {
     @Test
     public final void testSetTitle() {
         String title = "title";
-        this.blogPost.setTitle(title);
-        Assert.assertEquals(title, this.blogPost.getTitle());
+        this.testBlogPost.setTitle(title);
+        Assert.assertEquals(title, this.testBlogPost.getTitle());
     }
 
     /**
@@ -85,8 +94,8 @@ public class BlogPostTest {
     @Test
     public final void testGetDateTime() {
         Date dateTime = new Date();
-        this.blogPost.setDateTime(dateTime);
-        Assert.assertEquals(dateTime, this.blogPost.getDateTime());
+        this.testBlogPost.setDateTime(dateTime);
+        Assert.assertEquals(dateTime, this.testBlogPost.getDateTime());
     }
 
     /**
@@ -96,8 +105,8 @@ public class BlogPostTest {
     @Test
     public final void testSetDateTime() {
         Date dateTime = new Date();
-        this.blogPost.setDateTime(dateTime);
-        Assert.assertEquals(dateTime, this.blogPost.getDateTime());
+        this.testBlogPost.setDateTime(dateTime);
+        Assert.assertEquals(dateTime, this.testBlogPost.getDateTime());
     }
 
     /**
@@ -106,8 +115,8 @@ public class BlogPostTest {
     @Test
     public final void testGetLink() {
         Link link = new Link("www.azet.sk");
-        this.blogPost.setLink(link);
-        Assert.assertEquals(link, this.blogPost.getLink());
+        this.testBlogPost.setLink(link);
+        Assert.assertEquals(link, this.testBlogPost.getLink());
     }
 
     /**
@@ -118,7 +127,7 @@ public class BlogPostTest {
     @Test
     public final void testSetLink() {
         Link link = new Link("www.azet.sk");
-        this.blogPost.setLink(link);
-        Assert.assertEquals(link, this.blogPost.getLink());
+        this.testBlogPost.setLink(link);
+        Assert.assertEquals(link, this.testBlogPost.getLink());
     }
 }

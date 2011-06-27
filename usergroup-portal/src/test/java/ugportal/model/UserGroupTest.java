@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.appengine.api.datastore.Text;
@@ -17,6 +18,14 @@ import com.google.appengine.api.datastore.Text;
 public class UserGroupTest {
 
     private UserGroup testUserGroup;
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        this.testUserGroup = new UserGroup();
+    }
 
     /**
      * Test method for {@link ugportal.model.UserGroup#getName()}.
