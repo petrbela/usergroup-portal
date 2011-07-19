@@ -6,13 +6,19 @@ package ugportal.dao.objectify;
 import ugportal.dao.DaoUserGroup;
 import ugportal.model.UserGroup;
 
+import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.util.DAOBase;
+
 /**
- * {@link DaoUserGroupObjectify} implements access to the database via Objectify
- * framework.
+ * {@link DaoUserGroupObjectify} implements access to the database via Objectify framework.
  * 
  * @author Tomas Vantuch, Ondrej Kvasnovsky
  */
-public class DaoUserGroupObjectify implements DaoUserGroup {
+public class DaoUserGroupObjectify extends DAOBase implements DaoUserGroup {
+
+    static {
+	ObjectifyService.register(UserGroup.class);
+    }
 
     /**
      * {@inheritDoc}
@@ -20,8 +26,8 @@ public class DaoUserGroupObjectify implements DaoUserGroup {
      * @see ugportal.dao.DaoUserGroup#get(java.lang.String)
      */
     @Override
-    public UserGroup get(String id) {
-        return null;
+    public UserGroup get(final String id) {
+	return ofy().get(UserGroup.class, id);
     }
 
 }
