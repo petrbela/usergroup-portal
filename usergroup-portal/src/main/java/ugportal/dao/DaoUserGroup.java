@@ -19,14 +19,5 @@ public interface DaoUserGroup {
      *            user group id
      * @return fetched user group, or null
      */
-    public abstract UserGroup getById(final String id);
-
-    /**
-     * Returns {@link UserGroup} by it's name.
-     * 
-     * @param name
-     *            user group name
-     * @return fetched user group, or null
-     */
-    public abstract UserGroup getByName(final String name);
+    public abstract UserGroup get(final String id);
 }
