@@ -3,6 +3,8 @@ package ugportal.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Id;
+
 import com.google.appengine.api.datastore.Text;
 
 /**
@@ -25,7 +27,8 @@ public class UserGroup implements Serializable {
     /**
      * id of user group
      */
-    private String id;
+    @Id
+    private Long id;
     /**
      * description of user group
      */
@@ -61,7 +64,7 @@ public class UserGroup implements Serializable {
      * @return the name
      */
     public String getName() {
-        return name;
+	return name;
     }
 
     /**
@@ -70,8 +73,8 @@ public class UserGroup implements Serializable {
      * @param name
      *            to set name of user group
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String name) {
+	this.name = name;
     }
 
     /**
@@ -79,18 +82,8 @@ public class UserGroup implements Serializable {
      * 
      * @return ID
      */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the id
-     * 
-     * @param id
-     *            to set id of user group
-     */
-    public void setId(String id) {
-        this.id = id;
+    public Long getId() {
+	return id;
     }
 
     /**
@@ -99,7 +92,7 @@ public class UserGroup implements Serializable {
      * @return about
      */
     public Text getAbout() {
-        return about;
+	return about;
     }
 
     /**
@@ -108,8 +101,8 @@ public class UserGroup implements Serializable {
      * @param about
      *            to set what is it about.
      */
-    public void setAbout(Text about) {
-        this.about = about;
+    public void setAbout(final Text about) {
+	this.about = about;
     }
 
     /**
@@ -118,7 +111,7 @@ public class UserGroup implements Serializable {
      * @return the tweets
      */
     public List<Tweet> getTweets() {
-        return tweets;
+	return tweets;
     }
 
     /**
@@ -127,8 +120,8 @@ public class UserGroup implements Serializable {
      * @param the
      *            tweets
      */
-    public void setTweets(List<Tweet> tweets) {
-        this.tweets = tweets;
+    public void setTweets(final List<Tweet> tweets) {
+	this.tweets = tweets;
     }
 
     /**
@@ -137,7 +130,7 @@ public class UserGroup implements Serializable {
      * return the blogposts
      */
     public List<BlogPost> getBlogposts() {
-        return blogposts;
+	return blogposts;
     }
 
     /**
@@ -146,8 +139,8 @@ public class UserGroup implements Serializable {
      * @param blogposts
      *            the blogposts to set
      */
-    public void setBlogposts(List<BlogPost> blogposts) {
-        this.blogposts = blogposts;
+    public void setBlogposts(final List<BlogPost> blogposts) {
+	this.blogposts = blogposts;
     }
 
     /**
@@ -156,7 +149,7 @@ public class UserGroup implements Serializable {
      * @return the setting
      */
     public Setting getSetting() {
-        return setting;
+	return setting;
     }
 
     /**
@@ -165,8 +158,8 @@ public class UserGroup implements Serializable {
      * @param setting
      *            the setting to set
      */
-    public void setSetting(Setting setting) {
-        this.setting = setting;
+    public void setSetting(final Setting setting) {
+	this.setting = setting;
     }
 
     /**
@@ -175,7 +168,7 @@ public class UserGroup implements Serializable {
      * @return the invitation
      */
     public List<Invitation> getInvitations() {
-        return invitations;
+	return invitations;
     }
 
     /**
@@ -184,8 +177,8 @@ public class UserGroup implements Serializable {
      * @param invitations
      *            to setting the invitations
      */
-    public void setInvitations(List<Invitation> invitations) {
-        this.invitations = invitations;
+    public void setInvitations(final List<Invitation> invitations) {
+	this.invitations = invitations;
     }
 
     /**
@@ -194,7 +187,7 @@ public class UserGroup implements Serializable {
      * @return the users
      */
     public List<User> getUsers() {
-        return users;
+	return users;
     }
 
     /**
@@ -203,8 +196,8 @@ public class UserGroup implements Serializable {
      * @param users
      *            to set the users
      */
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsers(final List<User> users) {
+	this.users = users;
     }
 
     /**
@@ -213,7 +206,7 @@ public class UserGroup implements Serializable {
      * @return the events
      */
     public List<Event> getEvents() {
-        return events;
+	return events;
     }
 
     /**
@@ -222,8 +215,8 @@ public class UserGroup implements Serializable {
      * @param events
      *            to set the events
      */
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setEvents(final List<Event> events) {
+	this.events = events;
     }
 
 }
