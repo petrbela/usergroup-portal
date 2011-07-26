@@ -16,44 +16,48 @@ import com.vaadin.ui.Window;
 
 public class UGPortalApplication extends Application {
 
-    private Table table;
+	private Table table;
 
-    @Override
-    public void init() {
-	Window window = new Window("UG Portal");
-	setMainWindow(window);
-	window.addComponent(new Label("Hello Portal!"));
+	@Override
+	public void init() {
+		Window window = new Window("UG Portal");
+		setMainWindow(window);
 
-	// form for adding a new user group
-	final UserGroup userGroup = new UserGroup();
-	final Form form = new Form();
-	form.setItemDataSource(new BeanItem<UserGroup>(userGroup));
-	window.addComponent(form);
-	Button add = new Button("Add");
-	add.addListener(new ClickListener() {
+		window.addComponent(new MainWindow());
 
-	    @Override
-	    public void buttonClick(final ClickEvent event) {
-		form.commit();
-		DaoFactory.getInstance().getDaoUserGroup().put(userGroup);
-		table.requestRepaint();
-	    }
-	});
-	window.addComponent(add);
+		window.addComponent(new Label("Hello Portal!"));
 
-	table = new Table("User Groups");
-	/*
-	 * Define the names and data types of columns. The "default value" parameter is meaningless here.
-	 */
-	table.addContainerProperty("Name", String.class, null);
+		// form for adding a new user group
+		final UserGroup userGroup = new UserGroup();
+		final Form form = new Form();
+		form.setItemDataSource(new BeanItem<UserGroup>(userGroup));
+		window.addComponent(form);
+		Button add = new Button("Add");
+		add.addListener(new ClickListener() {
 
-	/* Add a few items in the table. */
-	DaoUserGroup dao = DaoFactory.getInstance().getDaoUserGroup();
-	for (UserGroup ug : dao.list()) {
-	    table.addItem(new Object[] { ug.getName() });
+			@Override
+			public void buttonClick(final ClickEvent event) {
+				form.commit();
+				DaoFactory.getInstance().getDaoUserGroup().put(userGroup);
+				table.requestRepaint();
+			}
+		});
+		window.addComponent(add);
+
+		table = new Table("User Groups");
+		/*
+		 * Define the names and data types of columns. The "default value"
+		 * parameter is meaningless here.
+		 */
+		table.addContainerProperty("Name", String.class, null);
+
+		/* Add a few items in the table. */
+		DaoUserGroup dao = DaoFactory.getInstance().getDaoUserGroup();
+		for (UserGroup ug : dao.list()) {
+			table.addItem(new Object[] { ug.getName() });
+		}
+		table.addItem(new UserGroup());
+		window.addComponent(table);
 	}
-	table.addItem(new UserGroup());
-	window.addComponent(table);
-    }
 
 }
