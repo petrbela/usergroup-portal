@@ -21,7 +21,7 @@
 
 		<!-- Specify AppEngine version for your project. It should match SDK version 
 			pointed to by ${gae.home} property (Typically, one used by your Eclipse plug-in) -->
-		<gae.version>1.4.3</gae.version>
+		<gae.version>1.5.1</gae.version>
 
 		<!-- GWT version -->
 		<gwt.version>2.0.0</gwt.version>

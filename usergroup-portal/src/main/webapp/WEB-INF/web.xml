@@ -4,24 +4,24 @@
  xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
  version="2.5">
-    <display-name>UserGroup Portal</display-name>
+    <display-name>User Group Portal</display-name>
     <context-param>
         <description>Vaadin production mode</description>
         <param-name>productionMode</param-name>
         <param-value>false</param-value>
     </context-param>
     <servlet>
-        <servlet-name>Darts_statistics Application</servlet-name>
+        <servlet-name>User Group Portal</servlet-name>
         <servlet-class>com.vaadin.terminal.gwt.server.GAEApplicationServlet</servlet-class>
         <init-param>
             <description>Vaadin application class to start</description>
             <param-name>application</param-name>
-            <param-value>ugportal.ui.UGPortalApplication</param-value>
+            <param-value>ugportal.ui.vaadin.UGPortalApplication</param-value>
         </init-param>
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>Darts_statistics Application</servlet-name>
+        <servlet-name>User Group Portal</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 </web-app>
