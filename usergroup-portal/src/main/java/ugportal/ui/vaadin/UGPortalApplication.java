@@ -39,5 +39,4 @@ public class UGPortalApplication extends Application {
         mainWindow.addComponent(layout);
         setMainWindow(mainWindow);
     }
-
 }
