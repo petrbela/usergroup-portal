@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application>
+<classpath>
+<dir name="/Users/petrbela/Documents/workspace/usergroup-portal/usergroup-portal/target/classes"/>
+</classpath>
+<web>
+<link target="">
+<dir name="/Users/petrbela/Documents/workspace/usergroup-portal/usergroup-portal/src/main/webapp"/>
+</link>
+</web>
+</application>

@@ -3,6 +3,8 @@
  */
 package ugportal.dao;
 
+import java.util.List;
+
 import ugportal.model.UserGroup;
 
 /**
@@ -17,12 +19,27 @@ public interface DaoUserGroup {
      * 
      * @param id
      *            user group id
-     * @return fetched user group, or null
+     * @return fetched user group; or null
      */
+    UserGroup get(final Long id);
+
+    /**
+     * @param userGroup
+     *            user group
+     */
+    void put(UserGroup userGroup);
+
+    /**
+     * @return list of all user groups
+     */
+<<<<<<< HEAD
     public abstract UserGroup get(final String id);
 
     /**
      * @param userGroup
      */
     public void persist(UserGroup userGroup);
+=======
+    List<UserGroup> list();
+>>>>>>> origin/master
 }
