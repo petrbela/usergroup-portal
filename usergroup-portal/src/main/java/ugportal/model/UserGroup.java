@@ -3,6 +3,8 @@ package ugportal.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Id;
+
 import com.google.appengine.api.datastore.Text;
 
 /**
@@ -25,6 +27,7 @@ public class UserGroup implements Serializable {
     /**
      * id of user group
      */
+    @Id
     private String id;
     /**
      * description of user group

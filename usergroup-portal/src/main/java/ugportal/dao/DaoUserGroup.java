@@ -20,4 +20,9 @@ public interface DaoUserGroup {
      * @return fetched user group, or null
      */
     public abstract UserGroup get(final String id);
+
+    /**
+     * @param userGroup
+     */
+    public void persist(UserGroup userGroup);
 }

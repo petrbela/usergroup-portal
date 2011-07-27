@@ -28,4 +28,6 @@ public abstract class DaoFactory {
      * @return UserGroup DAO
      */
     public abstract DaoUserGroup getDaoUserGroup();
+
+    public abstract DaoUser getDaoUser();
 }

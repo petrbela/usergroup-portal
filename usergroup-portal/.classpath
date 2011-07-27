@@ -108,5 +108,9 @@
 			<attribute name="javadoc_location" value="file:/C:/Program%20Files/Google/google_appengine/appengine-java-sdk-1.5.1/docs/javadoc/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Google/google_appengine/appengine-java-sdk-1.5.1/lib/testing/appengine-testing.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Google/google_appengine/appengine-java-sdk-1.5.1/lib/impl/appengine-api.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Google/google_appengine/appengine-java-sdk-1.5.1/lib/impl/appengine-api-labs.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Google/google_appengine/appengine-java-sdk-1.5.1/lib/impl/appengine-api-stubs.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

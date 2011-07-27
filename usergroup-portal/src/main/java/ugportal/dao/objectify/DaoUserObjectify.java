@@ -4,7 +4,9 @@
 package ugportal.dao.objectify;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ugportal.dao.DaoUser;
 import ugportal.model.User;
@@ -32,7 +34,7 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
      * @see ugportal.dao.DaoUser#getById(java.lang.String)
      */
     @Override
-    public User getById(final String id) {
+    public User getById(final Long id) {
         return ofy().find(User.class, id);
     }
 
@@ -43,14 +45,19 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
      */
     @Override
     public List<User> getByName(final String firstName, final String lastName) {
-        // TODO it has to be changed to LIKE not (=)...but I still haven't found
-        // how does it have to be...
-        Query<User> query = ofy().query(User.class).filter("firstname =", firstName).filter("lastname =", lastName);
-        List<User> users = new ArrayList<User>();
-        for (User u : query) {
+        Iterable<User> queryFirstName = ofy().query(User.class).filter("firstname >=", firstName)
+                .filter("firstname <=", firstName + "\uFFFD");
+        Iterable<User> querySurName = ofy().query(User.class).filter("lastname >=", lastName)
+                .filter("lastname <=", lastName + "\uFFFD");
+
+        Set<User> users = new HashSet<User>();
+        for (User u : queryFirstName) {
             users.add(u);
         }
-        return users;
+        for (User u : querySurName) {
+            users.add(u);
+        }
+        return new ArrayList<User>(users);
     }
 
     /**
@@ -74,8 +81,8 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
      * @see ugportal.dao.DaoUser#getByEmail(com.google.appengine.api.datastore.Email)
      */
     @Override
-    public User getByEmail(final Email email) {
-        return (User) ofy().query(User.class).filter("email =", email);
+    public List<User> getByEmail(final Email email) {
+        return ofy().query(User.class).filter("email =", email).list();
     }
 
     /**

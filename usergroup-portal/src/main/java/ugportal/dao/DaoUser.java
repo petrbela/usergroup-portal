@@ -22,7 +22,7 @@ public interface DaoUser {
      *            user id
      * @return fetched user, or null
      */
-    public abstract User getById(final String id);
+    public abstract User getById(final Long id);
 
     /**
      * Returns collection of {@link User} by it's firstName or lastName.
@@ -49,7 +49,7 @@ public interface DaoUser {
      *            user email
      * @return fetched user, or null
      */
-    public abstract User getByEmail(final Email email);
+    public abstract List<User> getByEmail(final Email email);
 
     /**
      * to saving users

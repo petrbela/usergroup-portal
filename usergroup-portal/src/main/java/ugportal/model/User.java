@@ -5,6 +5,7 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import com.google.appengine.api.datastore.Blob;
@@ -35,7 +36,8 @@ public class User implements Serializable {
      * user id
      */
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
 
     /**
      * password
@@ -90,7 +92,7 @@ public class User implements Serializable {
      * 
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -174,7 +176,7 @@ public class User implements Serializable {
      * @param id
      *            the id to set
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

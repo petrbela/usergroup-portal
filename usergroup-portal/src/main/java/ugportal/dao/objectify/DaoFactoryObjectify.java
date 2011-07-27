@@ -4,7 +4,11 @@
 package ugportal.dao.objectify;
 
 import ugportal.dao.DaoFactory;
+import ugportal.dao.DaoUser;
 import ugportal.dao.DaoUserGroup;
+import ugportal.model.Role;
+
+import com.googlecode.objectify.ObjectifyService;
 
 /**
  * DAO factory to access Objectify DAO objects.
@@ -12,6 +16,10 @@ import ugportal.dao.DaoUserGroup;
  * @author Ondrej Kvasnovsky
  */
 public class DaoFactoryObjectify extends DaoFactory {
+
+    static {
+        ObjectifyService.register(Role.class);
+    }
 
     /**
      * {@inheritDoc}
@@ -21,6 +29,17 @@ public class DaoFactoryObjectify extends DaoFactory {
     @Override
     public DaoUserGroup getDaoUserGroup() {
         return new DaoUserGroupObjectify();
+    }
+
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoFactory#getDaoUser()
+     */
+    @Override
+    public DaoUser getDaoUser() {
+
+        return new DaoUserObjectify();
     }
 
 }

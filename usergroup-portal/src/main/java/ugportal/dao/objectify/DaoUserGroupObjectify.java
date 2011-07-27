@@ -31,4 +31,9 @@ public class DaoUserGroupObjectify extends DAOBase implements DaoUserGroup {
         return ofy().get(UserGroup.class, id);
     }
 
+    @Override
+    public void persist(final UserGroup userGroup) {
+        ofy().put(userGroup);
+    }
+
 }
