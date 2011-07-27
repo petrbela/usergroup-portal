@@ -42,6 +42,17 @@
 	</properties>
 
 	<dependencies>
+		<!-- Google API Client -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.google.api.client</groupId> -->
+		<!-- <artifactId></artifactId> -->
+		<!-- <version>1.4.1-beta</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.google.gdata</groupId>
+			<artifactId>gdata-blogger-2.0</artifactId>
+			<version>1.41.5</version>
+		</dependency>
 
 		<!-- Google App Engine meta-package -->
 		<dependency>
@@ -146,11 +157,17 @@
 		</dependency>
 	</dependencies>
 
-	<!-- Objectify repo -->
+
 	<repositories>
+		<!-- Objectify repo -->
 		<repository>
 			<id>objectify-appengine</id>
 			<url>http://objectify-appengine.googlecode.com/svn/maven</url>
+		</repository>
+		<!-- http://code.google.com/p/mandubian-mvn/wiki/HowTo -->
+		<repository>
+			<id>mandubian-mvn</id>
+			<url>http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository</url>
 		</repository>
 	</repositories>
 

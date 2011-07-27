@@ -38,6 +38,48 @@ public class BlogPost implements Serializable {
      */
     private Link link;
 
+    private String author;
+
+    private Link authorLink;
+
+    /**
+     * Returns the authorLink.
+     * 
+     * @return the authorLink
+     */
+    public Link getAuthorLink() {
+        return authorLink;
+    }
+
+    /**
+     * Sets the authorLink.
+     * 
+     * @param authorLink
+     *            the authorLink to set
+     */
+    public void setAuthorLink(Link authorLink) {
+        this.authorLink = authorLink;
+    }
+
+    /**
+     * Returns the author.
+     * 
+     * @return the author
+     */
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * Sets the author.
+     * 
+     * @param author
+     *            the author to set
+     */
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     /**
      * Returns the id
      * 
