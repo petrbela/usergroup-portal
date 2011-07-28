@@ -41,11 +41,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
-			<name>com.google.appengine.eclipse.core.enhancerbuilder</name>
-=======
 			<name>org.maven.ide.eclipse.maven2Builder</name>
->>>>>>> origin/master
 			<arguments>
 			</arguments>
 		</buildCommand>
