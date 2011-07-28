@@ -25,6 +25,27 @@ public class Setting implements Serializable {
      */
     private Link linkBlogPost;
 
+    private Blog blog;
+
+    /**
+     * Returns the blog.
+     * 
+     * @return the blog
+     */
+    public Blog getBlog() {
+        return blog;
+    }
+
+    /**
+     * Sets the blog.
+     * 
+     * @param blog
+     *            the blog to set
+     */
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
     /**
      * Returns the link of twitter
      * 
