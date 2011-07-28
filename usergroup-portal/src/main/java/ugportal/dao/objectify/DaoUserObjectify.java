@@ -88,10 +88,10 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
     /**
      * {@inheritDoc}
      * 
-     * @see ugportal.dao.DaoUser#persist(ugportal.model.User)
+     * @see ugportal.dao.DaoUser#save(ugportal.model.User)
      */
     @Override
-    public void persist(final User user) {
+    public void save(final User user) {
         ofy().put(user);
     }
 
@@ -104,4 +104,5 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
     public void delete(final User user) {
         ofy().delete(user);
     }
+
 }

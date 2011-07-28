@@ -42,7 +42,6 @@ public class DaoUserGroupObjectifyTest {
     @Test
     public void testGet() {
         UserGroup userGroup = new UserGroup();
-        userGroup.setId("1");
         userGroup.setName("Java-Ostrava");
         Objectify objectify = ObjectifyService.begin();
         objectify.put(userGroup);

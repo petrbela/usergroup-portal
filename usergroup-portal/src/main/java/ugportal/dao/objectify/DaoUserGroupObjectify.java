@@ -19,35 +19,27 @@ import com.googlecode.objectify.util.DAOBase;
  */
 public class DaoUserGroupObjectify extends DAOBase implements DaoUserGroup {
 
-	static {
-		ObjectifyService.register(UserGroup.class);
-	}
+    static {
+        ObjectifyService.register(UserGroup.class);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see ugportal.dao.DaoUserGroup#get(java.lang.String)
-	 */
-	@Override
-	public UserGroup get(final Long id) {
-		return ofy().get(UserGroup.class, id);
-	}
-
-	@Override
-	public void put(final UserGroup userGroup) {
-		ofy().put(userGroup);
-	}
-
-<<<<<<< HEAD
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoUserGroup#get(java.lang.String)
+     */
     @Override
-    public void persist(final UserGroup userGroup) {
+    public UserGroup get(final Long id) {
+        return ofy().get(UserGroup.class, id);
+    }
+
+    @Override
+    public void put(final UserGroup userGroup) {
         ofy().put(userGroup);
     }
 
-=======
-	@Override
-	public List<UserGroup> list() {
-		return ofy().query(UserGroup.class).list();
-	}
->>>>>>> origin/master
+    @Override
+    public List<UserGroup> list() {
+        return ofy().query(UserGroup.class).list();
+    }
 }

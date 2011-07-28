@@ -47,7 +47,7 @@ public class DaoUserObjectifyTest {
         user.setFirstname("Steve");
         user.setSurname("Jobs");
         user.setPassword("jabko");
-        DaoFactoryObjectify.getInstance().getDaoUser().persist(user);
+        DaoFactoryObjectify.getInstance().getDaoUser().save(user);
         User user1 = DaoFactoryObjectify.getInstance().getDaoUser().getById(user.getId());
 
         idTestCondition(user.getId(), user1.getId());
@@ -62,21 +62,21 @@ public class DaoUserObjectifyTest {
     }
 
     @Test
-    public void testPersist() {
+    public void testSave() {
 
         User user1 = new User();
         user1.setEmail(new Email("billgates@seznam.cz"));
         user1.setFirstname("Bill");
         user1.setSurname("Gates");
         user1.setPassword("vokna");
-        this.duo.persist(user1);
+        this.duo.save(user1);
 
         User user2 = new User();
         user2.setEmail(new Email("stevejobs@seznam.cz"));
         user2.setFirstname("Steve");
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
-        this.duo.persist(user2);
+        this.duo.save(user2);
 
         User user11 = this.duo.getById(user1.getId());
         User user22 = this.duo.getById(user2.getId());
@@ -117,14 +117,14 @@ public class DaoUserObjectifyTest {
         user1.setFirstname("Bill");
         user1.setSurname("Gates");
         user1.setPassword("vokna");
-        this.duo.persist(user1);
+        this.duo.save(user1);
 
         User user2 = new User();
         user2.setEmail(new Email("mail1@seznam.cz"));
         user2.setFirstname("Steve");
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
-        this.duo.persist(user2);
+        this.duo.save(user2);
 
         List<User> users = this.duo.getByEmail(new Email("mail1@seznam.cz"));
 
@@ -164,7 +164,7 @@ public class DaoUserObjectifyTest {
         user.setSurname("Jobs");
         user.setPassword("jabko");
 
-        this.duo.persist(user);
+        this.duo.save(user);
 
         List<User> users1 = this.duo.getByName("Steve", null);
         List<User> users2 = this.duo.getByName(null, "Jobs");
@@ -207,6 +207,36 @@ public class DaoUserObjectifyTest {
         passwordTestCondition(user.getPassword(), users3.get(0).getPassword());
     }
 
+    @Test
+    public void testDelete() {
+        User user = new User();
+        user.setEmail(new Email("stevejobs@seznam.cz"));
+        user.setFirstname("Steve");
+        user.setSurname("Jobs");
+        user.setPassword("jabko");
+
+        this.duo.save(user);
+
+        User user1 = this.duo.getById(user.getId());
+
+        idTestCondition(user.getId(), user1.getId());
+        firstNameTestCondition(user.getFirstname(), user1.getFirstname());
+        surNameTestCondition(user.getSurname(), user1.getSurname());
+        emailTestCondition(user.getEmail(), user1.getEmail());
+        roleTestCondition(user.getRole(), user1.getRole());
+        passwordTestCondition(user.getPassword(), user1.getPassword());
+        rankTestCondition(user.getRank(), user1.getRank());
+        photoTestCondition(user.getPhoto(), user1.getPhoto());
+        visibleNameTestCondition(user.getVisibleName(), user1.getVisibleName());
+
+        this.duo.delete(user);
+
+        user1 = this.duo.getById(user.getId());
+
+        userNullTestCondition(user1);
+
+    }
+
     private void idTestCondition(Long a, Long b) {
         Assert.assertEquals(a, b);
     }
@@ -241,5 +271,9 @@ public class DaoUserObjectifyTest {
 
     private void rankTestCondition(Rank a, Rank b) {
         Assert.assertEquals(a, b);
+    }
+
+    private void userNullTestCondition(User user) {
+        Assert.assertNull(user);
     }
 }

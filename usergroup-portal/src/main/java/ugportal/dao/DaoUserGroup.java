@@ -32,14 +32,7 @@ public interface DaoUserGroup {
     /**
      * @return list of all user groups
      */
-<<<<<<< HEAD
-    public abstract UserGroup get(final String id);
 
-    /**
-     * @param userGroup
-     */
-    public void persist(UserGroup userGroup);
-=======
     List<UserGroup> list();
->>>>>>> origin/master
+
 }
