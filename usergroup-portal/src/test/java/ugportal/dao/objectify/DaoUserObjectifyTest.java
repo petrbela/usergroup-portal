@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ugportal.dao.DaoUser;
 import ugportal.model.Rank;
 import ugportal.model.Role;
 import ugportal.model.User;
@@ -47,7 +48,7 @@ public class DaoUserObjectifyTest {
         user.setFirstname("Steve");
         user.setSurname("Jobs");
         user.setPassword("jabko");
-        DaoFactoryObjectify.getInstance().getDaoUser().save(user);
+        DaoFactoryObjectify.getInstance().getDaoUser().put(user);
         User user1 = DaoFactoryObjectify.getInstance().getDaoUser().getById(user.getId());
 
         idTestCondition(user.getId(), user1.getId());
@@ -61,6 +62,9 @@ public class DaoUserObjectifyTest {
         visibleNameTestCondition(user.getVisibleName(), user1.getVisibleName());
     }
 
+    /**
+     * test method for {@link DaoUser#put(User)}
+     */
     @Test
     public void testSave() {
 
@@ -69,14 +73,14 @@ public class DaoUserObjectifyTest {
         user1.setFirstname("Bill");
         user1.setSurname("Gates");
         user1.setPassword("vokna");
-        this.duo.save(user1);
+        this.duo.put(user1);
 
         User user2 = new User();
         user2.setEmail(new Email("stevejobs@seznam.cz"));
         user2.setFirstname("Steve");
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
-        this.duo.save(user2);
+        this.duo.put(user2);
 
         User user11 = this.duo.getById(user1.getId());
         User user22 = this.duo.getById(user2.getId());
@@ -117,14 +121,14 @@ public class DaoUserObjectifyTest {
         user1.setFirstname("Bill");
         user1.setSurname("Gates");
         user1.setPassword("vokna");
-        this.duo.save(user1);
+        this.duo.put(user1);
 
         User user2 = new User();
         user2.setEmail(new Email("mail1@seznam.cz"));
         user2.setFirstname("Steve");
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
-        this.duo.save(user2);
+        this.duo.put(user2);
 
         List<User> users = this.duo.getByEmail(new Email("mail1@seznam.cz"));
 
@@ -164,7 +168,7 @@ public class DaoUserObjectifyTest {
         user.setSurname("Jobs");
         user.setPassword("jabko");
 
-        this.duo.save(user);
+        this.duo.put(user);
 
         List<User> users1 = this.duo.getByName("Steve", null);
         List<User> users2 = this.duo.getByName(null, "Jobs");
@@ -215,7 +219,7 @@ public class DaoUserObjectifyTest {
         user.setSurname("Jobs");
         user.setPassword("jabko");
 
-        this.duo.save(user);
+        this.duo.put(user);
 
         User user1 = this.duo.getById(user.getId());
 

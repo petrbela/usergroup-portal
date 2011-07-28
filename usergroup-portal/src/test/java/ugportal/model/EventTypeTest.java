@@ -26,8 +26,8 @@ public class EventTypeTest {
      * Test method for {@link ugportal.model.EventType#getId()}.
      */
     @Test
-    public final void testGetId() {
-        String id = "ID001";
+    public final void testSetId() {
+        Long id = 564684l;
         this.testEventType.setId(id);
         Assert.assertEquals(id, this.testEventType.getId());
     }
@@ -40,16 +40,6 @@ public class EventTypeTest {
         String label = "Offline";
         this.testEventType.setLabel(label);
         Assert.assertEquals(label, this.testEventType.getLabel());
-    }
-
-    /**
-     * Test method for {@link ugportal.model.EventType#setId(java.lang.String)}.
-     */
-    @Test
-    public final void testSetId() {
-        String id = "ID001";
-        this.testEventType.setId(id);
-        Assert.assertEquals(id, this.testEventType.getId());
     }
 
     /**

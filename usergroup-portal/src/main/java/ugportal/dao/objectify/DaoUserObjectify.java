@@ -91,7 +91,7 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
      * @see ugportal.dao.DaoUser#save(ugportal.model.User)
      */
     @Override
-    public void save(final User user) {
+    public void put(final User user) {
         ofy().put(user);
     }
 

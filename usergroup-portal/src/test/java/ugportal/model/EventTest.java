@@ -85,8 +85,8 @@ public class EventTest {
      * Test method for {@link ugportal.model.Event#getId()}.
      */
     @Test
-    public final void testGetId() {
-        String id = "EVN010";
+    public final void testSetId() {
+        Long id = 564684l;
         this.testEvent.setId(id);
         Assert.assertEquals(id, this.testEvent.getId());
     }
@@ -173,16 +173,6 @@ public class EventTest {
         EventType eventType = new EventType();
         this.testEvent.setEventType(eventType);
         Assert.assertEquals(eventType, this.testEvent.getEventType());
-    }
-
-    /**
-     * Test method for {@link ugportal.model.Event#setId(java.lang.String)}.
-     */
-    @Test
-    public final void testSetId() {
-        String id = "EVN010";
-        this.testEvent.setId(id);
-        Assert.assertEquals(id, this.testEvent.getId());
     }
 
     /**

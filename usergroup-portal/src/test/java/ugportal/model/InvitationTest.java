@@ -26,8 +26,8 @@ public class InvitationTest {
      * Test method for {@link ugportal.model.Invitation#getId()}.
      */
     @Test
-    public final void testGetId() {
-        String id = "ID001";
+    public final void testSetId() {
+        Long id = 564684l;
         this.testInvitation.setId(id);
         Assert.assertEquals(id, this.testInvitation.getId());
     }
@@ -50,17 +50,6 @@ public class InvitationTest {
         User registeredUser = new User();
         this.testInvitation.setRegisteredUser(registeredUser);
         Assert.assertEquals(registeredUser, this.testInvitation.getRegisteredUser());
-    }
-
-    /**
-     * Test method for {@link ugportal.model.Invitation#setId(java.lang.String)}
-     * .
-     */
-    @Test
-    public final void testSetId() {
-        String id = "ID001";
-        this.testInvitation.setId(id);
-        Assert.assertEquals(id, this.testInvitation.getId());
     }
 
     /**

@@ -53,8 +53,10 @@ public class UserTest {
      * Test method for {@link ugportal.model.User#getId()}.
      */
     @Test
-    public final void testGetId() {
-        Assert.assertNotNull(this.testUser.getId());
+    public final void testSetId() {
+        Long id = 564684l;
+        this.testUser.setId(id);
+        Assert.assertEquals(id, this.testUser.getId());
     }
 
     /**
