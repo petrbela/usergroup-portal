@@ -64,7 +64,7 @@ public class BlogPostsManager {
             BlogPost blogPost = new BlogPost();
             final TextConstruct title = entry.getTitle();
             if (title != null) {
-                blogPost.setDescription(title.getPlainText());
+                blogPost.setTitle(title.getPlainText());
             }
             final DateTime published = entry.getPublished();
             if (published != null) {

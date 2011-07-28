@@ -27,7 +27,7 @@ public class UGPortalApplication extends Application {
      */
     @Override
     public void init() {
-        setTheme("runo");
+        setTheme("ugportal");
         final HorizontalLayout layout = new HorizontalLayout();
         layout.setWidth("100%");
         final UGPortalMainPanel loginComponent = new UGPortalMainPanel();

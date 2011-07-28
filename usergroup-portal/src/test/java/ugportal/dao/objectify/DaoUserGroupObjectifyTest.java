@@ -24,7 +24,7 @@ public class DaoUserGroupObjectifyTest {
     // LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
     static {
-        ObjectifyService.register(UserGroup.class);
+        // ObjectifyService.register(UserGroup.class);
     }
 
     @Before

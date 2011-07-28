@@ -1,0 +1,7 @@
+@import "../runo/styles.css";
+
+.layout-blogpost {
+	border: 1px solid #babfc0;
+	border-bottom: 1px solid #dee2e3;
+	background-color: #fff;
+}
