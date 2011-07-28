@@ -4,23 +4,25 @@
 package ugportal.ui.vaadin.home.blogposts;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
-import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.Any;
 
 import ugportal.model.Blog;
+import ugportal.model.BlogPost;
 
 import com.google.appengine.api.datastore.Email;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.Query;
 import com.google.gdata.data.Entry;
 import com.google.gdata.data.Feed;
+import com.google.gdata.data.TextConstruct;
 import com.google.gdata.util.ServiceException;
 
 /**
@@ -37,6 +39,8 @@ public class BlogPostsManagerTest {
     private Query query;
     @Mock
     private Entry entry;
+    @Mock
+    private TextConstruct textConstruct;
     private BlogPostsManager blogPostManager;
 
     /**
@@ -63,11 +67,37 @@ public class BlogPostsManagerTest {
      */
     @Test
     public void testGetBlogPosts() throws IOException, ServiceException {
-        // Mockito.when(googleService.query(Mockito.any(Query.class),
-        // Feed.class)).thenReturn(resultFeed);
-        // Mockito.when(resultFeed.getEntries()).thenReturn(entries);
-        // Mockito.when(entries.size()).thenReturn(1);
-        // Mockito.when(entries.get(0)).thenReturn(entry);
-        // this.blogPostManager.getBlogPosts(1);
+        // mock what is needed to be mocked
+        @SuppressWarnings("unchecked")
+        final Class<Feed> anyFeed = Mockito.any(Feed.class.getClass());
+        final Query anyQuery = Mockito.any(Query.class);
+        Mockito.when(googleService.query(anyQuery, anyFeed)).thenReturn(resultFeed);
+        Mockito.when(entries.iterator()).thenReturn(new Iterator<Entry>() {
+            private boolean onlyOneItem = true;
+
+            @Override
+            public void remove() {
+            }
+
+            @Override
+            public Entry next() {
+                return new Entry();
+            }
+
+            @Override
+            public boolean hasNext() {
+                boolean ret = onlyOneItem;
+                onlyOneItem = false;
+                return ret;
+            }
+        });
+        Mockito.when(resultFeed.getEntries()).thenReturn(entries);
+        Mockito.when(entries.size()).thenReturn(1);
+        Mockito.when(entries.get(0)).thenReturn(entry);
+        Mockito.when(entry.getTitle()).thenReturn(textConstruct);
+        // test it
+        final List<BlogPost> blogPosts = this.blogPostManager.getBlogPosts(1);
+        Assert.assertNotNull(blogPosts);
+        Assert.assertEquals(1, blogPosts.size());
     }
 }

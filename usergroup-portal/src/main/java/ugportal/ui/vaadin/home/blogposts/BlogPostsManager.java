@@ -15,8 +15,11 @@ import ugportal.model.BlogPost;
 import com.google.appengine.api.datastore.Link;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.blogger.BlogPostQuery;
+import com.google.gdata.data.DateTime;
 import com.google.gdata.data.Entry;
 import com.google.gdata.data.Feed;
+import com.google.gdata.data.Person;
+import com.google.gdata.data.TextConstruct;
 import com.google.gdata.util.ServiceException;
 
 /**
@@ -59,11 +62,23 @@ public class BlogPostsManager {
         for (int i = 0; i < size; i++) {
             Entry entry = publishedEntries.get(i);
             BlogPost blogPost = new BlogPost();
-            blogPost.setDescription(entry.getTitle().getPlainText());
-            blogPost.setDateTime(new Date(entry.getPublished().getValue()));
-            blogPost.setLink(new Link(entry.getHtmlLink().getHref()));
-            blogPost.setAuthor(entry.getAuthors().get(0).getName());
-            blogPost.setAuthorLink(new Link(entry.getAuthors().get(0).getUri()));
+            final TextConstruct title = entry.getTitle();
+            if (title != null) {
+                blogPost.setDescription(title.getPlainText());
+            }
+            final DateTime published = entry.getPublished();
+            if (published != null) {
+                blogPost.setDateTime(new Date(published.getValue()));
+            }
+            final com.google.gdata.data.Link htmlLink = entry.getHtmlLink();
+            if (htmlLink != null) {
+                blogPost.setLink(new Link(htmlLink.getHref()));
+            }
+            final List<Person> authors = entry.getAuthors();
+            if (authors != null && authors.size() > 0) {
+                blogPost.setAuthor(authors.get(0).getName());
+                blogPost.setAuthorLink(new Link(authors.get(0).getUri()));
+            }
             ret.add(blogPost);
         }
         return ret;

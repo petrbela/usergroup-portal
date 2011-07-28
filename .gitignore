@@ -1,3 +1,6 @@
 .settings/
 .svn/
 target/
+#ignore the eclipse configuration files
+.classpath
+.project
