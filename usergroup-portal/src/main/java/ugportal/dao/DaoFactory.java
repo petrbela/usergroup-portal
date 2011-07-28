@@ -13,13 +13,18 @@ import ugportal.dao.objectify.DaoFactoryObjectify;
  */
 public abstract class DaoFactory {
 
+    private static DaoFactory daoFactory;
+
     /**
      * Returns instance of DAO factory.
      * 
      * @return instance of DAO factory
      */
     public static DaoFactory getInstance() {
-        return new DaoFactoryObjectify();
+        if (daoFactory == null) {
+            daoFactory = new DaoFactoryObjectify();
+        }
+        return daoFactory;
     }
 
     /**
@@ -30,4 +35,27 @@ public abstract class DaoFactory {
     public abstract DaoUserGroup getDaoUserGroup();
 
     public abstract DaoUser getDaoUser();
+
+    public abstract DaoBlog getDaoBlog();
+
+    public abstract DaoBlogPost getDaoBlogPost();
+
+    public abstract DaoEvent getDaoEvent();
+
+    public abstract DaoEventType getDaoEventType();
+
+    public abstract DaoInvitation getInvitation();
+
+    public abstract DaoInvitationState getDaoInvitationState();
+
+    public abstract DaoRank getDaoRank();
+
+    public abstract DaoRole getDaoRole();
+
+    public abstract DaoSetting getDaoSetting();
+
+    public abstract DaoSourceMaterial getDaoSourceMaterial();
+
+    public abstract DaoTweet getDaoTweet();
+
 }

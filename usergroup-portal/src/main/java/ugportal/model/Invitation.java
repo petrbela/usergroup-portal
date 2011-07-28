@@ -21,7 +21,7 @@ public class Invitation implements Serializable {
      * invitation id
      */
     @Id
-    private String id;
+    private Long id;
     /**
      * user who send the invitation
      */
@@ -36,7 +36,7 @@ public class Invitation implements Serializable {
      * 
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -64,7 +64,7 @@ public class Invitation implements Serializable {
      * @param id
      *            the id to set
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
