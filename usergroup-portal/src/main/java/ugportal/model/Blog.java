@@ -3,35 +3,30 @@
  */
 package ugportal.model;
 
+import com.google.appengine.api.datastore.Email;
+
 /**
  * {@link Blog} represents the blog of user group.
  * 
  * @author Ondrej Kvasnovsky
  */
 public class Blog {
-    private Long id;
+    /**
+     * blog ID (something like database ID)
+     */
     private String blogId;
-    private String email;
+    /**
+     * email - most probably used as login
+     */
+    private Email email;
+    /**
+     * ID of this entity
+     */
+    private Long id;
+    /**
+     * password to access the account
+     */
     private String password;
-
-    /**
-     * Returns the id.
-     * 
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Sets the id.
-     * 
-     * @param id
-     *            the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Returns the blogId.
@@ -39,7 +34,34 @@ public class Blog {
      * @return the blogId
      */
     public String getBlogId() {
-        return blogId;
+        return this.blogId;
+    }
+
+    /**
+     * Returns the email.
+     * 
+     * @return the email
+     */
+    public Email getEmail() {
+        return this.email;
+    }
+
+    /**
+     * Returns the id.
+     * 
+     * @return the id
+     */
+    public Long getId() {
+        return this.id;
+    }
+
+    /**
+     * Returns the password.
+     * 
+     * @return the password
+     */
+    public String getPassword() {
+        return this.password;
     }
 
     /**
@@ -53,31 +75,23 @@ public class Blog {
     }
 
     /**
-     * Returns the email.
-     * 
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
      * Sets the email.
      * 
      * @param email
      *            the email to set
      */
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
     /**
-     * Returns the password.
+     * Sets the id.
      * 
-     * @return the password
+     * @param id
+     *            the id to set
      */
-    public String getPassword() {
-        return password;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
