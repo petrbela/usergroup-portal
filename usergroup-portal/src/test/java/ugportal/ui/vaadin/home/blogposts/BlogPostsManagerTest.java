@@ -16,6 +16,7 @@ import org.mockito.internal.matchers.Any;
 
 import ugportal.model.Blog;
 
+import com.google.appengine.api.datastore.Email;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.Query;
 import com.google.gdata.data.Entry;
@@ -45,7 +46,7 @@ public class BlogPostsManagerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         Blog blog = new Blog();
-        blog.setEmail("");
+        blog.setEmail(new Email(""));
         blog.setBlogId("");
         blog.setPassword("");
         this.blogPostManager = new BlogPostsManager(blog);

@@ -54,6 +54,8 @@ public class UserTest {
      */
     @Test
     public final void testGetId() {
+        Long id = 1L;
+        this.testUser.setId(id);
         Assert.assertNotNull(this.testUser.getId());
     }
 

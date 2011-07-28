@@ -14,9 +14,7 @@ import ugportal.model.BlogPost;
 
 import com.google.appengine.api.datastore.Link;
 import com.google.gdata.client.GoogleService;
-import com.google.gdata.client.Query;
 import com.google.gdata.client.blogger.BlogPostQuery;
-import com.google.gdata.client.blogger.BlogPostQuery.OrderBy;
 import com.google.gdata.data.Entry;
 import com.google.gdata.data.Feed;
 import com.google.gdata.util.ServiceException;
@@ -36,12 +34,12 @@ public class BlogPostsManager {
     public List<BlogPost> getBlogPosts(final int maxResults) throws IOException, ServiceException {
         List<BlogPost> ret = new ArrayList<BlogPost>();
 
-        googleService.setUserCredentials(this.blog.getEmail(), this.blog.getPassword());
+        this.googleService.setUserCredentials(this.blog.getEmail().getEmail(), this.blog.getPassword());
         // Request the feed
         URL feedUrl = new URL("http://www.blogger.com/feeds/" + this.blog.getBlogId() + "/posts/default");
         BlogPostQuery myQuery = new BlogPostQuery(feedUrl);
         myQuery.setMaxResults(maxResults + maxResults);
-        Feed resultFeed = googleService.query(myQuery, Feed.class);
+        Feed resultFeed = this.googleService.query(myQuery, Feed.class);
         // Print the results
         List<Entry> entries = resultFeed.getEntries();
         // there is a but in API - in ordering - so this hack is needed
