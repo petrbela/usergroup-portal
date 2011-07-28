@@ -52,12 +52,12 @@ public interface DaoUser {
     public abstract List<User> getByEmail(final Email email);
 
     /**
-     * to saving users
+     * to saving or updating users
      * 
      * @param user
-     *            user to save
+     *            user to save or update
      */
-    public abstract void persist(final User user);
+    public abstract void save(final User user);
 
     /**
      * to deleting users
