@@ -19,7 +19,7 @@ public class Tweet implements Serializable {
     /**
      * id of the tweet
      */
-    private String id;
+    private Long id;
     /**
      * date of creating the tweet
      */
@@ -42,7 +42,7 @@ public class Tweet implements Serializable {
      * 
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -52,7 +52,7 @@ public class Tweet implements Serializable {
      * @param id
      *            the id of the tweet
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

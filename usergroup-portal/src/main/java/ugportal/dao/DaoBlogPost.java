@@ -8,6 +8,8 @@ import java.util.Date;
 import ugportal.model.BlogPost;
 
 /**
+ * Dao object for {@link BlogPost}
+ * 
  * @author Tomas Vantuch
  */
 public interface DaoBlogPost {

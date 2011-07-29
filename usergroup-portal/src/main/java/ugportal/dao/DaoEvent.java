@@ -11,7 +11,9 @@ import ugportal.model.EventType;
 import ugportal.model.User;
 
 /**
- * @author Tomas
+ * Dao object for {@link Event}
+ * 
+ * @author Tomas Vantuch
  */
 public interface DaoEvent {
     /**

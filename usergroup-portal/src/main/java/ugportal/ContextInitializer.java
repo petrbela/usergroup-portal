@@ -6,6 +6,7 @@ package ugportal;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import ugportal.model.Setting;
 import ugportal.model.User;
 
 import com.googlecode.objectify.ObjectifyService;
@@ -33,6 +34,7 @@ public class ContextInitializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
         ObjectifyService.register(User.class);
+        ObjectifyService.register(Setting.class);
         // TODO:
     }
 

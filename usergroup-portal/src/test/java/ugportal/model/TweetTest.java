@@ -31,7 +31,7 @@ public class TweetTest {
      */
     @Test
     public final void testGetId() {
-        String id = "srghryfg35b4684d6f";
+        Long id = 1L;
         this.testTweet.setId(id);
         Assert.assertEquals(id, this.testTweet.getId());
     }
@@ -41,7 +41,7 @@ public class TweetTest {
      */
     @Test
     public final void testSetId() {
-        String id = "srghryfg35b4684d6f";
+        Long id = 1L;
         this.testTweet.setId(id);
         Assert.assertEquals(id, this.testTweet.getId());
     }

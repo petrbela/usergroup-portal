@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Id;
 
 import com.google.appengine.api.datastore.Text;
+import com.googlecode.objectify.annotation.Parent;
 
 /**
  * @{link UserGroup} the usergroup class represents the user group and
@@ -44,6 +45,7 @@ public class UserGroup implements Serializable {
     /**
      * settings of user group
      */
+    @Parent
     private Setting setting;
     /**
      * collection of invitations

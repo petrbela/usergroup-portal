@@ -6,7 +6,9 @@ package ugportal.dao;
 import ugportal.model.EventType;
 
 /**
- * @author Tomas
+ * Dao object for {@link EventType}
+ * 
+ * @author Tomas Vantuch
  */
 public interface DaoEventType {
 

@@ -9,7 +9,9 @@ import ugportal.model.Invitation;
 import ugportal.model.User;
 
 /**
- * @author Tomas
+ * Dao object for {@link Invitation}
+ * 
+ * @author Tomas Vantuch
  */
 public interface DaoInvitation {
     /**

@@ -23,6 +23,10 @@ public class DaoUserGroupObjectify extends DAOBase implements DaoUserGroup {
         ObjectifyService.register(UserGroup.class);
     }
 
+    public DaoUserGroupObjectify() {
+
+    }
+
     /**
      * {@inheritDoc}
      * 

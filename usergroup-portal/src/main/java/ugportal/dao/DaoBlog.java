@@ -8,6 +8,8 @@ import ugportal.model.Blog;
 import com.google.appengine.api.datastore.Email;
 
 /**
+ * Dao object for {@link Blog}
+ * 
  * @author Tomas Vantuch
  */
 public interface DaoBlog {
