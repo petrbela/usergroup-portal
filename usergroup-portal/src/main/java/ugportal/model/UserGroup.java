@@ -3,9 +3,14 @@ package ugportal.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import ugportal.dao.objectify.DaoFactoryObjectify;
+import ugportal.dao.objectify.DaoSettingObjectify;
+
 import com.google.appengine.api.datastore.Text;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Parent;
 
 /**
@@ -20,7 +25,8 @@ public class UserGroup implements Serializable {
 	 * 
 	 */
     private static final long serialVersionUID = 7345000550438905459L;
-
+    private final DaoSettingObjectify daoSettingObjectify = (DaoSettingObjectify) DaoFactoryObjectify.getInstance()
+            .getDaoSetting();
     /**
      * name of user group
      */
@@ -29,6 +35,7 @@ public class UserGroup implements Serializable {
      * id of user group
      */
     @Id
+    @GeneratedValue
     private Long id;
     /**
      * description of user group
@@ -46,7 +53,7 @@ public class UserGroup implements Serializable {
      * settings of user group
      */
     @Parent
-    private Setting setting;
+    private Key<Setting> setting;
     /**
      * collection of invitations
      */
@@ -95,6 +102,16 @@ public class UserGroup implements Serializable {
      */
     public Text getAbout() {
         return about;
+    }
+
+    /**
+     * Sets the id.
+     * 
+     * @param id
+     *            the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -151,7 +168,7 @@ public class UserGroup implements Serializable {
      * @return the setting
      */
     public Setting getSetting() {
-        return setting;
+        return this.daoSettingObjectify.getByKey(setting);
     }
 
     /**
@@ -160,8 +177,9 @@ public class UserGroup implements Serializable {
      * @param setting
      *            the setting to set
      */
-    public void setSetting(final Setting setting) {
-        this.setting = setting;
+    public void setSetting(Setting setting) {
+
+        this.setting = this.daoSettingObjectify.put(setting);
     }
 
     /**

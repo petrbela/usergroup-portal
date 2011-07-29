@@ -3,8 +3,9 @@
  */
 package ugportal.dao;
 
-import ugportal.model.Invitation;
 import ugportal.model.Setting;
+
+import com.googlecode.objectify.Key;
 
 /**
  * Dao object for {@link Setting}
@@ -17,7 +18,7 @@ public interface DaoSetting {
      * 
      * @return fetched {@link Setting} or null.
      */
-    Invitation get();
+    Setting getById(Long id);
 
     /**
      * Saves or updates {@link Setting}
@@ -25,7 +26,7 @@ public interface DaoSetting {
      * @param Setting
      *            {@link Setting} to save or update
      */
-    void put(Setting setting);
+    Key<Setting> put(Setting setting);
 
     /**
      * Deletes {@link Setting}

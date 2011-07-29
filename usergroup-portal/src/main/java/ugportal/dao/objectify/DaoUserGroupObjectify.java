@@ -8,6 +8,7 @@ import java.util.List;
 import ugportal.dao.DaoUserGroup;
 import ugportal.model.UserGroup;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
 
@@ -32,18 +33,28 @@ public class DaoUserGroupObjectify extends DAOBase implements DaoUserGroup {
      * 
      * @see ugportal.dao.DaoUserGroup#get(java.lang.String)
      */
-    @Override
-    public UserGroup get(final Long id) {
-        return ofy().get(UserGroup.class, id);
+    public UserGroup getById(final Key<UserGroup> id) {
+        return ofy().find(id);
     }
 
     @Override
-    public void put(final UserGroup userGroup) {
-        ofy().put(userGroup);
+    public Key<UserGroup> put(final UserGroup userGroup) {
+        return ofy().put(userGroup);
     }
 
     @Override
     public List<UserGroup> list() {
         return ofy().query(UserGroup.class).list();
+    }
+
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoUserGroup#getById(java.lang.Long)
+     */
+    @Override
+    public UserGroup getById(Long id) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

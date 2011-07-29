@@ -7,6 +7,8 @@ import java.util.List;
 
 import ugportal.model.UserGroup;
 
+import com.googlecode.objectify.Key;
+
 /**
  * DAO object for {@link UserGroup}.
  * 
@@ -21,13 +23,14 @@ public interface DaoUserGroup {
      *            user group id
      * @return fetched user group; or null
      */
-    UserGroup get(final Long id);
+    UserGroup getById(final Long id);
 
     /**
      * @param userGroup
      *            user group
+     * @return
      */
-    void put(UserGroup userGroup);
+    Key<UserGroup> put(UserGroup userGroup);
 
     /**
      * @return list of all user groups

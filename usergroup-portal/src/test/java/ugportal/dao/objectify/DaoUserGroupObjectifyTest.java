@@ -3,7 +3,6 @@
  */
 package ugportal.dao.objectify;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -19,6 +18,7 @@ import ugportal.model.Tweet;
 import ugportal.model.User;
 import ugportal.model.UserGroup;
 
+import com.google.appengine.api.datastore.Link;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
@@ -29,8 +29,8 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 public class DaoUserGroupObjectifyTest {
 
     private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
-    private final DaoUserGroupObjectify dugo = (DaoUserGroupObjectify) DaoFactoryObjectify.getInstance()
-            .getDaoUserGroup();
+    private final DaoUserGroupObjectify daoUserGroupObjectify = (DaoUserGroupObjectify) DaoFactoryObjectify
+            .getInstance().getDaoUserGroup();
 
     @Before
     public void setUp() throws Exception {
@@ -46,20 +46,35 @@ public class DaoUserGroupObjectifyTest {
     }
 
     @Test
-    public void testGet() {
+    public void testGetById() {
+        Setting setting = new Setting();
+        setting.setLinkTwitter(new Link("fsfs"));
+
         UserGroup userGroup = new UserGroup();
         userGroup.setName("Java-Ostrava");
         userGroup.setAbout(new Text("about java"));
-        userGroup.setSetting(new Setting());
-        userGroup.setBlogposts(new ArrayList<BlogPost>());
-        userGroup.setEvents(new ArrayList<Event>());
-        userGroup.setInvitations(new ArrayList<Invitation>());
-        userGroup.setTweets(new ArrayList<Tweet>());
-        userGroup.setUsers(new ArrayList<User>());
+        userGroup.setSetting(setting);
+        // userGroup.setBlogposts(new ArrayList<BlogPost>());
+        // userGroup.setEvents(new ArrayList<Event>());
+        // userGroup.setInvitations(new ArrayList<Invitation>());
+        // userGroup.setTweets(new ArrayList<Tweet>());
+        // userGroup.setUsers(new ArrayList<User>());
+        UserGroup userGroup2 = this.daoUserGroupObjectify.getById(this.daoUserGroupObjectify.put(userGroup));
+        Assert.assertNotNull(userGroup2);
+        idTestCondition(userGroup.getId(), userGroup2.getId());
+        nameTestCondition(userGroup.getName(), userGroup2.getName());
+        aboutTestCondition(userGroup.getAbout(), userGroup2.getAbout());
+        settingTestCondition(userGroup.getSetting(), userGroup2.getSetting());
 
-        this.dugo.put(userGroup);
-
-        UserGroup userGroup2 = this.dugo.get(userGroup.getId());
+        // blogPostTestCondition(userGroup.getBlogposts(),
+        // userGroup2.getBlogposts());
+        // eventTestCondition(userGroup.getEvents(),
+        // userGroup2.getEvents());
+        // invitationTestCondition(userGroup.getInvitations(),
+        // userGroup2.getInvitations());
+        // tweetTestCondition(userGroup.getTweets(),
+        // userGroup2.getTweets());
+        // usersTestCondition(userGroup.getUsers(), userGroup2.getUsers());
 
     }
 
@@ -72,7 +87,7 @@ public class DaoUserGroupObjectifyTest {
     }
 
     public void settingTestCondition(Setting a, Setting b) {
-        Assert.assertEquals(a, b);
+        Assert.assertEquals(a.getLinkTwitter(), b.getLinkTwitter());
     }
 
     public void aboutTestCondition(Text a, Text b) {

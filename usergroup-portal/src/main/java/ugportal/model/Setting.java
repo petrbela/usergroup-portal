@@ -2,6 +2,8 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
+
 import com.google.appengine.api.datastore.Link;
 
 /**
@@ -24,6 +26,9 @@ public class Setting implements Serializable {
      * blog
      */
     private Link linkBlogPost;
+
+    @Id
+    private Long id;
 
     private Blog blog;
 
@@ -82,6 +87,10 @@ public class Setting implements Serializable {
      */
     public void setLinkBlogPost(Link linkBlogPost) {
         this.linkBlogPost = linkBlogPost;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
 }

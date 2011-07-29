@@ -4,9 +4,10 @@
 package ugportal.dao.objectify;
 
 import ugportal.dao.DaoSetting;
-import ugportal.model.Invitation;
 import ugportal.model.Setting;
 
+import com.googlecode.objectify.Key;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -14,15 +15,23 @@ import com.googlecode.objectify.util.DAOBase;
  */
 public class DaoSettingObjectify extends DAOBase implements DaoSetting {
 
+    static {
+        ObjectifyService.register(Setting.class);
+    }
+
     /**
      * {@inheritDoc}
      * 
      * @see ugportal.dao.DaoSetting#get()
      */
     @Override
-    public Invitation get() {
-        // TODO Auto-generated method stub
+    public Setting getById(Long id) {
+
         return null;
+    }
+
+    public Setting getByKey(Key<Setting> settingKey) {
+        return ofy().get(settingKey);
     }
 
     /**
@@ -31,9 +40,8 @@ public class DaoSettingObjectify extends DAOBase implements DaoSetting {
      * @see ugportal.dao.DaoSetting#put(ugportal.model.Setting)
      */
     @Override
-    public void put(Setting setting) {
-        // TODO Auto-generated method stub
-
+    public Key<Setting> put(Setting setting) {
+        return ofy().put(setting);
     }
 
     /**
