@@ -10,6 +10,8 @@ import ugportal.model.Event;
 import ugportal.model.EventType;
 import ugportal.model.User;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link Event}
  * 
@@ -45,7 +47,7 @@ public interface DaoEvent {
      * @param event
      *            event to save or update
      */
-    void put(Event event);
+    Key<Event> put(Event event);
 
     /**
      * Deletes event

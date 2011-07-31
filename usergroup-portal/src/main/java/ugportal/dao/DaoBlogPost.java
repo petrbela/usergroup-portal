@@ -7,6 +7,8 @@ import java.util.Date;
 
 import ugportal.model.BlogPost;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link BlogPost}
  * 
@@ -20,6 +22,7 @@ public interface DaoBlogPost {
      *            blogPosts id
      * @return fetched BlogPost, or null
      */
+
     BlogPost getById(Long id);
 
     /**
@@ -41,7 +44,7 @@ public interface DaoBlogPost {
      * @param blogPost
      *            blogpost to save or update
      */
-    void put(BlogPost blogPost);
+    Key<BlogPost> put(BlogPost blogPost);
 
     /**
      * Deletes {@link BlogPost}

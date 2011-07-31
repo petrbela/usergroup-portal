@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import ugportal.dao.DaoTweet;
+import ugportal.model.Tweet;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -21,7 +23,7 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
      * @see ugportal.dao.DaoTweet#getById(java.lang.Long)
      */
     @Override
-    public DaoTweet getById(Long id) {
+    public Tweet getById(Long id) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -32,7 +34,7 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
      * @see ugportal.dao.DaoTweet#getByDate(java.util.Date)
      */
     @Override
-    public List<DaoTweet> getByDate(Date date) {
+    public List<Tweet> getByDate(Date date) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -40,23 +42,30 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
     /**
      * {@inheritDoc}
      * 
-     * @see ugportal.dao.DaoTweet#put(ugportal.dao.DaoTweet)
+     * @see ugportal.dao.DaoTweet#put(ugportal.model.Tweet)
      */
     @Override
-    public void put(DaoTweet daoTweet) {
-        // TODO Auto-generated method stub
-
+    public Key<Tweet> put(Tweet tweet) {
+        return ofy().put(tweet);
     }
 
     /**
      * {@inheritDoc}
      * 
-     * @see ugportal.dao.DaoTweet#delete(ugportal.dao.DaoTweet)
+     * @see ugportal.dao.DaoTweet#delete(ugportal.model.Tweet)
      */
     @Override
-    public void delete(DaoTweet daoTweet) {
+    public void delete(Tweet Tweet) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @param key
+     * @return
+     */
+    public Tweet get(Key<Tweet> key) {
+        return ofy().find(key);
     }
 
 }

@@ -26,7 +26,7 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 public class DaoUserObjectifyTest {
 
     private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
-    private final DaoUserObjectify duo = (DaoUserObjectify) DaoFactoryObjectify.getInstance().getDaoUser();
+    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactoryObjectify.getInstance().getDaoUser();
 
     @Before
     public void setUp() throws Exception {
@@ -48,8 +48,13 @@ public class DaoUserObjectifyTest {
         user.setFirstname("Steve");
         user.setSurname("Jobs");
         user.setPassword("jabko");
-        DaoFactoryObjectify.getInstance().getDaoUser().put(user);
-        User user1 = DaoFactoryObjectify.getInstance().getDaoUser().getById(user.getId());
+
+        Rank r = new Rank();
+        r.setLabel("big boss");
+        user.setRank(r);
+
+        this.daoUserObjectify.put(user);
+        User user1 = this.daoUserObjectify.getById(user.getId());
 
         idTestCondition(user.getId(), user1.getId());
         firstNameTestCondition(user.getFirstname(), user1.getFirstname());
@@ -73,17 +78,26 @@ public class DaoUserObjectifyTest {
         user1.setFirstname("Bill");
         user1.setSurname("Gates");
         user1.setPassword("vokna");
-        this.duo.put(user1);
+        user1.setVisibleName("rexo15");
+
+        Rank r = new Rank();
+        r.setLabel("big boss");
+        user1.setRank(r);
+
+        this.daoUserObjectify.put(user1);
 
         User user2 = new User();
         user2.setEmail(new Email("stevejobs@seznam.cz"));
         user2.setFirstname("Steve");
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
-        this.duo.put(user2);
+        user2.setRank(r);
+        user1.setVisibleName("rexo15");
 
-        User user11 = this.duo.getById(user1.getId());
-        User user22 = this.duo.getById(user2.getId());
+        this.daoUserObjectify.put(user2);
+
+        User user11 = this.daoUserObjectify.getById(user1.getId());
+        User user22 = this.daoUserObjectify.getById(user2.getId());
 
         idTestCondition(user1.getId(), user11.getId());
         idTestCondition(user2.getId(), user22.getId());
@@ -121,16 +135,25 @@ public class DaoUserObjectifyTest {
         user1.setFirstname("Bill");
         user1.setSurname("Gates");
         user1.setPassword("vokna");
-        this.duo.put(user1);
+        user1.setVisibleName("rexo15");
+
+        Rank r = new Rank();
+        r.setLabel("big boss");
+        user1.setRank(r);
+
+        this.daoUserObjectify.put(user1);
 
         User user2 = new User();
         user2.setEmail(new Email("mail1@seznam.cz"));
         user2.setFirstname("Steve");
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
-        this.duo.put(user2);
+        user2.setRank(r);
+        user1.setVisibleName("rexo15");
 
-        List<User> users = this.duo.getByEmail(new Email("mail1@seznam.cz"));
+        this.daoUserObjectify.put(user2);
+
+        List<User> users = this.daoUserObjectify.getByEmail(new Email("mail1@seznam.cz"));
 
         idTestCondition(user1.getId(), users.get(0).getId());
         idTestCondition(user2.getId(), users.get(1).getId());
@@ -163,16 +186,21 @@ public class DaoUserObjectifyTest {
     @Test
     public void testGetByName() {
         User user = new User();
-        user.setEmail(new Email("stevejobs@seznam.cz"));
-        user.setFirstname("Steve");
-        user.setSurname("Jobs");
-        user.setPassword("jabko");
+        user.setEmail(new Email("mail1@seznam.cz"));
+        user.setFirstname("Bill");
+        user.setSurname("Gates");
+        user.setPassword("vokna");
+        user.setVisibleName("rexo15");
 
-        this.duo.put(user);
+        Rank r = new Rank();
+        r.setLabel("big boss");
+        user.setRank(r);
 
-        List<User> users1 = this.duo.getByName("Steve", null);
-        List<User> users2 = this.duo.getByName(null, "Jobs");
-        List<User> users3 = this.duo.getByName("Steve", "Jobs");
+        this.daoUserObjectify.put(user);
+
+        List<User> users1 = this.daoUserObjectify.getByName("Bill", null);
+        List<User> users2 = this.daoUserObjectify.getByName(null, "Gates");
+        List<User> users3 = this.daoUserObjectify.getByName("Bill", "Gates");
 
         idTestCondition(user.getId(), users1.get(0).getId());
         idTestCondition(user.getId(), users2.get(0).getId());
@@ -214,14 +242,19 @@ public class DaoUserObjectifyTest {
     @Test
     public void testDelete() {
         User user = new User();
-        user.setEmail(new Email("stevejobs@seznam.cz"));
-        user.setFirstname("Steve");
-        user.setSurname("Jobs");
-        user.setPassword("jabko");
+        user.setEmail(new Email("mail1@seznam.cz"));
+        user.setFirstname("Bill");
+        user.setSurname("Gates");
+        user.setPassword("vokna");
+        user.setVisibleName("rexo15");
 
-        this.duo.put(user);
+        Rank r = new Rank();
+        r.setLabel("big boss");
+        user.setRank(r);
 
-        User user1 = this.duo.getById(user.getId());
+        this.daoUserObjectify.put(user);
+
+        User user1 = this.daoUserObjectify.getById(user.getId());
 
         idTestCondition(user.getId(), user1.getId());
         firstNameTestCondition(user.getFirstname(), user1.getFirstname());
@@ -233,51 +266,52 @@ public class DaoUserObjectifyTest {
         photoTestCondition(user.getPhoto(), user1.getPhoto());
         visibleNameTestCondition(user.getVisibleName(), user1.getVisibleName());
 
-        this.duo.delete(user);
+        this.daoUserObjectify.delete(user);
 
-        user1 = this.duo.getById(user.getId());
+        user1 = this.daoUserObjectify.getById(user.getId());
 
         userNullTestCondition(user1);
 
     }
 
-    private void idTestCondition(Long a, Long b) {
+    public static void idTestCondition(Long a, Long b) {
         Assert.assertEquals(a, b);
     }
 
-    private void firstNameTestCondition(String a, String b) {
+    public static void firstNameTestCondition(String a, String b) {
         Assert.assertEquals(a, b);
     }
 
-    private void surNameTestCondition(String a, String b) {
+    public static void surNameTestCondition(String a, String b) {
         Assert.assertEquals(a, b);
     }
 
-    private void passwordTestCondition(String a, String b) {
+    public static void passwordTestCondition(String a, String b) {
         Assert.assertEquals(a, b);
     }
 
-    private void photoTestCondition(Blob a, Blob b) {
+    public static void photoTestCondition(Blob a, Blob b) {
         Assert.assertEquals(a, b);
     }
 
-    private void emailTestCondition(Email a, Email b) {
+    public static void emailTestCondition(Email a, Email b) {
         Assert.assertEquals(a, b);
     }
 
-    private void roleTestCondition(Role a, Role b) {
+    public static void roleTestCondition(Role a, Role b) {
         Assert.assertEquals(a, b);
     }
 
-    private void visibleNameTestCondition(String a, String b) {
+    public static void visibleNameTestCondition(String a, String b) {
         Assert.assertEquals(a, b);
     }
 
-    private void rankTestCondition(Rank a, Rank b) {
-        Assert.assertEquals(a, b);
+    public static void rankTestCondition(Rank a, Rank b) {
+        DaoRankObjectifyTest.labelTestCondition(a.getLabel(), b.getLabel());
+
     }
 
-    private void userNullTestCondition(User user) {
+    public static void userNullTestCondition(User user) {
         Assert.assertNull(user);
     }
 }

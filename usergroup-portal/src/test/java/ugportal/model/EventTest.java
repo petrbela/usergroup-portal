@@ -7,29 +7,42 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ugportal.dao.objectify.DaoEventTest;
+
 import com.google.appengine.api.datastore.Link;
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 /**
  * @author Ondrej Kvasnovsky
  */
 public class EventTest {
 
-    /**
-     * test event
-     */
-    private Event testEvent;
+    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+
+    @Before
+    public void setUp() throws Exception {
+        helper.setUp();
+        this.testEvent = new Event();
+    }
 
     /**
      * @throws java.lang.Exception
      */
-    @Before
-    public void setUp() throws Exception {
-        this.testEvent = new Event();
+    @After
+    public void tearDown() throws Exception {
+        helper.tearDown();
     }
+
+    /**
+     * test event
+     */
+    private Event testEvent;
 
     /**
      * Test method for {@link ugportal.model.Event#getAddress()}.
@@ -47,8 +60,10 @@ public class EventTest {
     @Test
     public final void testGetAuthor() {
         User author = new User();
+        author.setRank(new Rank());
         this.testEvent.setAuthor(author);
-        Assert.assertEquals(author, this.testEvent.getAuthor());
+        DaoEventTest.authorTestCondition(author, this.testEvent.getAuthor());
+
     }
 
     /**
@@ -139,8 +154,9 @@ public class EventTest {
     @Test
     public final void testSetAuthor() {
         User author = new User();
+        author.setRank(new Rank());
         this.testEvent.setAuthor(author);
-        Assert.assertEquals(author, this.testEvent.getAuthor());
+        DaoEventTest.authorTestCondition(author, this.testEvent.getAuthor());
     }
 
     /**

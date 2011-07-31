@@ -8,6 +8,7 @@ import java.util.List;
 import ugportal.model.User;
 
 import com.google.appengine.api.datastore.Email;
+import com.googlecode.objectify.Key;
 
 /**
  * DAO object for {@link User}.
@@ -57,7 +58,7 @@ public interface DaoUser {
      * @param user
      *            user to save or update
      */
-    public abstract void put(final User user);
+    public abstract Key<User> put(final User user);
 
     /**
      * to deleting users

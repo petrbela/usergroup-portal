@@ -5,6 +5,8 @@ package ugportal.dao;
 
 import ugportal.model.Rank;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link Rank}
  * 
@@ -36,7 +38,7 @@ public interface DaoRank {
      * @param Rank
      *            Rank to save or update
      */
-    void put(Rank rank);
+    Key<Rank> put(Rank rank);
 
     /**
      * Deletes {@link Rank}

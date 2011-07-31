@@ -1,13 +1,19 @@
 package ugportal.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import ugportal.dao.objectify.DaoFactoryObjectify;
+import ugportal.dao.DaoFactory;
+import ugportal.dao.objectify.DaoBlogPostObjectify;
+import ugportal.dao.objectify.DaoEventObjectify;
+import ugportal.dao.objectify.DaoInvitationObjectify;
 import ugportal.dao.objectify.DaoSettingObjectify;
+import ugportal.dao.objectify.DaoTweetObjectify;
+import ugportal.dao.objectify.DaoUserObjectify;
 
 import com.google.appengine.api.datastore.Text;
 import com.googlecode.objectify.Key;
@@ -25,8 +31,17 @@ public class UserGroup implements Serializable {
 	 * 
 	 */
     private static final long serialVersionUID = 7345000550438905459L;
-    private final DaoSettingObjectify daoSettingObjectify = (DaoSettingObjectify) DaoFactoryObjectify.getInstance()
+    private final DaoSettingObjectify daoSettingObjectify = (DaoSettingObjectify) DaoFactory.getInstance()
             .getDaoSetting();
+    private final DaoTweetObjectify daoTweetObjectify = (DaoTweetObjectify) DaoFactory.getInstance().getDaoTweet();
+    private final DaoBlogPostObjectify blogPostObjectify = (DaoBlogPostObjectify) DaoFactory.getInstance()
+            .getDaoBlogPost();
+
+    private final DaoInvitationObjectify daoInvitationObjectify = (DaoInvitationObjectify) DaoFactory.getInstance()
+            .getDaoInvitation();
+    private final DaoEventObjectify daoEventObjectify = (DaoEventObjectify) DaoFactory.getInstance().getDaoEvent();
+    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
+
     /**
      * name of user group
      */
@@ -44,11 +59,11 @@ public class UserGroup implements Serializable {
     /**
      * collection of user's tweets
      */
-    private List<Tweet> tweets;
+    private List<Key<Tweet>> tweets = new ArrayList<Key<Tweet>>();
     /**
      * collection of user's blogposts
      */
-    private List<BlogPost> blogposts;
+    private List<Key<BlogPost>> blogposts = new ArrayList<Key<BlogPost>>();
     /**
      * settings of user group
      */
@@ -57,15 +72,15 @@ public class UserGroup implements Serializable {
     /**
      * collection of invitations
      */
-    private List<Invitation> invitations;
+    private List<Key<Invitation>> invitations = new ArrayList<Key<Invitation>>();
     /**
      * collection of users
      */
-    private List<User> users;
+    private List<Key<User>> users = new ArrayList<Key<User>>();
     /**
      * collection of events
      */
-    private List<Event> events;
+    private List<Key<Event>> events = new ArrayList<Key<Event>>();
 
     /**
      * Returns the name
@@ -125,22 +140,36 @@ public class UserGroup implements Serializable {
     }
 
     /**
-     * Returns the tweets
-     * 
-     * @return the tweets
-     */
-    public List<Tweet> getTweets() {
-        return tweets;
-    }
-
-    /**
      * Sets the tweest
      * 
      * @param the
      *            tweets
      */
     public void setTweets(final List<Tweet> tweets) {
-        this.tweets = tweets;
+        for (Tweet t : tweets) {
+            this.tweets.add(this.daoTweetObjectify.put(t));
+        }
+    }
+
+    public void addTweet(Tweet tweet) {
+        this.tweets.add(this.daoTweetObjectify.put(tweet));
+    }
+
+    public Tweet getTweetAt(int index) {
+        return this.daoTweetObjectify.get(this.tweets.get(index));
+    }
+
+    /**
+     * Returns the tweets
+     * 
+     * @return the tweets
+     */
+    public List<Tweet> getTweets() {
+        List<Tweet> list = new ArrayList<Tweet>();
+        for (Key<Tweet> k : this.tweets) {
+            list.add(this.daoTweetObjectify.get(k));
+        }
+        return list;
     }
 
     /**
@@ -149,7 +178,7 @@ public class UserGroup implements Serializable {
      * return the blogposts
      */
     public List<BlogPost> getBlogposts() {
-        return blogposts;
+        return new ArrayList<BlogPost>(this.blogPostObjectify.getAllByKey(this.blogposts));
     }
 
     /**
@@ -159,7 +188,7 @@ public class UserGroup implements Serializable {
      *            the blogposts to set
      */
     public void setBlogposts(final List<BlogPost> blogposts) {
-        this.blogposts = blogposts;
+        this.blogposts = new ArrayList<Key<BlogPost>>(this.blogPostObjectify.putAll(blogposts));
     }
 
     /**
@@ -168,7 +197,7 @@ public class UserGroup implements Serializable {
      * @return the setting
      */
     public Setting getSetting() {
-        return this.daoSettingObjectify.getByKey(setting);
+        return this.daoSettingObjectify.get(setting);
     }
 
     /**
@@ -188,7 +217,7 @@ public class UserGroup implements Serializable {
      * @return the invitation
      */
     public List<Invitation> getInvitations() {
-        return invitations;
+        return this.daoInvitationObjectify.getAllByKeys(this.invitations);
     }
 
     /**
@@ -198,7 +227,7 @@ public class UserGroup implements Serializable {
      *            to setting the invitations
      */
     public void setInvitations(final List<Invitation> invitations) {
-        this.invitations = invitations;
+        this.invitations = this.daoInvitationObjectify.putAll(invitations);
     }
 
     /**
@@ -207,7 +236,7 @@ public class UserGroup implements Serializable {
      * @return the users
      */
     public List<User> getUsers() {
-        return users;
+        return this.daoUserObjectify.getAllByKeys(this.users);
     }
 
     /**
@@ -217,7 +246,7 @@ public class UserGroup implements Serializable {
      *            to set the users
      */
     public void setUsers(final List<User> users) {
-        this.users = users;
+        this.users = this.daoUserObjectify.putAll(users);
     }
 
     /**
@@ -226,7 +255,7 @@ public class UserGroup implements Serializable {
      * @return the events
      */
     public List<Event> getEvents() {
-        return events;
+        return this.daoEventObjectify.getAllByKeys(this.events);
     }
 
     /**
@@ -236,7 +265,28 @@ public class UserGroup implements Serializable {
      *            to set the events
      */
     public void setEvents(final List<Event> events) {
-        this.events = events;
+        this.events = this.daoEventObjectify.putAll(events);
     }
 
+    public void addEvent(Event event) {
+        this.events.add(this.daoEventObjectify.put(event));
+    }
+
+    public void addInvitation(Invitation invitation) {
+        this.invitations.add(this.daoInvitationObjectify.put(invitation));
+    }
+
+    /**
+     * @param user
+     */
+    public void addUser(User user) {
+        this.users.add(this.daoUserObjectify.put(user));
+    }
+
+    /**
+     * @param blogPost
+     */
+    public void addBlogPost(BlogPost blogPost) {
+        this.blogposts.add(this.blogPostObjectify.put(blogPost));
+    }
 }

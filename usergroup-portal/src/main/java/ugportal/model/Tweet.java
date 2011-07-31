@@ -3,6 +3,9 @@ package ugportal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import com.google.appengine.api.datastore.Link;
 
 /**
@@ -19,6 +22,8 @@ public class Tweet implements Serializable {
     /**
      * id of the tweet
      */
+    @Id
+    @GeneratedValue
     private Long id;
     /**
      * date of creating the tweet

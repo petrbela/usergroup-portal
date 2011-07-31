@@ -3,24 +3,38 @@
  */
 package ugportal.model;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import ugportal.dao.objectify.DaoInvitationObjectifyTest;
+
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 /**
  * @author Ondrej Kvasnovsky
  */
 public class InvitationTest {
 
-    private Invitation testInvitation;
+    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+
+    @Before
+    public void setUp() throws Exception {
+        helper.setUp();
+        this.testInvitation = new Invitation();
+    }
 
     /**
      * @throws java.lang.Exception
      */
-    @Before
-    public void setUp() throws Exception {
-        this.testInvitation = new Invitation();
+    @After
+    public void tearDown() throws Exception {
+        helper.tearDown();
     }
+
+    private Invitation testInvitation;
 
     /**
      * Test method for {@link ugportal.model.Invitation#getId()}.
@@ -38,8 +52,9 @@ public class InvitationTest {
     @Test
     public final void testGetInvitedByUser() {
         User invitedByUser = new User();
+        invitedByUser.setRank(new Rank());
         this.testInvitation.setInvitedByUser(invitedByUser);
-        Assert.assertEquals(invitedByUser, this.testInvitation.getInvitedByUser());
+        DaoInvitationObjectifyTest.invitedByUserTestCondition(invitedByUser, this.testInvitation.getInvitedByUser());
     }
 
     /**
@@ -48,8 +63,9 @@ public class InvitationTest {
     @Test
     public final void testGetRegisteredUser() {
         User registeredUser = new User();
+        registeredUser.setRank(new Rank());
         this.testInvitation.setRegisteredUser(registeredUser);
-        Assert.assertEquals(registeredUser, this.testInvitation.getRegisteredUser());
+        DaoInvitationObjectifyTest.registeredUserTestCondition(registeredUser, this.testInvitation.getRegisteredUser());
     }
 
     /**
@@ -59,8 +75,9 @@ public class InvitationTest {
     @Test
     public final void testSetInvitedByUser() {
         User invitedByUser = new User();
+        invitedByUser.setRank(new Rank());
         this.testInvitation.setInvitedByUser(invitedByUser);
-        Assert.assertEquals(invitedByUser, this.testInvitation.getInvitedByUser());
+        DaoInvitationObjectifyTest.invitedByUserTestCondition(invitedByUser, this.testInvitation.getInvitedByUser());
     }
 
     /**
@@ -70,8 +87,9 @@ public class InvitationTest {
     @Test
     public final void testSetRegisteredUser() {
         User registeredUser = new User();
+        registeredUser.setRank(new Rank());
         this.testInvitation.setRegisteredUser(registeredUser);
-        Assert.assertEquals(registeredUser, this.testInvitation.getRegisteredUser());
+        DaoInvitationObjectifyTest.registeredUserTestCondition(registeredUser, this.testInvitation.getRegisteredUser());
     }
 
 }

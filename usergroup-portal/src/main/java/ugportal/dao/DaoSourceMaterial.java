@@ -5,6 +5,8 @@ package ugportal.dao;
 
 import ugportal.model.SourceMaterial;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link SourceMaterial}
  * 
@@ -28,7 +30,7 @@ public interface DaoSourceMaterial {
      * @param sourceMaterial
      *            sourceMaterial to save or update
      */
-    void put(SourceMaterial sourceMaterial);
+    Key<SourceMaterial> put(SourceMaterial sourceMaterial);
 
     /**
      * Deletes {@link SourceMaterial}

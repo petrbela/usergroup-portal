@@ -3,12 +3,14 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ugportal.dao.DaoInvitation;
 import ugportal.model.Invitation;
 import ugportal.model.User;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -55,8 +57,8 @@ public class DaoInvitationObjectify extends DAOBase implements DaoInvitation {
      * @see ugportal.dao.DaoInvitation#put(ugportal.model.Invitation)
      */
     @Override
-    public void put(Invitation invitation) {
-        // TODO Auto-generated method stub
+    public Key<Invitation> put(Invitation invitation) {
+        return ofy().put(invitation);
 
     }
 
@@ -69,6 +71,22 @@ public class DaoInvitationObjectify extends DAOBase implements DaoInvitation {
     public void delete(Invitation invitation) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @param invitations
+     * @return
+     */
+    public List<Key<Invitation>> putAll(List<Invitation> invitations) {
+        return new ArrayList<Key<Invitation>>(ofy().put(invitations).keySet());
+    }
+
+    /**
+     * @param invitations
+     * @return
+     */
+    public List<Invitation> getAllByKeys(List<Key<Invitation>> invitations) {
+        return new ArrayList<Invitation>(ofy().get(invitations).values());
     }
 
 }

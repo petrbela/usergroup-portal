@@ -17,6 +17,17 @@ import ugportal.dao.DaoSourceMaterial;
 import ugportal.dao.DaoTweet;
 import ugportal.dao.DaoUser;
 import ugportal.dao.DaoUserGroup;
+import ugportal.model.BlogPost;
+import ugportal.model.Event;
+import ugportal.model.Invitation;
+import ugportal.model.Rank;
+import ugportal.model.Setting;
+import ugportal.model.SourceMaterial;
+import ugportal.model.Tweet;
+import ugportal.model.User;
+import ugportal.model.UserGroup;
+
+import com.googlecode.objectify.ObjectifyService;
 
 /**
  * DAO factory to access Objectify DAO objects.
@@ -24,6 +35,18 @@ import ugportal.dao.DaoUserGroup;
  * @author Ondrej Kvasnovsky
  */
 public class DaoFactoryObjectify extends DaoFactory {
+
+    static {
+        ObjectifyService.register(UserGroup.class);
+        ObjectifyService.register(User.class);
+        ObjectifyService.register(Rank.class);
+        ObjectifyService.register(Tweet.class);
+        ObjectifyService.register(Setting.class);
+        ObjectifyService.register(BlogPost.class);
+        ObjectifyService.register(SourceMaterial.class);
+        ObjectifyService.register(Event.class);
+        ObjectifyService.register(Invitation.class);
+    }
 
     /**
      * {@inheritDoc}
@@ -42,7 +65,6 @@ public class DaoFactoryObjectify extends DaoFactory {
      */
     @Override
     public DaoUser getDaoUser() {
-
         return new DaoUserObjectify();
     }
 
@@ -92,7 +114,7 @@ public class DaoFactoryObjectify extends DaoFactory {
      * @see ugportal.dao.DaoFactory#getInvitation()
      */
     @Override
-    public DaoInvitation getInvitation() {
+    public DaoInvitation getDaoInvitation() {
         return new DaoInvitationObjectify();
     }
 

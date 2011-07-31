@@ -5,7 +5,13 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import ugportal.dao.DaoFactory;
+import ugportal.dao.objectify.DaoUserObjectify;
+
+import com.googlecode.objectify.Key;
 
 /**
  * {@link Invitation} represents an invitation for user registration.
@@ -13,6 +19,8 @@ import javax.persistence.Id;
  * @author Ondrej Kvasnovsky
  */
 public class Invitation implements Serializable {
+
+    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
     /**
      * Serial Version UID
      */
@@ -21,15 +29,16 @@ public class Invitation implements Serializable {
      * invitation id
      */
     @Id
+    @GeneratedValue
     private Long id;
     /**
      * user who send the invitation
      */
-    private User invitedByUser;
+    private Key<User> invitedByUser;
     /**
      * registered user
      */
-    private User registeredUser;
+    private Key<User> registeredUser;
 
     /**
      * Returns the id.
@@ -46,7 +55,7 @@ public class Invitation implements Serializable {
      * @return the invitedByUser
      */
     public User getInvitedByUser() {
-        return this.invitedByUser;
+        return this.daoUserObjectify.get(this.invitedByUser);
     }
 
     /**
@@ -55,7 +64,7 @@ public class Invitation implements Serializable {
      * @return the registeredUser
      */
     public User getRegisteredUser() {
-        return this.registeredUser;
+        return this.daoUserObjectify.get(this.registeredUser);
     }
 
     /**
@@ -75,7 +84,7 @@ public class Invitation implements Serializable {
      *            the invitedByUser to set
      */
     public void setInvitedByUser(User invitedByUser) {
-        this.invitedByUser = invitedByUser;
+        this.invitedByUser = this.daoUserObjectify.put(invitedByUser);
     }
 
     /**
@@ -85,7 +94,7 @@ public class Invitation implements Serializable {
      *            the registeredUser to set
      */
     public void setRegisteredUser(User registeredUser) {
-        this.registeredUser = registeredUser;
+        this.registeredUser = this.daoUserObjectify.put(registeredUser);
     }
 
 }

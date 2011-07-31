@@ -8,6 +8,8 @@ import java.util.List;
 
 import ugportal.model.Tweet;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link Tweet}
  * 
@@ -15,40 +17,40 @@ import ugportal.model.Tweet;
  */
 public interface DaoTweet {
     /**
-     * Returns {@link DaoTweet} by it's id.
+     * Returns {@link Tweet} by it's id.
      * 
      * @param id
-     *            id of daoTweet
-     * @return fetched daoTweet or null
+     *            id of Tweet
+     * @return fetched Tweet or null
      */
 
-    DaoTweet getById(Long id);
+    Tweet getById(Long id);
 
     /**
-     * Returns collection of {@link DaoTweet} by date
+     * Returns collection of {@link Tweet} by date
      * 
      * @param date
-     *            date of daoTweet
+     *            date of Tweet
      * 
-     * @return fetched collection of daoTweets or empty collection
+     * @return fetched collection of Tweets or empty collection
      */
 
-    List<DaoTweet> getByDate(Date date);
-
-    /**
-     * Saves or updates {@link DaoTweet}
-     * 
-     * @param daoTweet
-     *            {@link DaoTweet} to save or update
-     */
-    void put(DaoTweet daoTweet);
+    List<Tweet> getByDate(Date date);
 
     /**
-     * Deletes {@link DaoTweet}
+     * Saves or updates {@link Tweet}
      * 
-     * @param daoTweet
-     *            {@link DaoTweet} to delete
+     * @param Tweet
+     *            {@link Tweet} to save or update
      */
-    void delete(DaoTweet daoTweet);
+    Key<Tweet> put(Tweet Tweet);
+
+    /**
+     * Deletes {@link Tweet}
+     * 
+     * @param Tweet
+     *            {@link Tweet} to delete
+     */
+    void delete(Tweet Tweet);
 
 }

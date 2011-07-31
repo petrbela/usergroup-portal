@@ -6,6 +6,7 @@ package ugportal.dao.objectify;
 import ugportal.dao.DaoRank;
 import ugportal.model.Rank;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -41,8 +42,8 @@ public class DaoRankObjectify extends DAOBase implements DaoRank {
      * @see ugportal.dao.DaoRank#put(ugportal.model.Rank)
      */
     @Override
-    public void put(Rank rank) {
-        // TODO Auto-generated method stub
+    public Key<Rank> put(Rank rank) {
+        return ofy().put(rank);
 
     }
 
@@ -55,6 +56,14 @@ public class DaoRankObjectify extends DAOBase implements DaoRank {
     public void delete(Rank rank) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @param rank
+     * @return
+     */
+    public Rank get(Key<Rank> rank) {
+        return ofy().find(rank);
     }
 
 }

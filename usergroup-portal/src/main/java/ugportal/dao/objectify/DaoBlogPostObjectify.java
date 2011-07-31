@@ -3,11 +3,15 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import ugportal.dao.DaoBlogPost;
 import ugportal.model.BlogPost;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -44,9 +48,12 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
      * @see ugportal.dao.DaoBlogPost#put(ugportal.model.BlogPost)
      */
     @Override
-    public void put(BlogPost blogPost) {
-        // TODO Auto-generated method stub
+    public Key<BlogPost> put(BlogPost blogPost) {
+        return ofy().put(blogPost);
+    }
 
+    public Set<Key<BlogPost>> putAll(List<BlogPost> blogPosts) {
+        return ofy().put(blogPosts).keySet();
     }
 
     /**
@@ -58,6 +65,14 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
     public void delete(BlogPost blogPost) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @param bp
+     * @return
+     */
+    public List<BlogPost> getAllByKey(List<Key<BlogPost>> keys) {
+        return new ArrayList<BlogPost>(ofy().get(keys).values());
     }
 
 }

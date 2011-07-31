@@ -3,6 +3,9 @@ package ugportal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import com.google.appengine.api.datastore.Link;
 
 /**
@@ -20,7 +23,9 @@ public class BlogPost implements Serializable {
     /**
      * id of the BlogPost
      */
-    private String id;
+    @Id
+    @GeneratedValue
+    private Long id;
     /**
      * date of creating the BlogPost
      */
@@ -85,7 +90,7 @@ public class BlogPost implements Serializable {
      * 
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -95,7 +100,7 @@ public class BlogPost implements Serializable {
      * @param id
      *            the id of blogpost
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

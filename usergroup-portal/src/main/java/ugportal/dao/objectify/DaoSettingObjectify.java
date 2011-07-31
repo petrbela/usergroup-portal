@@ -7,17 +7,12 @@ import ugportal.dao.DaoSetting;
 import ugportal.model.Setting;
 
 import com.googlecode.objectify.Key;
-import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
  * @author Tomas
  */
 public class DaoSettingObjectify extends DAOBase implements DaoSetting {
-
-    static {
-        ObjectifyService.register(Setting.class);
-    }
 
     /**
      * {@inheritDoc}
@@ -30,8 +25,8 @@ public class DaoSettingObjectify extends DAOBase implements DaoSetting {
         return null;
     }
 
-    public Setting getByKey(Key<Setting> settingKey) {
-        return ofy().get(settingKey);
+    public Setting get(Key<Setting> settingKey) {
+        return ofy().find(settingKey);
     }
 
     /**

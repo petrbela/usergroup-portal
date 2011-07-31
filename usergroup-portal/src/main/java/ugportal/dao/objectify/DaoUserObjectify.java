@@ -12,7 +12,7 @@ import ugportal.dao.DaoUser;
 import ugportal.model.User;
 
 import com.google.appengine.api.datastore.Email;
-import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Query;
 import com.googlecode.objectify.util.DAOBase;
 
@@ -24,8 +24,8 @@ import com.googlecode.objectify.util.DAOBase;
  */
 public class DaoUserObjectify extends DAOBase implements DaoUser {
 
-    static {
-        ObjectifyService.register(User.class);
+    public User get(Key<User> key) {
+        return ofy().find(key);
     }
 
     /**
@@ -91,8 +91,8 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
      * @see ugportal.dao.DaoUser#save(ugportal.model.User)
      */
     @Override
-    public void put(final User user) {
-        ofy().put(user);
+    public Key<User> put(final User user) {
+        return ofy().put(user);
     }
 
     /**
@@ -103,6 +103,22 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
     @Override
     public void delete(final User user) {
         ofy().delete(user);
+    }
+
+    /**
+     * @param users
+     * @return
+     */
+    public List<User> getAllByKeys(List<Key<User>> users) {
+        return new ArrayList<User>(ofy().get(users).values());
+    }
+
+    /**
+     * @param users
+     */
+    public List<Key<User>> putAll(List<User> users) {
+        return new ArrayList<Key<User>>(ofy().put(users).keySet());
+
     }
 
 }

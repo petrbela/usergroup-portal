@@ -4,12 +4,18 @@
 package ugportal.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Id;
 
+import ugportal.dao.DaoFactory;
+import ugportal.dao.objectify.DaoSourceMaterialObjecitfy;
+import ugportal.dao.objectify.DaoUserObjectify;
+
 import com.google.appengine.api.datastore.Link;
+import com.googlecode.objectify.Key;
 
 /**
  * {@link Event} represents an event organized by user group.
@@ -17,6 +23,10 @@ import com.google.appengine.api.datastore.Link;
  * @author Ondrej Kvasnovsky
  */
 public class Event implements Serializable {
+
+    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
+    private final DaoSourceMaterialObjecitfy daoSourceMaterialObjecitfy = (DaoSourceMaterialObjecitfy) DaoFactory
+            .getInstance().getDaoSourceMaterial();
     /**
      * Serial Version UID
      */
@@ -29,7 +39,7 @@ public class Event implements Serializable {
     /**
      * author who made an event
      */
-    private User author;
+    private Key<User> author;
 
     /**
      * date when an even happens
@@ -59,11 +69,11 @@ public class Event implements Serializable {
     /**
      * participants of an event
      */
-    private List<User> participants;
+    private List<Key<User>> participants = new ArrayList<Key<User>>();
     /**
      * source materials
      */
-    private List<SourceMaterial> sourceMaterials;
+    private List<Key<SourceMaterial>> sourceMaterials = new ArrayList<Key<SourceMaterial>>();
 
     /**
      * Returns the address.
@@ -80,7 +90,7 @@ public class Event implements Serializable {
      * @return the author
      */
     public User getAuthor() {
-        return this.author;
+        return this.daoUserObjectify.get(this.author);
     }
 
     /**
@@ -134,7 +144,7 @@ public class Event implements Serializable {
      * @return the participants
      */
     public List<User> getParticipants() {
-        return this.participants;
+        return this.daoUserObjectify.getAllByKeys(this.participants);
     }
 
     /**
@@ -143,7 +153,7 @@ public class Event implements Serializable {
      * @return the sourceMaterials
      */
     public List<SourceMaterial> getSourceMaterials() {
-        return this.sourceMaterials;
+        return this.daoSourceMaterialObjecitfy.getByAllKeys(this.sourceMaterials);
     }
 
     /**
@@ -163,7 +173,7 @@ public class Event implements Serializable {
      *            the author to set
      */
     public void setAuthor(User author) {
-        this.author = author;
+        this.author = this.daoUserObjectify.put(author);
     }
 
     /**
@@ -222,8 +232,8 @@ public class Event implements Serializable {
      * @param participants
      *            the participants to set
      */
-    public void setParticipants(List<User> participants) {
-        this.participants = participants;
+    public List<Key<User>> setParticipants(List<User> participants) {
+        return new ArrayList<Key<User>>(this.daoUserObjectify.putAll(participants));
     }
 
     /**
@@ -232,8 +242,16 @@ public class Event implements Serializable {
      * @param sourceMaterials
      *            the sourceMaterials to set
      */
-    public void setSourceMaterials(List<SourceMaterial> sourceMaterials) {
-        this.sourceMaterials = sourceMaterials;
+    public List<Key<SourceMaterial>> setSourceMaterials(List<SourceMaterial> sourceMaterials) {
+        return this.daoSourceMaterialObjecitfy.putAll(sourceMaterials);
+    }
+
+    public void addParticipant(User participant) {
+        this.participants.add(this.daoUserObjectify.put(participant));
+    }
+
+    public void addSourceMaterial(SourceMaterial sourceMaterial) {
+        this.sourceMaterials.add(this.daoSourceMaterialObjecitfy.put(sourceMaterial));
     }
 
 }

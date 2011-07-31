@@ -8,6 +8,8 @@ import java.util.List;
 import ugportal.model.Invitation;
 import ugportal.model.User;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link Invitation}
  * 
@@ -47,7 +49,7 @@ public interface DaoInvitation {
      * @param invitation
      *            {@link Invitation} to save or update
      */
-    void put(Invitation invitation);
+    Key<Invitation> put(Invitation invitation);
 
     /**
      * Deletes {@link Invitation}

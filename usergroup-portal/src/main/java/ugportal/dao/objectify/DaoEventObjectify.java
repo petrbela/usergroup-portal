@@ -3,6 +3,7 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import ugportal.model.Event;
 import ugportal.model.EventType;
 import ugportal.model.User;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -47,8 +49,8 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
      * @see ugportal.dao.DaoEvent#put(ugportal.model.Event)
      */
     @Override
-    public void put(Event event) {
-        // TODO Auto-generated method stub
+    public Key<Event> put(Event event) {
+        return ofy().put(event);
 
     }
 
@@ -61,6 +63,22 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
     public void delete(Event event) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @param events
+     * @return
+     */
+    public List<Event> getAllByKeys(List<Key<Event>> events) {
+        return new ArrayList<Event>(ofy().get(events).values());
+    }
+
+    /**
+     * @param events
+     * @return
+     */
+    public List<Key<Event>> putAll(List<Event> events) {
+        return new ArrayList<Key<Event>>(ofy().put(events).keySet());
     }
 
 }

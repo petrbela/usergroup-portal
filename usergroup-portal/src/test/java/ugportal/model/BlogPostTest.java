@@ -31,7 +31,7 @@ public class BlogPostTest {
      */
     @Test
     public final void testGetId() {
-        String id = "srghryfg35b4684d6f";
+        Long id = 5457L;
         this.testBlogPost.setId(id);
         Assert.assertEquals(id, this.testBlogPost.getId());
     }
@@ -41,7 +41,7 @@ public class BlogPostTest {
      */
     @Test
     public final void testSetId() {
-        String id = "srghryfg35b4684d6f";
+        Long id = 4894L;
         this.testBlogPost.setId(id);
         Assert.assertEquals(id, this.testBlogPost.getId());
     }

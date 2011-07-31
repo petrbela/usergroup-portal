@@ -16,6 +16,8 @@ import com.googlecode.objectify.Key;
  */
 public interface DaoUserGroup {
 
+    UserGroup get();
+
     /**
      * Returns {@link UserGroup} by it's ID.
      * 

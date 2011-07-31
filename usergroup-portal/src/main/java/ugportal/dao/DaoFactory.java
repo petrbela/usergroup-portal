@@ -44,7 +44,7 @@ public abstract class DaoFactory {
 
     public abstract DaoEventType getDaoEventType();
 
-    public abstract DaoInvitation getInvitation();
+    public abstract DaoInvitation getDaoInvitation();
 
     public abstract DaoInvitationState getDaoInvitationState();
 

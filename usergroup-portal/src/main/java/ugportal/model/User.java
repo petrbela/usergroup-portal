@@ -8,8 +8,12 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import ugportal.dao.DaoFactory;
+import ugportal.dao.objectify.DaoRankObjectify;
+
 import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.Email;
+import com.googlecode.objectify.Key;
 
 /**
  * {@link User} represents a specific user and member of the user group. It is
@@ -18,6 +22,8 @@ import com.google.appengine.api.datastore.Email;
  * @author Ondrej Kvasnovsky
  */
 public class User implements Serializable {
+
+    private final DaoRankObjectify daoRankObjectify = (DaoRankObjectify) DaoFactory.getInstance().getDaoRank();
     /**
      * Serial Version UID
      */
@@ -52,7 +58,7 @@ public class User implements Serializable {
     /**
      * rank
      */
-    private Rank rank;
+    private Key<Rank> rank;
 
     /**
      * role
@@ -120,7 +126,7 @@ public class User implements Serializable {
      * @return the rank
      */
     public Rank getRank() {
-        return this.rank;
+        return this.daoRankObjectify.get(this.rank);
     }
 
     /**
@@ -207,7 +213,7 @@ public class User implements Serializable {
      *            the rank to set
      */
     public void setRank(Rank rank) {
-        this.rank = rank;
+        this.rank = this.daoRankObjectify.put(rank);
     }
 
     /**

@@ -27,7 +27,7 @@ public class RankTest {
      */
     @Test
     public final void testGetId() {
-        String id = "ID001";
+        Long id = 4582l;
         this.testRank.setId(id);
         Assert.assertEquals(id, this.testRank.getId());
     }
@@ -40,16 +40,6 @@ public class RankTest {
         String label = "Leader";
         this.testRank.setLabel(label);
         Assert.assertEquals(label, this.testRank.getLabel());
-    }
-
-    /**
-     * Test method for {@link ugportal.model.Rank#setId(java.lang.String)}.
-     */
-    @Test
-    public final void testSetId() {
-        String id = "ID001";
-        this.testRank.setId(id);
-        Assert.assertEquals(id, this.testRank.getId());
     }
 
     /**

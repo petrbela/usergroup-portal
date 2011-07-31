@@ -13,6 +13,9 @@ import com.googlecode.objectify.Key;
  * @author Tomas Vantuch
  */
 public interface DaoSetting {
+
+    Setting get(Key<Setting> settingKey);
+
     /**
      * Returns {@link Setting}.
      * 
