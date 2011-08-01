@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ugportal.LocalDataStoreInitializer;
 import ugportal.dao.DaoUser;
 import ugportal.model.Rank;
 import ugportal.model.Role;
@@ -17,20 +18,17 @@ import ugportal.model.User;
 
 import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.Email;
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 /**
  * @author Tomas Vantuch
  */
 public class DaoUserObjectifyTest {
 
-    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
     private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactoryObjectify.getInstance().getDaoUser();
 
     @Before
     public void setUp() throws Exception {
-        helper.setUp();
+        LocalDataStoreInitializer.setUp();
     }
 
     /**
@@ -38,7 +36,7 @@ public class DaoUserObjectifyTest {
      */
     @After
     public void tearDown() throws Exception {
-        helper.tearDown();
+        LocalDataStoreInitializer.tearDown();
     }
 
     @Test

@@ -13,6 +13,7 @@ import ugportal.dao.objectify.DaoEventObjectify;
 import ugportal.dao.objectify.DaoInvitationObjectify;
 import ugportal.dao.objectify.DaoSettingObjectify;
 import ugportal.dao.objectify.DaoTweetObjectify;
+import ugportal.dao.objectify.DaoUserGroupObjectify;
 import ugportal.dao.objectify.DaoUserObjectify;
 
 import com.google.appengine.api.datastore.Text;
@@ -25,7 +26,7 @@ import com.googlecode.objectify.annotation.Parent;
  * @author Tomas Vantuch
  * 
  */
-public class UserGroup implements Serializable {
+public final class UserGroup implements Serializable {
 
     /**
 	 * 
@@ -41,6 +42,25 @@ public class UserGroup implements Serializable {
             .getDaoInvitation();
     private final DaoEventObjectify daoEventObjectify = (DaoEventObjectify) DaoFactory.getInstance().getDaoEvent();
     private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
+    private final static DaoUserGroupObjectify daoUserGroupObjectify = (DaoUserGroupObjectify) DaoFactory.getInstance()
+            .getDaoUserGroup();
+
+    private static UserGroup userGroup;
+
+    private UserGroup() {
+
+    }
+
+    public static UserGroup getInstance() {
+        if (userGroup == null) {
+            userGroup = daoUserGroupObjectify.get();
+            if (userGroup == null) {
+                userGroup = new UserGroup();
+                daoUserGroupObjectify.put(userGroup);
+            }
+        }
+        return userGroup;
+    }
 
     /**
      * name of user group
@@ -146,9 +166,7 @@ public class UserGroup implements Serializable {
      *            tweets
      */
     public void setTweets(final List<Tweet> tweets) {
-        for (Tweet t : tweets) {
-            this.tweets.add(this.daoTweetObjectify.put(t));
-        }
+        this.tweets = this.daoTweetObjectify.putAll(tweets);
     }
 
     public void addTweet(Tweet tweet) {
@@ -165,11 +183,7 @@ public class UserGroup implements Serializable {
      * @return the tweets
      */
     public List<Tweet> getTweets() {
-        List<Tweet> list = new ArrayList<Tweet>();
-        for (Key<Tweet> k : this.tweets) {
-            list.add(this.daoTweetObjectify.get(k));
-        }
-        return list;
+        return this.daoTweetObjectify.getAllByKeys(this.tweets);
     }
 
     /**

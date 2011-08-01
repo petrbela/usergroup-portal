@@ -7,21 +7,17 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
+import ugportal.LocalDataStoreInitializer;
 import ugportal.model.User;
-
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 /**
  * @author Tomas
  */
 public class DaoEventTest {
 
-    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
-
     @Before
     public void setUp() throws Exception {
-        helper.setUp();
+        LocalDataStoreInitializer.setUp();
     }
 
     /**
@@ -29,7 +25,7 @@ public class DaoEventTest {
      */
     @After
     public void tearDown() throws Exception {
-        helper.tearDown();
+        LocalDataStoreInitializer.tearDown();
     }
 
     public static void idTestCondition(Long a, Long b) {

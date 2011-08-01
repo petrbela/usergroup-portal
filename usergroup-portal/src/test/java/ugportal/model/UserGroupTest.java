@@ -6,9 +6,12 @@ package ugportal.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import ugportal.LocalDataStoreInitializer;
 
 import com.google.appengine.api.datastore.Text;
 
@@ -17,15 +20,21 @@ import com.google.appengine.api.datastore.Text;
  */
 public class UserGroupTest {
 
-    private UserGroup testUserGroup;
+    @Before
+    public void setUp() throws Exception {
+        LocalDataStoreInitializer.setUp();
+        this.testUserGroup = UserGroup.getInstance();
+    }
 
     /**
      * @throws java.lang.Exception
      */
-    @Before
-    public void setUp() throws Exception {
-        this.testUserGroup = new UserGroup();
+    @After
+    public void tearDown() throws Exception {
+        LocalDataStoreInitializer.tearDown();
     }
+
+    private UserGroup testUserGroup;
 
     /**
      * Test method for {@link ugportal.model.UserGroup#getName()}.

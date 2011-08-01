@@ -8,19 +8,16 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import ugportal.LocalDataStoreInitializer;
 
 /**
  * @author Tomas
  */
 public class DaoRankObjectifyTest {
 
-    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
-
     @Before
     public void setUp() throws Exception {
-        helper.setUp();
+        LocalDataStoreInitializer.setUp();
     }
 
     /**
@@ -28,7 +25,7 @@ public class DaoRankObjectifyTest {
      */
     @After
     public void tearDown() throws Exception {
-        helper.tearDown();
+        LocalDataStoreInitializer.tearDown();
     }
 
     public static void labelTestCondition(String a, String b) {

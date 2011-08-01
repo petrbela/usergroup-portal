@@ -3,6 +3,7 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +67,22 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
      */
     public Tweet get(Key<Tweet> key) {
         return ofy().find(key);
+    }
+
+    /**
+     * @param tweets
+     * @return
+     */
+    public List<Key<Tweet>> putAll(List<Tweet> tweets) {
+        return new ArrayList<Key<Tweet>>(ofy().put(tweets).keySet());
+    }
+
+    /**
+     * @param tweets
+     * @return
+     */
+    public List<Tweet> getAllByKeys(List<Key<Tweet>> tweets) {
+        return new ArrayList<Tweet>(ofy().get(tweets).values());
     }
 
 }

@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ugportal.LocalDataStoreInitializer;
 import ugportal.dao.DaoFactory;
 import ugportal.model.BlogPost;
 import ugportal.model.Event;
@@ -23,21 +24,18 @@ import ugportal.model.UserGroup;
 
 import com.google.appengine.api.datastore.Link;
 import com.google.appengine.api.datastore.Text;
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 /**
  * @author Tomas Vantuch
  */
 public class DaoUserGroupObjectifyTest {
 
-    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
     private final DaoUserGroupObjectify daoUserGroupObjectify = (DaoUserGroupObjectify) DaoFactory.getInstance()
             .getDaoUserGroup();
 
     @Before
     public void setUp() throws Exception {
-        helper.setUp();
+        LocalDataStoreInitializer.setUp();
     }
 
     /**
@@ -45,7 +43,7 @@ public class DaoUserGroupObjectifyTest {
      */
     @After
     public void tearDown() throws Exception {
-        helper.tearDown();
+        LocalDataStoreInitializer.tearDown();
     }
 
     @Test
@@ -53,7 +51,7 @@ public class DaoUserGroupObjectifyTest {
         /**
          * usergroup entity created
          */
-        UserGroup userGroup = new UserGroup();
+        UserGroup userGroup = UserGroup.getInstance();
         userGroup.setName("Java-Ostrava");
         userGroup.setAbout(new Text("about java"));
         /**
