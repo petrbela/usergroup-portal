@@ -21,8 +21,7 @@ public class DaoSettingObjectify extends DAOBase implements DaoSetting {
      */
     @Override
     public Setting getById(Long id) {
-
-        return null;
+        return ofy().find(Setting.class, id);
     }
 
     public Setting get(Key<Setting> settingKey) {
@@ -46,7 +45,7 @@ public class DaoSettingObjectify extends DAOBase implements DaoSetting {
      */
     @Override
     public void delete(Setting setting) {
-        // TODO Auto-generated method stub
+        ofy().delete(setting);
 
     }
 

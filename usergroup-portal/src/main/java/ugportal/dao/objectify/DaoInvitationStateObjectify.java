@@ -3,13 +3,16 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.List;
+
 import ugportal.dao.DaoInvitationState;
 import ugportal.model.InvitationState;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
- * @author Tomas
+ * @author Tomas Vantuch
  */
 public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitationState {
 
@@ -20,8 +23,7 @@ public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitatio
      */
     @Override
     public InvitationState getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().get(InvitationState.class, id);
     }
 
     /**
@@ -30,9 +32,8 @@ public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitatio
      * @see ugportal.dao.DaoInvitationState#getByLabel(java.lang.String)
      */
     @Override
-    public InvitationState getByLabel(String label) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<InvitationState> getByLabel(String label) {
+        return ofy().query(InvitationState.class).filter("label =", label).list();
     }
 
     /**
@@ -41,9 +42,8 @@ public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitatio
      * @see ugportal.dao.DaoInvitationState#put(ugportal.model.InvitationState)
      */
     @Override
-    public void put(InvitationState invitationState) {
-        // TODO Auto-generated method stub
-
+    public Key<InvitationState> put(InvitationState invitationState) {
+        return ofy().put(invitationState);
     }
 
     /**
@@ -53,8 +53,16 @@ public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitatio
      */
     @Override
     public void delete(InvitationState invitationState) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(invitationState);
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoInvitationState#get(com.googlecode.objectify.Key)
+     */
+    @Override
+    public InvitationState get(Key<InvitationState> key) {
+        return ofy().get(key);
+    }
 }

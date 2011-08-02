@@ -7,11 +7,13 @@ import ugportal.dao.DaoBlog;
 import ugportal.model.Blog;
 
 import com.google.appengine.api.datastore.Email;
+import com.googlecode.objectify.Key;
+import com.googlecode.objectify.util.DAOBase;
 
 /**
  * @author Tomas
  */
-public class DaoBlogObjectify extends DaoFactoryObjectify implements DaoBlog {
+public class DaoBlogObjectify extends DAOBase implements DaoBlog {
 
     /**
      * {@inheritDoc}
@@ -20,8 +22,7 @@ public class DaoBlogObjectify extends DaoFactoryObjectify implements DaoBlog {
      */
     @Override
     public Blog getByBlogId(Long blogId) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(Blog.class, blogId);
     }
 
     /**
@@ -31,8 +32,7 @@ public class DaoBlogObjectify extends DaoFactoryObjectify implements DaoBlog {
      */
     @Override
     public Blog getByEmail(Email blogEmail) {
-        // TODO Auto-generated method stub
-        return null;
+        return (Blog) ofy().query(Blog.class).filter("email =", blogEmail);
     }
 
     /**
@@ -41,9 +41,8 @@ public class DaoBlogObjectify extends DaoFactoryObjectify implements DaoBlog {
      * @see ugportal.dao.DaoBlog#save(ugportal.model.Blog)
      */
     @Override
-    public void save(Blog blog) {
-        // TODO Auto-generated method stub
-
+    public Key<Blog> save(Blog blog) {
+        return ofy().put(blog);
     }
 
     /**
@@ -53,8 +52,16 @@ public class DaoBlogObjectify extends DaoFactoryObjectify implements DaoBlog {
      */
     @Override
     public void delete(Blog blog) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(blog);
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoBlog#getByKey(com.googlecode.objectify.Key)
+     */
+    @Override
+    public Blog getByKey(Key<Blog> key) {
+        return ofy().find(key);
+    }
 }

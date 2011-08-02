@@ -68,4 +68,23 @@ public interface DaoUser {
      */
     public abstract void delete(final User user);
 
+    /**
+     * Returns collection of {@link User} by it's keys.
+     * 
+     * @param keys
+     *            user's keys
+     * @return fetched collection of users, or null
+     */
+
+    List<User> getAllByKeys(List<Key<User>> users);
+
+    /**
+     * Puts collection of {@link User}
+     * 
+     * @param users
+     *            collection of users to put
+     * @return fetched collection of keys
+     */
+    List<Key<User>> putAll(List<User> users);
+
 }

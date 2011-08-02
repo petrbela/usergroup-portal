@@ -53,4 +53,32 @@ public interface DaoTweet {
      */
     void delete(Tweet Tweet);
 
+    /**
+     * Returns {@link Tweet} by it's key
+     * 
+     * @param key
+     *            key of Tweet
+     * @return fetched tweet or null
+     */
+
+    Tweet get(Key<Tweet> key);
+
+    /**
+     * puts collection of {@link Tweet}
+     * 
+     * @param tweets
+     *            collection of tweets
+     * @return fetched collection of keys
+     */
+    List<Key<Tweet>> putAll(List<Tweet> tweets);
+
+    /**
+     * Returns collection of {@link Tweet} by it's key
+     * 
+     * @param tweets
+     *            collection of keys
+     * @return fetched collection of tweets or empty collection
+     */
+    List<Tweet> getAllByKeys(List<Key<Tweet>> tweets);
+
 }

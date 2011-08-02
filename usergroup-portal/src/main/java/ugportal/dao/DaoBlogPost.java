@@ -4,6 +4,7 @@
 package ugportal.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import ugportal.model.BlogPost;
 
@@ -15,6 +16,9 @@ import com.googlecode.objectify.Key;
  * @author Tomas Vantuch
  */
 public interface DaoBlogPost {
+
+    List<BlogPost> getAllByKey(List<Key<BlogPost>> keys);
+
     /**
      * Returns {@link BlogPost} by it's id.
      * 
@@ -36,7 +40,7 @@ public interface DaoBlogPost {
      *            {@link BlogPost} autor
      * @return fetched {@link BlogPost}, or null
      */
-    BlogPost getBySearchDatas(Date datetime, String title, String autor);
+    List<BlogPost> getBySearchDatas(Date dateTimeFrom, Date dateTimeTo, String title, String autor);
 
     /**
      * Saves or updates {@link BlogPost}

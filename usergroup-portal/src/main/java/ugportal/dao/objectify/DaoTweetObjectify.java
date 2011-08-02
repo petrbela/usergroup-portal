@@ -14,7 +14,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
- * @author Tomas
+ * @author Tomas Vantuch
  */
 public class DaoTweetObjectify extends DAOBase implements DaoTweet {
 
@@ -25,8 +25,7 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
      */
     @Override
     public Tweet getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(Tweet.class, id);
     }
 
     /**
@@ -36,8 +35,7 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
      */
     @Override
     public List<Tweet> getByDate(Date date) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().query(Tweet.class).filter("dateTime =", date).list();
     }
 
     /**
@@ -56,9 +54,8 @@ public class DaoTweetObjectify extends DAOBase implements DaoTweet {
      * @see ugportal.dao.DaoTweet#delete(ugportal.model.Tweet)
      */
     @Override
-    public void delete(Tweet Tweet) {
-        // TODO Auto-generated method stub
-
+    public void delete(Tweet tweet) {
+        ofy().delete(tweet);
     }
 
     /**

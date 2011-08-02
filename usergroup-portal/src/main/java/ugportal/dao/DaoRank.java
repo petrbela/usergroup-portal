@@ -3,6 +3,8 @@
  */
 package ugportal.dao;
 
+import java.util.List;
+
 import ugportal.model.Rank;
 
 import com.googlecode.objectify.Key;
@@ -30,7 +32,7 @@ public interface DaoRank {
      *            label of Rank
      * 
      */
-    Rank getByLabel(String label);
+    List<Rank> getByLabel(String label);
 
     /**
      * Saves or updates {@link Rank}

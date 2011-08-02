@@ -24,8 +24,7 @@ public class DaoSourceMaterialObjecitfy extends DAOBase implements DaoSourceMate
      */
     @Override
     public SourceMaterial getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(SourceMaterial.class, id);
     }
 
     /**
@@ -49,8 +48,7 @@ public class DaoSourceMaterialObjecitfy extends DAOBase implements DaoSourceMate
      */
     @Override
     public void delete(SourceMaterial sourceMaterial) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(sourceMaterial);
     }
 
     /**

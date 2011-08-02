@@ -32,7 +32,7 @@ public interface DaoInvitation {
      *            invited user by this invitation
      * @return invitation or null
      */
-    Invitation getByInvitatedUser(User user);
+    List<Invitation> getByInvitatedUser(User user);
 
     /**
      * Returns collection of {@link Invitation} by registered user
@@ -58,5 +58,9 @@ public interface DaoInvitation {
      *            {@link Invitation} to delete
      */
     void delete(Invitation invitation);
+
+    List<Key<Invitation>> putAll(List<Invitation> invitations);
+
+    List<Invitation> getAllByKeys(List<Key<Invitation>> invitations);
 
 }

@@ -18,6 +18,16 @@ import com.googlecode.objectify.Key;
  * @author Tomas Vantuch
  */
 public interface DaoEvent {
+
+    /**
+     * Returns collection of {@link Event} by is's keys
+     * 
+     * @param keys
+     *            keys of events
+     * @return collection of events or empty collection
+     */
+    List<Event> getAllByKeys(List<Key<Event>> keys);
+
     /**
      * returns {@link Event} by it's id.
      * 

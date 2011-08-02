@@ -6,6 +6,7 @@ package ugportal.dao;
 import ugportal.model.Blog;
 
 import com.google.appengine.api.datastore.Email;
+import com.googlecode.objectify.Key;
 
 /**
  * Dao object for {@link Blog}
@@ -13,6 +14,15 @@ import com.google.appengine.api.datastore.Email;
  * @author Tomas Vantuch
  */
 public interface DaoBlog {
+    /**
+     * Returns {@link Blog} by it's key
+     * 
+     * param key key of the blog
+     * 
+     * @return fetched blog or null
+     */
+    Blog getByKey(Key<Blog> key);
+
     /**
      * Returns {@link Blog} by it's id.
      * 
@@ -37,7 +47,7 @@ public interface DaoBlog {
      * @param blog
      *            blog to save or update
      */
-    void save(Blog blog);
+    Key<Blog> save(Blog blog);
 
     /**
      * deletes {@link Blog}

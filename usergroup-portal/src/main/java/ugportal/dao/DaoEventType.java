@@ -5,12 +5,22 @@ package ugportal.dao;
 
 import ugportal.model.EventType;
 
+import com.googlecode.objectify.Key;
+
 /**
  * Dao object for {@link EventType}
  * 
  * @author Tomas Vantuch
  */
 public interface DaoEventType {
+    /**
+     * Returns {@link EventType} by it's key
+     * 
+     * @param key
+     *            key of eventType
+     * @return fetched eventType or null
+     */
+    EventType get(Key<EventType> key);
 
     /**
      * Returns {@link EventType} by it's id.
@@ -27,7 +37,7 @@ public interface DaoEventType {
      * @param eventType
      *            eventType to save or update.
      */
-    void put(EventType eventType);
+    Key<EventType> put(EventType eventType);
 
     /**
      * Deletes {@link EventType}

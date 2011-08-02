@@ -3,6 +3,8 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.List;
+
 import ugportal.dao.DaoRank;
 import ugportal.model.Rank;
 
@@ -21,8 +23,7 @@ public class DaoRankObjectify extends DAOBase implements DaoRank {
      */
     @Override
     public Rank getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().get(Rank.class, id);
     }
 
     /**
@@ -31,9 +32,8 @@ public class DaoRankObjectify extends DAOBase implements DaoRank {
      * @see ugportal.dao.DaoRank#getByLabel(java.lang.String)
      */
     @Override
-    public Rank getByLabel(String label) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Rank> getByLabel(String label) {
+        return ofy().query(Rank.class).filter("label =", label).list();
     }
 
     /**
@@ -54,8 +54,7 @@ public class DaoRankObjectify extends DAOBase implements DaoRank {
      */
     @Override
     public void delete(Rank rank) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(rank);
     }
 
     /**

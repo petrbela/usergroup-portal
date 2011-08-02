@@ -6,6 +6,7 @@ package ugportal.dao.objectify;
 import ugportal.dao.DaoEventType;
 import ugportal.model.EventType;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -20,19 +21,19 @@ public class DaoEventTypeObjectify extends DAOBase implements DaoEventType {
      */
     @Override
     public EventType getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(EventType.class, id);
     }
 
     /**
      * {@inheritDoc}
      * 
+     * @return
+     * 
      * @see ugportal.dao.DaoEventType#put(ugportal.model.EventType)
      */
     @Override
-    public void put(EventType eventType) {
-        // TODO Auto-generated method stub
-
+    public Key<EventType> put(EventType eventType) {
+        return ofy().put(eventType);
     }
 
     /**
@@ -42,8 +43,17 @@ public class DaoEventTypeObjectify extends DAOBase implements DaoEventType {
      */
     @Override
     public void delete(EventType eventType) {
-        // TODO Auto-generated method stub
+        ofy().delete(eventType);
+    }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoEventType#get(com.googlecode.objectify.Key)
+     */
+    @Override
+    public EventType get(Key<EventType> key) {
+        return ofy().get(key);
     }
 
 }

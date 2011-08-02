@@ -5,6 +5,7 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import com.google.appengine.api.datastore.Blob;
@@ -36,6 +37,7 @@ public class SourceMaterial implements Serializable {
      * source material id
      */
     @Id
+    @GeneratedValue
     private String id;
 
     /**

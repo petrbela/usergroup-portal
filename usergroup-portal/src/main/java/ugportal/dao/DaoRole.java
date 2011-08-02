@@ -3,7 +3,11 @@
  */
 package ugportal.dao;
 
+import java.util.List;
+
 import ugportal.model.Role;
+
+import com.googlecode.objectify.Key;
 
 /**
  * Dao object for {@link Role}
@@ -28,15 +32,16 @@ public interface DaoRole {
      *            label of Role
      * 
      */
-    Role getByLabel(String label);
+    List<Role> getByLabel(String label);
 
     /**
      * Saves or updates {@link Role}
      * 
      * @param Role
      *            Role to save or update
+     * @return
      */
-    void put(Role role);
+    Key<Role> put(Role role);
 
     /**
      * Deletes {@link Role}

@@ -27,7 +27,7 @@ public class InvitationStateTest {
      */
     @Test
     public final void testGetId() {
-        String id = "ID001";
+        Long id = 68468L;
         this.testInvitationState.setId(id);
         Assert.assertEquals(id, this.testInvitationState.getId());
     }
@@ -48,7 +48,7 @@ public class InvitationStateTest {
      */
     @Test
     public final void testSetId() {
-        String id = "ID001";
+        Long id = 54L;
         this.testInvitationState.setId(id);
         Assert.assertEquals(id, this.testInvitationState.getId());
     }

@@ -25,8 +25,7 @@ public class DaoInvitationObjectify extends DAOBase implements DaoInvitation {
      */
     @Override
     public Invitation getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(Invitation.class, id);
     }
 
     /**
@@ -35,9 +34,8 @@ public class DaoInvitationObjectify extends DAOBase implements DaoInvitation {
      * @see ugportal.dao.DaoInvitation#getByInvitatedUser(ugportal.model.User)
      */
     @Override
-    public Invitation getByInvitatedUser(User user) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Invitation> getByInvitatedUser(User user) {
+        return ofy().query(Invitation.class).filter("invitedByUser =", user).list();
     }
 
     /**
@@ -47,8 +45,7 @@ public class DaoInvitationObjectify extends DAOBase implements DaoInvitation {
      */
     @Override
     public List<Invitation> getByRegisteredUser(User user) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().query(Invitation.class).filter("registeredUser =", user).list();
     }
 
     /**
@@ -69,8 +66,7 @@ public class DaoInvitationObjectify extends DAOBase implements DaoInvitation {
      */
     @Override
     public void delete(Invitation invitation) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(invitation);
     }
 
     /**

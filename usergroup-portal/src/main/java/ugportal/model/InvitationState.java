@@ -5,6 +5,7 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -23,7 +24,8 @@ public class InvitationState implements Serializable {
      * invitation state id
      */
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
 
     /**
      * label (e.g. new, sent, opened, registered)
@@ -35,7 +37,7 @@ public class InvitationState implements Serializable {
      * 
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -54,7 +56,7 @@ public class InvitationState implements Serializable {
      * @param id
      *            the id to set
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

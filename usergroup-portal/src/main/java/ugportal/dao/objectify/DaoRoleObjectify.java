@@ -3,9 +3,12 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.List;
+
 import ugportal.dao.DaoRole;
 import ugportal.model.Role;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -20,8 +23,7 @@ public class DaoRoleObjectify extends DAOBase implements DaoRole {
      */
     @Override
     public Role getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(Role.class, id);
     }
 
     /**
@@ -30,9 +32,8 @@ public class DaoRoleObjectify extends DAOBase implements DaoRole {
      * @see ugportal.dao.DaoRole#getByLabel(java.lang.String)
      */
     @Override
-    public Role getByLabel(String label) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Role> getByLabel(String label) {
+        return ofy().query(Role.class).filter("label =", label).list();
     }
 
     /**
@@ -41,9 +42,8 @@ public class DaoRoleObjectify extends DAOBase implements DaoRole {
      * @see ugportal.dao.DaoRole#put(ugportal.model.Role)
      */
     @Override
-    public void put(Role role) {
-        // TODO Auto-generated method stub
-
+    public Key<Role> put(Role role) {
+        return ofy().put(role);
     }
 
     /**
@@ -53,8 +53,7 @@ public class DaoRoleObjectify extends DAOBase implements DaoRole {
      */
     @Override
     public void delete(Role role) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(role);
     }
 
 }

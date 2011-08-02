@@ -6,7 +6,6 @@ package ugportal.dao.objectify;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import ugportal.dao.DaoBlogPost;
 import ugportal.model.BlogPost;
@@ -26,8 +25,7 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
      */
     @Override
     public BlogPost getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(BlogPost.class, id);
     }
 
     /**
@@ -37,9 +35,10 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
      *      java.lang.String, java.lang.String)
      */
     @Override
-    public BlogPost getBySearchDatas(Date datetime, String title, String autor) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<BlogPost> getBySearchDatas(Date dateTimeFrom, Date dateTimeTo, String title, String autor) {
+        // TODO refactor this with using GqlQuery
+        return (List<BlogPost>) ofy().query(BlogPost.class).filter("datetime >=", dateTimeFrom)
+                .filter("datetime <=", dateTimeTo);
     }
 
     /**
@@ -52,8 +51,8 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
         return ofy().put(blogPost);
     }
 
-    public Set<Key<BlogPost>> putAll(List<BlogPost> blogPosts) {
-        return ofy().put(blogPosts).keySet();
+    public List<Key<BlogPost>> putAll(List<BlogPost> blogPosts) {
+        return new ArrayList<Key<BlogPost>>(ofy().put(blogPosts).keySet());
     }
 
     /**
@@ -63,8 +62,7 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
      */
     @Override
     public void delete(BlogPost blogPost) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(blogPost);
     }
 
     /**

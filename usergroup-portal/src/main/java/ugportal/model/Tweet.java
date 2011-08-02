@@ -11,7 +11,7 @@ import com.google.appengine.api.datastore.Link;
 /**
  * {@link Tweet} to represents a tweet added by user to portal.
  * 
- * @author Tomas
+ * @author Tomas Vantuch
  */
 public class Tweet implements Serializable {
 

@@ -3,6 +3,8 @@
  */
 package ugportal.dao;
 
+import java.util.List;
+
 import ugportal.model.SourceMaterial;
 
 import com.googlecode.objectify.Key;
@@ -39,5 +41,23 @@ public interface DaoSourceMaterial {
      *            sourceMaterial to delete
      */
     void delete(SourceMaterial sourceMaterial);
+
+    /**
+     * Returns collection of {@link SourceMaterial} by it's keys
+     * 
+     * @param sourceMaterials
+     *            keys of sourcematerials
+     * @return fetched collection of sourceMaterials or empty collection
+     */
+    List<SourceMaterial> getByAllKeys(List<Key<SourceMaterial>> sourceMaterials);
+
+    /**
+     * Puts collecion of {@link SourceMaterial}
+     * 
+     * @param sourceMaterials
+     *            {@link SourceMaterial} to put
+     * @return collection of keys
+     */
+    List<Key<SourceMaterial>> putAll(List<SourceMaterial> sourceMaterials);
 
 }
