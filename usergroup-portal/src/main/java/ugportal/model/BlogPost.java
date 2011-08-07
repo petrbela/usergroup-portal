@@ -6,6 +6,9 @@ import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import ugportal.dao.DaoFactory;
+import ugportal.dao.objectify.DaoUserObjectify;
+
 import com.google.appengine.api.datastore.Link;
 
 /**
@@ -15,6 +18,8 @@ import com.google.appengine.api.datastore.Link;
  * @author Tomas Vantuch
  */
 public class BlogPost implements Serializable {
+
+    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
 
     /**
      * serialVersionUID
@@ -72,7 +77,7 @@ public class BlogPost implements Serializable {
      * @return the author
      */
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     /**

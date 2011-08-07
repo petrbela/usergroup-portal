@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 
 import ugportal.LocalDataStoreInitializer;
+import ugportal.model.Rank;
 
 /**
  * @author Tomas
@@ -30,6 +31,15 @@ public class DaoRankObjectifyTest {
 
     public static void labelTestCondition(String a, String b) {
         Assert.assertEquals(a, b);
+    }
+
+    /**
+     * @return
+     */
+    public static Rank getOneRank() {
+        Rank rank = new Rank();
+        rank.setLabel("big boss");
+        return rank;
     }
 
 }

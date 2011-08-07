@@ -13,6 +13,7 @@ import ugportal.model.EventType;
 import ugportal.model.User;
 
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Query;
 import com.googlecode.objectify.util.DAOBase;
 
 /**
@@ -27,8 +28,7 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
      */
     @Override
     public Event getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return ofy().find(Event.class, id);
     }
 
     /**
@@ -39,8 +39,9 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
      */
     @Override
     public List<Event> getByDatas(EventType eventType, Date date, User autor) {
-        // TODO Auto-generated method stub
-        return null;
+        Query<Event> query = ofy().query(Event.class).filter("eventype =", eventType).filter("date =", date)
+                .filter("author", autor);
+        return query.list();
     }
 
     /**
@@ -61,8 +62,7 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
      */
     @Override
     public void delete(Event event) {
-        // TODO Auto-generated method stub
-
+        ofy().delete(event);
     }
 
     /**
@@ -79,6 +79,14 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
      */
     public List<Key<Event>> putAll(List<Event> events) {
         return new ArrayList<Key<Event>>(ofy().put(events).keySet());
+    }
+
+    /**
+     * @param put
+     * @return
+     */
+    public Event get(Key<Event> key) {
+        return ofy().find(key);
     }
 
 }

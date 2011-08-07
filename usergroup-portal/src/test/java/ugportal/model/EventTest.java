@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ugportal.dao.objectify.DaoEventTest;
+import ugportal.dao.objectify.DaoEventObjectifyTest;
 
 import com.google.appengine.api.datastore.Link;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
@@ -62,7 +62,7 @@ public class EventTest {
         User author = new User();
         author.setRank(new Rank());
         this.testEvent.setAuthor(author);
-        DaoEventTest.authorTestCondition(author, this.testEvent.getAuthor());
+        DaoEventObjectifyTest.authorTestCondition(author, this.testEvent.getAuthor());
 
     }
 
@@ -156,7 +156,7 @@ public class EventTest {
         User author = new User();
         author.setRank(new Rank());
         this.testEvent.setAuthor(author);
-        DaoEventTest.authorTestCondition(author, this.testEvent.getAuthor());
+        DaoEventObjectifyTest.authorTestCondition(author, this.testEvent.getAuthor());
     }
 
     /**

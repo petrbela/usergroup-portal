@@ -161,7 +161,7 @@ public class DaoUserGroupObjectifyTest {
 
     public static void eventTestCondition(List<Event> a, List<Event> b) {
         for (Event e : a) {
-            DaoEventTest.authorTestCondition(e.getAuthor(), b.get(a.indexOf(e)).getAuthor());
+            DaoEventObjectifyTest.authorTestCondition(e.getAuthor(), b.get(a.indexOf(e)).getAuthor());
         }
     }
 

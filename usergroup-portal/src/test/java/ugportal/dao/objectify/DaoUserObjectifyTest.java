@@ -183,16 +183,7 @@ public class DaoUserObjectifyTest {
 
     @Test
     public void testGetByName() {
-        User user = new User();
-        user.setEmail(new Email("mail1@seznam.cz"));
-        user.setFirstname("Bill");
-        user.setSurname("Gates");
-        user.setPassword("vokna");
-        user.setVisibleName("rexo15");
-
-        Rank r = new Rank();
-        r.setLabel("big boss");
-        user.setRank(r);
+        User user = getOneUser();
 
         this.daoUserObjectify.put(user);
 
@@ -311,5 +302,20 @@ public class DaoUserObjectifyTest {
 
     public static void userNullTestCondition(User user) {
         Assert.assertNull(user);
+    }
+
+    /**
+     * @return
+     */
+    public static User getOneUser() {
+        User user = new User();
+        user.setEmail(new Email("mail1@seznam.cz"));
+        user.setFirstname("Bill");
+        user.setSurname("Gates");
+        user.setPassword("vokna");
+        user.setVisibleName("rexo15");
+        user.setRank(DaoRankObjectifyTest.getOneRank());
+
+        return user;
     }
 }

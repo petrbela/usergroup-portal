@@ -36,9 +36,8 @@ public class DaoBlogPostObjectify extends DAOBase implements DaoBlogPost {
      */
     @Override
     public List<BlogPost> getBySearchDatas(Date dateTimeFrom, Date dateTimeTo, String title, String autor) {
-        // TODO refactor this with using GqlQuery
-        return (List<BlogPost>) ofy().query(BlogPost.class).filter("datetime >=", dateTimeFrom)
-                .filter("datetime <=", dateTimeTo);
+        return ofy().query(BlogPost.class).filter("datetime >=", dateTimeFrom).filter("datetime <=", dateTimeTo)
+                .filter("autor =", autor).filter("title =", title).list();
     }
 
     /**

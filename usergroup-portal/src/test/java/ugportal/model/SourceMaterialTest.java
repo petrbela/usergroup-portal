@@ -50,7 +50,7 @@ public class SourceMaterialTest {
      */
     @Test
     public final void testGetId() {
-        String id = "SM001";
+        Long id = 1L;
         this.testSourceMaterial.setId(id);
         Assert.assertEquals(id, this.testSourceMaterial.getId());
     }
@@ -104,7 +104,7 @@ public class SourceMaterialTest {
      */
     @Test
     public final void testSetId() {
-        String id = "SM001";
+        Long id = 1L;
         this.testSourceMaterial.setId(id);
         Assert.assertEquals(id, this.testSourceMaterial.getId());
     }
