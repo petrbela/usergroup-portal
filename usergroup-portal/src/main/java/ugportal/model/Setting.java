@@ -2,9 +2,14 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import ugportal.dao.DaoFactory;
+import ugportal.dao.objectify.DaoBlogObjectify;
+
 import com.google.appengine.api.datastore.Link;
+import com.googlecode.objectify.Key;
 
 /**
  * {@link Setting} stores setting (links to blog source and twitter)
@@ -13,6 +18,7 @@ import com.google.appengine.api.datastore.Link;
  */
 public class Setting implements Serializable {
 
+    private final DaoBlogObjectify blogObjectify = (DaoBlogObjectify) DaoFactory.getInstance().getDaoBlog();
     /**
      * serialVersionUID
      */
@@ -28,9 +34,10 @@ public class Setting implements Serializable {
     private Link linkBlogPost;
 
     @Id
+    @GeneratedValue
     private Long id;
 
-    private Blog blog;
+    private Key<Blog> blog;
 
     /**
      * Returns the blog.
@@ -38,7 +45,7 @@ public class Setting implements Serializable {
      * @return the blog
      */
     public Blog getBlog() {
-        return blog;
+        return this.blogObjectify.getByKey(this.blog);
     }
 
     /**
@@ -48,7 +55,7 @@ public class Setting implements Serializable {
      *            the blog to set
      */
     public void setBlog(Blog blog) {
-        this.blog = blog;
+        this.blog = this.blogObjectify.put(blog);
     }
 
     /**

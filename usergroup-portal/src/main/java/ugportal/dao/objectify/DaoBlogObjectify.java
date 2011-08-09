@@ -21,8 +21,8 @@ public class DaoBlogObjectify extends DAOBase implements DaoBlog {
      * @see ugportal.dao.DaoBlog#getByBlogId(java.lang.Long)
      */
     @Override
-    public Blog getByBlogId(Long blogId) {
-        return ofy().find(Blog.class, blogId);
+    public Blog getByBlogId(String blogId) {
+        return ofy().query(Blog.class).filter("blogId =", blogId).list().get(0);
     }
 
     /**
@@ -32,7 +32,7 @@ public class DaoBlogObjectify extends DAOBase implements DaoBlog {
      */
     @Override
     public Blog getByEmail(Email blogEmail) {
-        return (Blog) ofy().query(Blog.class).filter("email =", blogEmail);
+        return ofy().query(Blog.class).filter("email =", blogEmail).list().get(0);
     }
 
     /**
@@ -41,7 +41,7 @@ public class DaoBlogObjectify extends DAOBase implements DaoBlog {
      * @see ugportal.dao.DaoBlog#save(ugportal.model.Blog)
      */
     @Override
-    public Key<Blog> save(Blog blog) {
+    public Key<Blog> put(Blog blog) {
         return ofy().put(blog);
     }
 
@@ -63,5 +63,15 @@ public class DaoBlogObjectify extends DAOBase implements DaoBlog {
     @Override
     public Blog getByKey(Key<Blog> key) {
         return ofy().find(key);
+    }
+
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoBlog#getById(java.lang.Long)
+     */
+    @Override
+    public Blog getById(Long id) {
+        return ofy().find(Blog.class, id);
     }
 }

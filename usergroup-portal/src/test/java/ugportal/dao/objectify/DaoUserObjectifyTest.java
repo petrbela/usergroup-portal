@@ -147,7 +147,9 @@ public class DaoUserObjectifyTest {
         user2.setSurname("Jobs");
         user2.setPassword("jabko");
         user2.setRank(r);
-        user1.setVisibleName("rexo15");
+        user2.setVisibleName("rexo15");
+        byte[] bytes = new byte[50];
+        user2.setPhoto(new Blob(bytes));
 
         this.daoUserObjectify.put(user2);
 

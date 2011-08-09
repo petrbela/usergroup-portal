@@ -3,7 +3,6 @@
  */
 package ugportal.dao.objectify;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -16,13 +15,11 @@ import ugportal.dao.DaoFactory;
 import ugportal.model.BlogPost;
 import ugportal.model.Event;
 import ugportal.model.Invitation;
-import ugportal.model.Rank;
 import ugportal.model.Setting;
 import ugportal.model.Tweet;
 import ugportal.model.User;
 import ugportal.model.UserGroup;
 
-import com.google.appengine.api.datastore.Link;
 import com.google.appengine.api.datastore.Text;
 
 /**
@@ -55,63 +52,104 @@ public class DaoUserGroupObjectifyTest {
         userGroup.setName("Java-Ostrava");
         userGroup.setAbout(new Text("about java"));
         /**
-         * setting to usergoup
-         */
-        Setting setting = new Setting();
-        setting.setLinkTwitter(new Link("www.twitter.com"));
-        setting.setLinkBlogPost(new Link("blogpost.com"));
-        /**
-         * some tweets to usergroup
-         */
-        Tweet tweet = new Tweet();
-        tweet.setDateTime(new Date());
-        Tweet tweet2 = new Tweet();
-        tweet2.setDateTime(new Date());
-        /**
-         * some blogposts to usergroup
-         */
-        BlogPost blogPost = new BlogPost();
-        blogPost.setDateTime(new Date());
-        BlogPost blogPost2 = new BlogPost();
-        blogPost2.setDateTime(new Date());
-        /**
-         * user as invitator, usergoup member, event participant and creator
-         */
-        User user = new User();
-        user.setFirstname("anton");
-        Rank rank = new Rank();
-        rank.setLabel("boss");
-        user.setRank(rank);
-        /**
-         * invitation into usergroup
-         */
-        Invitation invitation = new Invitation();
-        invitation.setInvitedByUser(user);
-        invitation.setRegisteredUser(user);
-
-        /**
-         * event of usergroup
-         */
-        Event event = new Event();
-        event.setDate(new Date());
-        event.addParticipant(user);
-        event.setAuthor(user);
-        /**
          * all entities added to usergroup
          */
-        userGroup.addEvent(event);
-        userGroup.setSetting(setting);
-        userGroup.addTweet(tweet);
-        userGroup.addTweet(tweet2);
-        userGroup.addBlogPost(blogPost);
-        userGroup.addBlogPost(blogPost2);
-        userGroup.addInvitation(invitation);
-        userGroup.addUser(user);
+        userGroup.addEvent(DaoEventObjectifyTest.getOneEvent());
+        userGroup.setSetting(DaoSettingObjectifyTest.getOneSetting());
+        userGroup.addTweet(DaoTweetObjectifyTest.getOneTweet());
+        userGroup.addTweet(DaoTweetObjectifyTest.getOneTweet());
+        userGroup.addBlogPost(DaoBlogPostObjectifyTest.getOneBlogPost());
+        userGroup.addBlogPost(DaoBlogPostObjectifyTest.getOneBlogPost());
+        userGroup.addInvitation(DaoInvitationObjectifyTest.getOneInvitation());
+        userGroup.addUser(DaoUserObjectifyTest.getOneUser());
+        userGroup.addUser(DaoUserObjectifyTest.getOneUser());
         /**
          * whole usergroup saved
          */
         this.daoUserGroupObjectify.put(userGroup);
         UserGroup userGroup2 = this.daoUserGroupObjectify.get();
+        /**
+         * checking of all conditions
+         */
+        Assert.assertNotNull(userGroup2);
+        idTestCondition(userGroup.getId(), userGroup2.getId());
+        nameTestCondition(userGroup.getName(), userGroup2.getName());
+        aboutTestCondition(userGroup.getAbout(), userGroup2.getAbout());
+        settingTestCondition(userGroup.getSetting(), userGroup2.getSetting());
+        blogPostTestCondition(userGroup.getBlogposts().get(0), userGroup2.getBlogposts().get(0));
+        eventTestCondition(userGroup.getEvents(), userGroup2.getEvents());
+        invitationTestCondition(userGroup.getInvitations(), userGroup2.getInvitations());
+        tweetTestCondition(userGroup.getTweets(), userGroup2.getTweets());
+        usersTestCondition(userGroup.getUsers(), userGroup2.getUsers());
+
+    }
+
+    @Test
+    public void testPut() {
+        /**
+         * usergroup entity created
+         */
+        UserGroup userGroup = UserGroup.getInstance();
+        userGroup.setName("Java-Ostrava");
+        userGroup.setAbout(new Text("about java"));
+        /**
+         * all entities added to usergroup
+         */
+        userGroup.addEvent(DaoEventObjectifyTest.getOneEvent());
+        userGroup.setSetting(DaoSettingObjectifyTest.getOneSetting());
+        userGroup.addTweet(DaoTweetObjectifyTest.getOneTweet());
+        userGroup.addTweet(DaoTweetObjectifyTest.getOneTweet());
+        userGroup.addBlogPost(DaoBlogPostObjectifyTest.getOneBlogPost());
+        userGroup.addBlogPost(DaoBlogPostObjectifyTest.getOneBlogPost());
+        userGroup.addInvitation(DaoInvitationObjectifyTest.getOneInvitation());
+        userGroup.addUser(DaoUserObjectifyTest.getOneUser());
+        userGroup.addUser(DaoUserObjectifyTest.getOneUser());
+        /**
+         * whole usergroup saved
+         */
+        this.daoUserGroupObjectify.put(userGroup);
+        UserGroup userGroup2 = this.daoUserGroupObjectify.get();
+        /**
+         * checking of all conditions
+         */
+        Assert.assertNotNull(userGroup2);
+        idTestCondition(userGroup.getId(), userGroup2.getId());
+        nameTestCondition(userGroup.getName(), userGroup2.getName());
+        aboutTestCondition(userGroup.getAbout(), userGroup2.getAbout());
+        settingTestCondition(userGroup.getSetting(), userGroup2.getSetting());
+        blogPostTestCondition(userGroup.getBlogposts().get(0), userGroup2.getBlogposts().get(0));
+        eventTestCondition(userGroup.getEvents(), userGroup2.getEvents());
+        invitationTestCondition(userGroup.getInvitations(), userGroup2.getInvitations());
+        tweetTestCondition(userGroup.getTweets(), userGroup2.getTweets());
+        usersTestCondition(userGroup.getUsers(), userGroup2.getUsers());
+
+    }
+
+    @Test
+    public void testList() {
+        /**
+         * usergroup entity created
+         */
+        UserGroup userGroup = UserGroup.getInstance();
+        userGroup.setName("Java-Ostrava");
+        userGroup.setAbout(new Text("about java"));
+        /**
+         * all entities added to usergroup
+         */
+        userGroup.addEvent(DaoEventObjectifyTest.getOneEvent());
+        userGroup.setSetting(DaoSettingObjectifyTest.getOneSetting());
+        userGroup.addTweet(DaoTweetObjectifyTest.getOneTweet());
+        userGroup.addTweet(DaoTweetObjectifyTest.getOneTweet());
+        userGroup.addBlogPost(DaoBlogPostObjectifyTest.getOneBlogPost());
+        userGroup.addBlogPost(DaoBlogPostObjectifyTest.getOneBlogPost());
+        userGroup.addInvitation(DaoInvitationObjectifyTest.getOneInvitation());
+        userGroup.addUser(DaoUserObjectifyTest.getOneUser());
+        userGroup.addUser(DaoUserObjectifyTest.getOneUser());
+        /**
+         * whole usergroup saved
+         */
+        this.daoUserGroupObjectify.put(userGroup);
+        UserGroup userGroup2 = this.daoUserGroupObjectify.list().get(0);
         /**
          * checking of all conditions
          */

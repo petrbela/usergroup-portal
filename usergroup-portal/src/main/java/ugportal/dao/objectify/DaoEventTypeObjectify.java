@@ -53,7 +53,7 @@ public class DaoEventTypeObjectify extends DAOBase implements DaoEventType {
      */
     @Override
     public EventType get(Key<EventType> key) {
-        return ofy().get(key);
+        return ofy().find(key);
     }
 
 }

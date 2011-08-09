@@ -45,18 +45,13 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
      */
     @Override
     public List<User> getByName(final String firstName, final String lastName) {
-        Iterable<User> queryFirstName = ofy().query(User.class).filter("firstname >=", firstName)
+        Query<User> firstnameQuery = ofy().query(User.class).filter("firstname >=", firstName)
                 .filter("firstname <=", firstName + "\uFFFD");
-        Iterable<User> querySurName = ofy().query(User.class).filter("lastname >=", lastName)
+        Query<User> lastnameQuery = ofy().query(User.class).filter("lastname >=", lastName)
                 .filter("lastname <=", lastName + "\uFFFD");
-
         Set<User> users = new HashSet<User>();
-        for (User u : queryFirstName) {
-            users.add(u);
-        }
-        for (User u : querySurName) {
-            users.add(u);
-        }
+        users.addAll(firstnameQuery.list());
+        users.addAll(lastnameQuery.list());
         return new ArrayList<User>(users);
     }
 

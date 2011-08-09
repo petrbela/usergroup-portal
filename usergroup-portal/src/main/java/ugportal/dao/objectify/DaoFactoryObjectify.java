@@ -17,10 +17,14 @@ import ugportal.dao.DaoSourceMaterial;
 import ugportal.dao.DaoTweet;
 import ugportal.dao.DaoUser;
 import ugportal.dao.DaoUserGroup;
+import ugportal.model.Blog;
 import ugportal.model.BlogPost;
 import ugportal.model.Event;
+import ugportal.model.EventType;
 import ugportal.model.Invitation;
+import ugportal.model.InvitationState;
 import ugportal.model.Rank;
+import ugportal.model.Role;
 import ugportal.model.Setting;
 import ugportal.model.SourceMaterial;
 import ugportal.model.Tweet;
@@ -45,7 +49,11 @@ public class DaoFactoryObjectify extends DaoFactory {
         ObjectifyService.register(BlogPost.class);
         ObjectifyService.register(SourceMaterial.class);
         ObjectifyService.register(Event.class);
+        ObjectifyService.register(EventType.class);
         ObjectifyService.register(Invitation.class);
+        ObjectifyService.register(Blog.class);
+        ObjectifyService.register(Role.class);
+        ObjectifyService.register(InvitationState.class);
     }
 
     /**

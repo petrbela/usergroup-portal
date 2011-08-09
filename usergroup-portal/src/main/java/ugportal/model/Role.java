@@ -5,6 +5,7 @@ package ugportal.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -22,7 +23,8 @@ public class Role implements Serializable {
      * role id
      */
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
     /**
      * role label (e.g. member, admin, superadmin)
      */
@@ -33,7 +35,7 @@ public class Role implements Serializable {
      * 
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -52,7 +54,7 @@ public class Role implements Serializable {
      * @param id
      *            the id to set
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

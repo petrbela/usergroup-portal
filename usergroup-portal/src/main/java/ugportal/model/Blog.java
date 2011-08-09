@@ -3,6 +3,9 @@
  */
 package ugportal.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import com.google.appengine.api.datastore.Email;
 
 /**
@@ -22,6 +25,8 @@ public class Blog {
     /**
      * ID of this entity
      */
+    @Id
+    @GeneratedValue
     private Long id;
     /**
      * password to access the account

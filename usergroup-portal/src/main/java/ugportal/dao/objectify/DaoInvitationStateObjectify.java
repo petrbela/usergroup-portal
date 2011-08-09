@@ -23,7 +23,7 @@ public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitatio
      */
     @Override
     public InvitationState getById(Long id) {
-        return ofy().get(InvitationState.class, id);
+        return ofy().find(InvitationState.class, id);
     }
 
     /**
@@ -63,6 +63,6 @@ public class DaoInvitationStateObjectify extends DAOBase implements DaoInvitatio
      */
     @Override
     public InvitationState get(Key<InvitationState> key) {
-        return ofy().get(key);
+        return ofy().find(key);
     }
 }

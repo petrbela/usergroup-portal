@@ -23,7 +23,7 @@ public class DaoRankObjectify extends DAOBase implements DaoRank {
      */
     @Override
     public Rank getById(Long id) {
-        return ofy().get(Rank.class, id);
+        return ofy().find(Rank.class, id);
     }
 
     /**

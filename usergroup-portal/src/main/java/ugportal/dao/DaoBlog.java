@@ -30,7 +30,9 @@ public interface DaoBlog {
      *            blog id
      * @return fetched blog, or null
      */
-    Blog getByBlogId(Long blogId);
+    Blog getByBlogId(String blogId);
+
+    Blog getById(Long id);
 
     /**
      * Returns {@link Blog} by it's email.
@@ -47,7 +49,7 @@ public interface DaoBlog {
      * @param blog
      *            blog to save or update
      */
-    Key<Blog> save(Blog blog);
+    Key<Blog> put(Blog blog);
 
     /**
      * deletes {@link Blog}

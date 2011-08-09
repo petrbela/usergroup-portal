@@ -26,7 +26,7 @@ public class RoleTest {
      */
     @Test
     public final void testGetId() {
-        String id = "ID001";
+        Long id = 1L;
         this.testRole.setId(id);
         Assert.assertEquals(id, this.testRole.getId());
     }
@@ -46,7 +46,7 @@ public class RoleTest {
      */
     @Test
     public final void testSetId() {
-        String id = "ID001";
+        Long id = 1L;
         this.testRole.setId(id);
         Assert.assertEquals(id, this.testRole.getId());
     }

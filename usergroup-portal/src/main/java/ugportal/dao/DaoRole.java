@@ -50,4 +50,6 @@ public interface DaoRole {
      *            Role to delete
      */
     void delete(Role role);
+
+    Role get(Key<Role> key);
 }

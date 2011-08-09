@@ -56,4 +56,14 @@ public class DaoRoleObjectify extends DAOBase implements DaoRole {
         ofy().delete(role);
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * @see ugportal.dao.DaoRole#get(com.googlecode.objectify.Key)
+     */
+    @Override
+    public Role get(Key<Role> key) {
+        return ofy().find(key);
+    }
+
 }
