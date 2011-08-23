@@ -24,13 +24,19 @@ import com.googlecode.objectify.Key;
  */
 public class Event implements Serializable {
 
-    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
-    private final DaoSourceMaterialObjecitfy daoSourceMaterialObjecitfy = (DaoSourceMaterialObjecitfy) DaoFactory
-            .getInstance().getDaoSourceMaterial();
+    // private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify)
+    // DaoFactory.getInstance().getDaoUser();
+    // private final DaoSourceMaterialObjecitfy daoSourceMaterialObjecitfy =
+    // (DaoSourceMaterialObjecitfy) DaoFactory
+    // .getInstance().getDaoSourceMaterial();
     /**
      * Serial Version UID
      */
     private static final long serialVersionUID = -5134880099193477444L;
+    /**
+     * title of event
+     */
+    private String label;
     /**
      * address where event is organized
      */
@@ -84,13 +90,21 @@ public class Event implements Serializable {
         return this.address;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     /**
      * Returns the author.
      * 
      * @return the author
      */
     public User getAuthor() {
-        return this.daoUserObjectify.get(this.author);
+        return ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).get(this.author);
     }
 
     /**
@@ -144,7 +158,7 @@ public class Event implements Serializable {
      * @return the participants
      */
     public List<User> getParticipants() {
-        return this.daoUserObjectify.getAllByKeys(this.participants);
+        return ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).getAllByKeys(this.participants);
     }
 
     /**
@@ -153,7 +167,8 @@ public class Event implements Serializable {
      * @return the sourceMaterials
      */
     public List<SourceMaterial> getSourceMaterials() {
-        return this.daoSourceMaterialObjecitfy.getByAllKeys(this.sourceMaterials);
+        return ((DaoSourceMaterialObjecitfy) DaoFactory.getInstance().getDaoSourceMaterial())
+                .getByAllKeys(this.sourceMaterials);
     }
 
     /**
@@ -173,7 +188,7 @@ public class Event implements Serializable {
      *            the author to set
      */
     public void setAuthor(User author) {
-        this.author = this.daoUserObjectify.put(author);
+        this.author = ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).put(author);
     }
 
     /**
@@ -233,7 +248,7 @@ public class Event implements Serializable {
      *            the participants to set
      */
     public List<Key<User>> setParticipants(List<User> participants) {
-        return new ArrayList<Key<User>>(this.daoUserObjectify.putAll(participants));
+        return new ArrayList<Key<User>>(((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).putAll(participants));
     }
 
     /**
@@ -243,15 +258,16 @@ public class Event implements Serializable {
      *            the sourceMaterials to set
      */
     public List<Key<SourceMaterial>> setSourceMaterials(List<SourceMaterial> sourceMaterials) {
-        return this.daoSourceMaterialObjecitfy.putAll(sourceMaterials);
+        return ((DaoSourceMaterialObjecitfy) DaoFactory.getInstance().getDaoSourceMaterial()).putAll(sourceMaterials);
     }
 
     public void addParticipant(User participant) {
-        this.participants.add(this.daoUserObjectify.put(participant));
+        this.participants.add(((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).put(participant));
     }
 
     public void addSourceMaterial(SourceMaterial sourceMaterial) {
-        this.sourceMaterials.add(this.daoSourceMaterialObjecitfy.put(sourceMaterial));
+        this.sourceMaterials.add(((DaoSourceMaterialObjecitfy) DaoFactory.getInstance().getDaoSourceMaterial())
+                .put(sourceMaterial));
     }
 
 }

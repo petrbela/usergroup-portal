@@ -116,4 +116,13 @@ public class DaoUserObjectify extends DAOBase implements DaoUser {
 
     }
 
+    /**
+     * @param i
+     * @return
+     */
+    public List<User> getByCount(int from, int to) {
+        List<Key<User>> keys = ofy().query(User.class).listKeys();
+        return new ArrayList<User>(ofy().get(keys.subList(from, to)).values());
+
+    }
 }

@@ -20,7 +20,6 @@ import com.googlecode.objectify.Key;
  */
 public class Invitation implements Serializable {
 
-    private final DaoUserObjectify daoUserObjectify = (DaoUserObjectify) DaoFactory.getInstance().getDaoUser();
     /**
      * Serial Version UID
      */
@@ -55,7 +54,7 @@ public class Invitation implements Serializable {
      * @return the invitedByUser
      */
     public User getInvitedByUser() {
-        return this.daoUserObjectify.get(this.invitedByUser);
+        return ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).get(this.invitedByUser);
     }
 
     /**
@@ -64,7 +63,7 @@ public class Invitation implements Serializable {
      * @return the registeredUser
      */
     public User getRegisteredUser() {
-        return this.daoUserObjectify.get(this.registeredUser);
+        return ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).get(this.registeredUser);
     }
 
     /**
@@ -84,7 +83,7 @@ public class Invitation implements Serializable {
      *            the invitedByUser to set
      */
     public void setInvitedByUser(User invitedByUser) {
-        this.invitedByUser = this.daoUserObjectify.put(invitedByUser);
+        this.invitedByUser = ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).put(invitedByUser);
     }
 
     /**
@@ -94,7 +93,7 @@ public class Invitation implements Serializable {
      *            the registeredUser to set
      */
     public void setRegisteredUser(User registeredUser) {
-        this.registeredUser = this.daoUserObjectify.put(registeredUser);
+        this.registeredUser = ((DaoUserObjectify) DaoFactory.getInstance().getDaoUser()).put(registeredUser);
     }
 
 }

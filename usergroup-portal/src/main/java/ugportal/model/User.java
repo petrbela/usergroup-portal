@@ -23,7 +23,6 @@ import com.googlecode.objectify.Key;
  */
 public class User implements Serializable {
 
-    private final DaoRankObjectify daoRankObjectify = (DaoRankObjectify) DaoFactory.getInstance().getDaoRank();
     /**
      * Serial Version UID
      */
@@ -126,7 +125,7 @@ public class User implements Serializable {
      * @return the rank
      */
     public Rank getRank() {
-        return this.daoRankObjectify.get(this.rank);
+        return ((DaoRankObjectify) DaoFactory.getInstance().getDaoRank()).get(this.rank);
     }
 
     /**
@@ -213,7 +212,7 @@ public class User implements Serializable {
      *            the rank to set
      */
     public void setRank(Rank rank) {
-        this.rank = this.daoRankObjectify.put(rank);
+        this.rank = ((DaoRankObjectify) DaoFactory.getInstance().getDaoRank()).put(rank);
     }
 
     /**

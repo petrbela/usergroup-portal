@@ -67,4 +67,6 @@ public interface DaoEvent {
      */
     void delete(Event event);
 
+    List<Event> getInterval(int from, int count);
+
 }

@@ -89,4 +89,9 @@ public class DaoEventObjectify extends DAOBase implements DaoEvent {
         return ofy().find(key);
     }
 
+    public List<Event> getInterval(int from, int count) {
+        List<Key<Event>> keys = ofy().query(Event.class).listKeys();
+        return new ArrayList<Event>(ofy().get(keys.subList(from, from + count)).values());
+    }
+
 }

@@ -3,6 +3,8 @@
  */
 package ugportal.dao.objectify;
 
+import java.util.List;
+
 import ugportal.dao.DaoEventType;
 import ugportal.model.EventType;
 
@@ -54,6 +56,13 @@ public class DaoEventTypeObjectify extends DAOBase implements DaoEventType {
     @Override
     public EventType get(Key<EventType> key) {
         return ofy().find(key);
+    }
+
+    /**
+     * @return
+     */
+    public List<EventType> getAll() {
+        return ofy().query(EventType.class).list();
     }
 
 }

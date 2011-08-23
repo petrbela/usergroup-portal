@@ -18,7 +18,6 @@ import com.googlecode.objectify.Key;
  */
 public class Setting implements Serializable {
 
-    private final DaoBlogObjectify blogObjectify = (DaoBlogObjectify) DaoFactory.getInstance().getDaoBlog();
     /**
      * serialVersionUID
      */
@@ -45,7 +44,7 @@ public class Setting implements Serializable {
      * @return the blog
      */
     public Blog getBlog() {
-        return this.blogObjectify.getByKey(this.blog);
+        return ((DaoBlogObjectify) DaoFactory.getInstance().getDaoBlog()).getByKey(this.blog);
     }
 
     /**
@@ -55,7 +54,7 @@ public class Setting implements Serializable {
      *            the blog to set
      */
     public void setBlog(Blog blog) {
-        this.blog = this.blogObjectify.put(blog);
+        this.blog = ((DaoBlogObjectify) DaoFactory.getInstance().getDaoBlog()).put(blog);
     }
 
     /**

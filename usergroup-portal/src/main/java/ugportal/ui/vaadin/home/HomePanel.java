@@ -28,6 +28,13 @@ public class HomePanel extends UgPanel {
      */
     public HomePanel(String caption) {
         super(caption);
+        initHomePanel();
+    }
+
+    /**
+     * 
+     */
+    public void initHomePanel() {
         GridLayout layoutMain = new GridLayout(3, 1);
         layoutMain.setSizeFull();
         TwitterPanel twitterPanel = new TwitterPanel("Twitter");
@@ -36,7 +43,7 @@ public class HomePanel extends UgPanel {
         BlogPostsPanel lblBlogNews = new BlogPostsPanel("Blog posts");
         layoutMain.addComponent(lblBlogNews, 1, 0);
         layoutMain.setComponentAlignment(lblBlogNews, Alignment.TOP_CENTER);
-        EventsPanel lblEvents = new EventsPanel("Events");
+        EventsPanel lblEvents = new EventsPanel("Events", this);
         layoutMain.addComponent(lblEvents, 2, 0);
         layoutMain.setComponentAlignment(lblEvents, Alignment.TOP_RIGHT);
         setContent(layoutMain);
