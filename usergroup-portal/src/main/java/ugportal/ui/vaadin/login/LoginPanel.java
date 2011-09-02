@@ -3,6 +3,7 @@
  */
 package ugportal.ui.vaadin.login;
 
+import ugportal.ui.vaadin.UGPortalMainPanel;
 import ugportal.ui.vaadin.component.UgPanel;
 
 /**
@@ -15,7 +16,7 @@ public class LoginPanel extends UgPanel {
      * 
      * @param caption
      */
-    public LoginPanel(String caption) {
+    public LoginPanel(String caption, UGPortalMainPanel mainPanel) {
         super(caption);
     }
 

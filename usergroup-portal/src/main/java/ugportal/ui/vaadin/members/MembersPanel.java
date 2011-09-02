@@ -3,6 +3,7 @@
  */
 package ugportal.ui.vaadin.members;
 
+import ugportal.ui.vaadin.UGPortalMainPanel;
 import ugportal.ui.vaadin.component.UgPanel;
 
 /**
@@ -20,7 +21,7 @@ public class MembersPanel extends UgPanel {
      * 
      * @param caption
      */
-    public MembersPanel(String caption) {
+    public MembersPanel(String caption, UGPortalMainPanel mainPanel) {
         super(caption);
     }
 

@@ -52,6 +52,11 @@ public class Event implements Serializable {
      */
     private Date date;
 
+    private double directionA;
+
+    private double directionB;
+
+    private String addressDescription;
     /**
      * description of event, providing more info about an event
      */
@@ -268,6 +273,73 @@ public class Event implements Serializable {
     public void addSourceMaterial(SourceMaterial sourceMaterial) {
         this.sourceMaterials.add(((DaoSourceMaterialObjecitfy) DaoFactory.getInstance().getDaoSourceMaterial())
                 .put(sourceMaterial));
+    }
+
+    /**
+     * Returns the directionA.
+     * 
+     * @return the directionA
+     */
+    public double getDirectionA() {
+        return directionA;
+    }
+
+    /**
+     * Returns the directionB.
+     * 
+     * @return the directionB
+     */
+    public double getDirectionB() {
+        return directionB;
+    }
+
+    /**
+     * Returns the addressDescription.
+     * 
+     * @return the addressDescription
+     */
+    public String getAddressDescription() {
+        return addressDescription;
+    }
+
+    /**
+     * Sets the author.
+     * 
+     * @param author
+     *            the author to set
+     */
+    public void setAuthor(Key<User> author) {
+        this.author = author;
+    }
+
+    /**
+     * Sets the directionA.
+     * 
+     * @param directionA
+     *            the directionA to set
+     */
+    public void setDirectionA(double directionA) {
+        this.directionA = directionA;
+    }
+
+    /**
+     * Sets the directionB.
+     * 
+     * @param directionB
+     *            the directionB to set
+     */
+    public void setDirectionB(double directionB) {
+        this.directionB = directionB;
+    }
+
+    /**
+     * Sets the addressDescription.
+     * 
+     * @param addressDescription
+     *            the addressDescription to set
+     */
+    public void setAddressDescription(String addressDescription) {
+        this.addressDescription = addressDescription;
     }
 
 }

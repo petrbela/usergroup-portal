@@ -3,6 +3,7 @@
  */
 package ugportal.ui.vaadin.home;
 
+import ugportal.ui.vaadin.UGPortalMainPanel;
 import ugportal.ui.vaadin.component.UgPanel;
 import ugportal.ui.vaadin.home.blogposts.BlogPostsPanel;
 import ugportal.ui.vaadin.home.events.EventsPanel;
@@ -21,13 +22,16 @@ public class HomePanel extends UgPanel {
      */
     private static final long serialVersionUID = 3663031940629380280L;
 
+    private UGPortalMainPanel mainPanel;
+
     /**
      * Creates new instance.
      * 
      * @param caption
      */
-    public HomePanel(String caption) {
+    public HomePanel(String caption, UGPortalMainPanel mainPanel) {
         super(caption);
+        this.mainPanel = mainPanel;
         initHomePanel();
     }
 
@@ -47,6 +51,10 @@ public class HomePanel extends UgPanel {
         layoutMain.addComponent(lblEvents, 2, 0);
         layoutMain.setComponentAlignment(lblEvents, Alignment.TOP_RIGHT);
         setContent(layoutMain);
+    }
+
+    public UGPortalMainPanel getMainPanel() {
+        return mainPanel;
     }
 
 }

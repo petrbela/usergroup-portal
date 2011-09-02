@@ -16,6 +16,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.Runo;
 
 /**
@@ -39,18 +40,21 @@ public class UGPortalMainPanel extends CustomComponent {
      */
     private TabSheet tabSheetMain;
 
+    private Window mainWindow;
+
     /**
      * Creates new instance.
      */
-    public UGPortalMainPanel() {
+    public UGPortalMainPanel(Window mainWindow) {
+        this.mainWindow = mainWindow;
         buildPnlMain();
         setCompositionRoot(pnlMain);
         pnlMain.setWidth("900px");
         pnlMain.setHeight("100%");
-        tabSheetMain.addTab(new HomePanel("Home"));
-        tabSheetMain.addTab(new MembersPanel("Members"));
-        tabSheetMain.addTab(new AboutPanel("About"));
-        tabSheetMain.addTab(new LoginPanel("Login"));
+        tabSheetMain.addTab(new HomePanel("Home", this));
+        tabSheetMain.addTab(new MembersPanel("Members", this));
+        tabSheetMain.addTab(new AboutPanel("About", this));
+        tabSheetMain.addTab(new LoginPanel("Login", this));
 
     }
 
@@ -106,6 +110,10 @@ public class UGPortalMainPanel extends CustomComponent {
         tabSheetMain.setSizeFull();
         layout.addComponent(tabSheetMain);
         return layout;
+    }
+
+    public Window getMainWindow() {
+        return mainWindow;
     }
 
 }

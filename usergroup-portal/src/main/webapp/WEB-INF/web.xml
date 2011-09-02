@@ -17,10 +17,17 @@
 			<param-value>ugportal.ui.vaadin.UGPortalApplication</param-value>
 		</init-param>
 	</servlet>
-
+	<servlet>
+		<servlet-name>map</servlet-name>
+		<servlet-class>ugportal.servlets.GoogleMapServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>User Group Portal</servlet-name>
 		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>map</servlet-name>
+		<url-pattern>/map</url-pattern>
 	</servlet-mapping>
 
 	<listener>

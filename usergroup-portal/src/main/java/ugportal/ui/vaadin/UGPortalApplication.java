@@ -20,6 +20,8 @@ public class UGPortalApplication extends Application {
      */
     private static final long serialVersionUID = -5900332140878864315L;
 
+    private Window mainWindow;
+
     /**
      * {@inheritDoc}
      * 
@@ -27,15 +29,16 @@ public class UGPortalApplication extends Application {
      */
     @Override
     public void init() {
+
+        // Create & place main window
+        mainWindow = new Window("Ug portal");
         setTheme("ugportal");
         final HorizontalLayout layout = new HorizontalLayout();
         layout.setWidth("100%");
-        final UGPortalMainPanel loginComponent = new UGPortalMainPanel();
+        final UGPortalMainPanel loginComponent = new UGPortalMainPanel(mainWindow);
         layout.addComponent(loginComponent);
         loginComponent.setSizeUndefined();
         layout.setComponentAlignment(loginComponent, Alignment.MIDDLE_CENTER);
-        // Create & place main window
-        final Window mainWindow = new Window("Ug portal");
         mainWindow.addComponent(layout);
         setMainWindow(mainWindow);
     }
