@@ -6,13 +6,15 @@ package ugportal.ui.vaadin.home.events;
 import java.util.Map;
 
 import ugportal.ui.vaadin.component.UgPanel;
+import ugportal.ui.vaadin.home.events.action.AddSourceMaterialsAction;
 import ugportal.ui.vaadin.home.events.action.CloseEventAction;
 import ugportal.ui.vaadin.home.events.action.OpenMapAction;
+import ugportal.ui.vaadin.home.events.action.ParticipationEventAction;
+import ugportal.ui.vaadin.home.events.action.SaveEventAction;
 import ugportal.ui.vaadin.home.events.state.AbstractEventState;
 import ugportal.ui.vaadin.home.events.state.EventStateHolder;
 
 import com.vaadin.terminal.ParameterHandler;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
@@ -32,6 +34,8 @@ public class DetailEventView extends UgPanel implements ParameterHandler {
      * serialVersionUID
      */
     private static final long serialVersionUID = 3794586415449061918L;
+
+    private final String COMPONENT_WIDTH = "350px";
 
     private HorizontalLayout layout;
 
@@ -69,6 +73,16 @@ public class DetailEventView extends UgPanel implements ParameterHandler {
 
     private Label map;
 
+    private Button btnParticipation;
+
+    private VerticalLayout rightLayout = new VerticalLayout();
+
+    private VerticalLayout leftLayout = new VerticalLayout();
+
+    private Button btnSaveEvent = new Button("save", new SaveEventAction(this));
+
+    private Button btnAddSourceMaterials = new Button("add source materials", new AddSourceMaterialsAction(this));
+
     public DetailEventView(String caption, EventsPanel eventsPanel, ugportal.model.Event event,
             AbstractEventState eventState) {
 
@@ -93,34 +107,45 @@ public class DetailEventView extends UgPanel implements ParameterHandler {
             lblClikableMap = new Label("<a href=\"http://maps.google.sk/maps?q=" + event.getDirectionA() + ","
                     + event.getDirectionB() + "\" target=\"_blank\">"
                     + "<img src=\"http://maps.googleapis.com/maps/api/staticmap?center=" + event.getDirectionA() + ","
-                    + event.getDirectionB() + "&zoom=15&size=400x400&markers=color:blue%7Clabel:A%7C"
+                    + event.getDirectionB() + "&zoom=15&size=375x400&markers=color:blue%7Clabel:A%7C"
                     + event.getDirectionA() + "," + event.getDirectionB() + "&maptype=hybrid&sensor=false\" /></a>",
                     Label.CONTENT_XHTML);
         } catch (NullPointerException exception) {
 
         }
 
+        btnParticipation = new Button("Attend", new ParticipationEventAction(this, event));
+
         layout = new HorizontalLayout();
         layout.setSizeFull();
 
-        VerticalLayout leftLayout = new VerticalLayout();
         leftLayout.setSpacing(true);
         leftLayout.setMargin(true);
         leftLayout.setWidth("450px");
-
+        txtEventTitle.setWidth(COMPONENT_WIDTH);
         leftLayout.addComponent(txtEventTitle);
+        txtEventLink.setWidth(COMPONENT_WIDTH);
+        txtEventLink.setValue("=");
+        txtEventLink.setDescription("Link of this event for placing on social networks or sending by email...");
         leftLayout.addComponent(txtEventLink);
-        leftLayout.addComponent(dfdEventDate);
-        txtEventAddres.setColumns(30);
+
+        HorizontalLayout dateAndTypeBar = new HorizontalLayout();
+        dateAndTypeBar.setWidth(COMPONENT_WIDTH);
+        dateAndTypeBar.setSpacing(true);
+        dateAndTypeBar.addComponent(dfdEventDate);
+        cmbEventTypes.setSizeFull();
+        dateAndTypeBar.addComponent(cmbEventTypes);
+        leftLayout.addComponent(dateAndTypeBar);
+
+        txtEventAddres.setWidth(COMPONENT_WIDTH);
         txtEventAddres.setRows(3);
         leftLayout.addComponent(txtEventAddres);
-        leftLayout.addComponent(cmbEventTypes);
-        txtEventDescription.setWidth("400px");
+        txtEventDescription.setWidth(COMPONENT_WIDTH);
         leftLayout.addComponent(txtEventDescription);
 
         lblInputMap = new Label(
                 "<a href=\"/map\">"
-                        + "<img src=\"http://maps.googleapis.com/maps/api/staticmap?center=40.713956,20.742188&zoom=2&size=400x400&markers=color:blue%7Clabel:A%7C"
+                        + "<img src=\"http://maps.googleapis.com/maps/api/staticmap?center=40.713956,20.742188&zoom=2&size=375x400&markers=color:blue%7Clabel:A%7C"
                         + "40.713956,20.742188&maptype=hybrid&sensor=false\" /></a>", Label.CONTENT_XHTML);
 
         leftLayout.addComponent(lblTitle);
@@ -128,13 +153,20 @@ public class DetailEventView extends UgPanel implements ParameterHandler {
         leftLayout.addComponent(lblDate);
         leftLayout.addComponent(lblAddress);
         leftLayout.addComponent(lblDescription);
-
+        leftLayout.addComponent(btnParticipation);
         leftLayout.addComponent(new Button("close", new CloseEventAction(eventsPanel)));
-
+        leftLayout.addComponent(btnSaveEvent);
+        leftLayout.addComponent(btnAddSourceMaterials);
+        rightLayout.setSpacing(true);
+        rightLayout.setMargin(true);
+        rightLayout.setSizeFull();
         layout.addComponent(leftLayout);
-        layout.addComponent(lblClikableMap);
-        layout.addComponent(lblInputMap);
-        layout.setComponentAlignment(leftLayout, Alignment.MIDDLE_CENTER);
+        lblClikableMap.setCaption("Place of event :");
+        rightLayout.addComponent(lblClikableMap);
+        lblInputMap.setCaption("Pick a place of event :");
+        rightLayout.addComponent(lblInputMap);
+        layout.addComponent(rightLayout);
+
         setContent(layout);
     }
 
@@ -146,18 +178,27 @@ public class DetailEventView extends UgPanel implements ParameterHandler {
     @Override
     public void handleParameters(Map<String, String[]> parameters) {
         if (parameters.containsKey("address")) {
-            layout.removeComponent(lblInputMap);
+            rightLayout.removeComponent(lblInputMap);
             if (map != null)
-                layout.removeComponent(map);
+                rightLayout.removeComponent(map);
             txtEventAddres.setValue(parameters.get("address")[0]);
             String directions = parameters.get("directions")[0];
             map = new Label("<a href=\"/map?da=" + directions.split(",")[0] + "&db="
                     + directions.split(",")[1].replaceAll(" ", "")
                     + "\"><img src=\"http://maps.googleapis.com/maps/api/staticmap?center=" + directions
-                    + "&zoom=15&size=400x400&markers=color:blue%7Clabel:A%7C" + directions
+                    + "&zoom=15&size=375x400&markers=color:blue%7Clabel:A%7C" + directions
                     + "&maptype=hybrid&sensor=false\" /></a>", Label.CONTENT_XHTML);
-            layout.addComponent(map);
+            map.setCaption("Place of event :");
+            rightLayout.addComponent(map);
         }
+    }
+
+    public Button getBtnParticipation() {
+        return btnParticipation;
+    }
+
+    public void setBtnParticipation(Button btnParticipation) {
+        this.btnParticipation = btnParticipation;
     }
 
     public Label getLblInputMap() {

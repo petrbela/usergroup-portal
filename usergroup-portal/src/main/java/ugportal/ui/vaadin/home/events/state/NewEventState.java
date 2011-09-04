@@ -28,7 +28,7 @@ public class NewEventState extends AbstractEventState {
     }
 
     public void initActionButtons(DetailEventView detailEventView) {
-
+        detailEventView.getBtnParticipation().setVisible(false);
     }
 
 }

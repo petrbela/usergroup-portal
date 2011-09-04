@@ -15,9 +15,10 @@ public class ShowEventState extends AbstractEventState {
         detailEventView.getTxtEventDescription().setVisible(false);
         detailEventView.getTxtEventTitle().setVisible(false);
         detailEventView.getTxtEventLink().setVisible(false);
-        detailEventView.getLblInputMap().setVisible(false);
+        detailEventView.getBtnLinkCheck().setVisible(false);
         detailEventView.getDfdEventDate().setVisible(false);
         detailEventView.getCmbEventTypes().setVisible(false);
+        detailEventView.getLblInputMap().setVisible(false);
         detailEventView.getLblTitle().setVisible(true);
         detailEventView.getLblAddress().setVisible(true);
         detailEventView.getLblAuthor().setVisible(true);
@@ -25,6 +26,10 @@ public class ShowEventState extends AbstractEventState {
         detailEventView.getLblDate().setVisible(true);
         detailEventView.getLblDescription().setVisible(true);
 
+    }
+
+    public void initActionButtons(DetailEventView detailEventView) {
+        detailEventView.getBtnParticipation().setVisible(true);
     }
 
 }
